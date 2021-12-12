@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #__next {
+    @apply h-full;
+  }
+
+  #__next {
+    @apply flex flex-col;
+  }
+
+  #__next > main {
+    @apply flex-grow flex-shrink-0;
+  }
+
+  #__next > footer {
+    @apply flex-shrink-0;
+  }
+
+  .markdown h1 {
+    @apply text-6xl;
+  }
+
+  .markdown h2 {
+    @apply text-5xl;
+  }
+
+  .markdown h3 {
+    @apply text-4xl;
+  }
+
+  .markdown h4 {
+    @apply text-3xl;
+  }
+
+  .markdown h5 {
+    @apply text-2xl;
+  }
+
+  .markdown h6 {
+    @apply text-xl;
+  }
+
+  .markdown p {
+    @apply mb-3;
+  }
+
+  .markdown blockquote {
+    @apply pl-3;
+    /* @apply border-l-4 border-blue-700; */
+  }
+
+  .markdown code {
+    @apply p-1;
+    /* @apply bg-gray-800;
+    @apply border border-gray-700; */
+  }
+
+  .markdown pre code {
+    @apply block;
+    @apply p-3;
+  }
+}
