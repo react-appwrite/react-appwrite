@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Appwrite } from 'appwrite'
-import { useAccount, useFunction } from 'react-appwrite-hooks'
+import { useAccount } from 'react-appwrite-hooks/account'
+import { useFunction } from 'react-appwrite-hooks/functions'
 
 const appwrite = new Appwrite()
 

@@ -4,6 +4,9 @@
     "src/**/*.ts",
     "types"
   ],
+  "exclude": [
+    "./dist"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "lib": [
@@ -11,6 +14,7 @@
       "esnext"
     ],
     "importHelpers": true,
+    "outDir": "dist",
     // output .d.ts declaration files for consumers
     "declaration": true,
     // output .js.map sourcemap files for consumers
@@ -36,6 +40,7 @@
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
     // `tsdx build` ignores this option, but it is commonly used when type-checking separately with `tsc`
-    "noEmit": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
   }
 }

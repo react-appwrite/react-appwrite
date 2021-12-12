@@ -8,22 +8,22 @@
   "scripts": {
     "start": "tsdx watch",
     "createFunctionTag": "wsl appwrite functions createTag --functionId=6185b7c888dae --command='node add.js' --code='functions'",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "build": "rm -rf dist && tsc && node scripts/build.js"
   },
   "exports": {
-    ".": "./dist/react-appwrite-hooks.esm.js",
-    "./account": "./dist/account/index.js"
+    ".": "./dist/index.js",
+    "./account": "./dist/account/index.js",
+    "./database": "./dist/database/index.js",
+    "./functions": "./dist/functions/index.js"
   },
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "account.d.ts",
+    "database.d.ts",
+    "functions.d.ts"
   ],
   "engines": {
     "node": ">=10"
@@ -31,38 +31,15 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "module": "dist/react-appwrite-hooks.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/react-appwrite-hooks.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/react-appwrite-hooks.esm.js",
-      "limit": "10 KB"
-    }
-  ],
+  "module": "dist/index.js",
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^6.0.4",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "appwrite": "^5.0.0",
-    "husky": "^7.0.4",
+    "esbuild": "^0.14.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "size-limit": "^6.0.4",
-    "tsdx": "^0.14.1",
+    "tiny-glob": "^0.2.9",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   }
