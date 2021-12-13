@@ -29,7 +29,6 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src/**/*.ts",
     "account.d.ts",
     "database.d.ts",
     "functions.d.ts"
