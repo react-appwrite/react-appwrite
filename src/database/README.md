@@ -28,4 +28,4 @@ import { useDocument } from 'react-appwrite-hooks/database'
 const [doc, isLoading, error] = useDocument<Model>(appwrite, collectionId, documentId)
 ```
 
-`doc` is a [document](https://appwrite.io/docs/models/document) that also contain the fields from `Model`.
+`doc` is a [document](https://appwrite.io/docs/models/document) that also contains the fields from `Model`.

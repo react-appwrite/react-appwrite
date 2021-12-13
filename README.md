@@ -20,7 +20,7 @@ All hooks take your appwrite instance as their first parameter.
 
 ### Contributing
 
-1. [Install `pnpm` if you don't already have it.](https://pnpm.io/installation#nodejs-is-preinstalled)
+1. Install `pnpm` if you don't already have it by running `npm install -g pnpm`
 
 2. Install dependencies with `pnpm i`
 
