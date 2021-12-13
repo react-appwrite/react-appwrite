@@ -11,9 +11,9 @@ All hooks take your appwrite instance as their first parameter.
 
 ### Available Hooks
 
-- [Account](/account)
-- [Database](/database)
-- [Functions](/functions)
+- [Account](/src/account)
+- [Database](/src/database)
+- [Functions](/src/functions)
 
 ### License
 
