@@ -22,7 +22,7 @@ export default function Home({ }) {
     await appwrite.account.create(email, password)
     await appwrite.account.createSession(email, password)
 
-    router.push('/sum')
+    router.push('/functions')
   }
 
   useEffect(() => {

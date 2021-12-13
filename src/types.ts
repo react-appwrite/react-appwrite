@@ -7,7 +7,6 @@ export type AsyncEffectResult<T> = [Loading<T>, boolean, unknown]
 export type AsyncEffectCallback<T> = (
   set: (data: T) => void,
   error: (error: unknown) => void,
-  currentState: Loading<T>,
 ) => void | (() => void)
 
 export type CloudFunctionExecution<Data> = Models.Execution & {

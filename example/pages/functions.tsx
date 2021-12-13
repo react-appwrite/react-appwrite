@@ -14,14 +14,13 @@ type SumResult = {
   result: number,
 }
 
-export default function Sum({ }) {
+export default function Functions({ }) {
   const appwrite = useContext(AppwriteContext)
   const router = useRouter()
   const [sum] = useFunction<SumProps, SumResult>(appwrite, process.env.NEXT_PUBLIC_APPWRITE_FUNCTION as string)
 
   const handleSubmitClick = async ({ numbers }: { numbers: string }) => {
     sum.execute({ numbers: numbers.split(',').map(number => Number(number)) })
-    router.push('/sum')
   }
 
   useEffect(() => {

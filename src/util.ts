@@ -5,7 +5,7 @@ export function useAsyncResult<T>(effect: AsyncEffectCallback<T>): AsyncEffectRe
   const [data, setData] = useState<Loading<T>>(undefined)
   const [error, setError] = useState<any | undefined>(undefined)
 
-  useEffect(() => effect(setData, setError, data), [])
+  useEffect(() => effect(setData, setError), [])
 
   return [data, data === undefined && error !== undefined, error]
 }
