@@ -20,11 +20,14 @@ export default function useCollection<Model>(appwrite: Appwrite, collectionId: s
           // @ts-ignore
           set({ ...data, documents: data?.documents.filter(document => document.$id !== e.payload.$id) } as Collection<Model>)
           break
+        case 'database.documents.update':
+          // @ts-ignore
+          set({ ...data, documents: [...data?.documents] } as Collection<Model>)
+          break
         default:
           break
       }
 
-      console.log('EEEEE', e)
       set(e.payload as Collection<Model>)
     })
   })

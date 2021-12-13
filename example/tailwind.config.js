@@ -16,6 +16,8 @@ module.exports = {
       red: colors.rose,
       yellow: colors.yellow,
       orange: colors.orange,
+      primary: '#c7d8eb',
+      'primary-light': '#d3deea',
     },
 
     container: {

@@ -6,9 +6,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "tsdx watch",
-    "createFunctionTag": "wsl appwrite functions createTag --functionId=6185b7c888dae --command='node add.js' --code='functions'",
-    "build": "rm -rf dist && tsc && node scripts/build.js"
+    "dev": "npm run build watch",
+    "createFunctionTag": "wsl appwrite functions createTag --functionId=61b6eeacb2b63 --command='node sum.js' --code='functions'",
+    "build": "rm -rf dist && tsc && node scripts/build.js",
+    "build:production": "npm run build production"
   },
   "exports": {
     ".": "./dist/index.js",
