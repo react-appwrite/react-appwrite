@@ -22,7 +22,7 @@ export default function useCollection<Model>(
   const [collection, setCollection] = useState<Loading<Collection<Model>>>()
   const [error, setError] = useState<unknown>()
 
-  useEffect(() => {
+  const fullUpdate = () => {
     appwrite
       .database
       .listDocuments(collectionId,
@@ -36,40 +36,45 @@ export default function useCollection<Model>(
       )
       .then(collection => setCollection(collection.documents as Collection<Model>))
       .catch(setError)
-  }, [collectionId, options])
+  }
+
+  useEffect(fullUpdate, [collectionId, options])
 
   useEffect(() => {
-    if (collection) {
-      return appwrite.subscribe(collection.map(doc => `documents.${doc.$id}`), e => {
-        const payload = e.payload as Model & Models.Document
+    const destructor = appwrite.subscribe([...(collection || []).map(doc => `documents.${doc.$id}`)], e => {
+      const payload = e.payload as Model & Models.Document
 
-        switch (e.event) {
-          case 'database.documents.delete':
-            setCollection(collection?.filter(doc => doc.$id !== payload.$id))
-            break
-          case 'database.documents.update':
-            if (collection) {
-              const documentIndex = collection.findIndex(doc => doc.$id === payload.$id)
-              const newCollection = [...collection]
+      switch (e.event) {
+        case 'database.documents.delete':
+          setCollection(collection?.filter(doc => doc.$id !== payload.$id))
+          break
+        case 'database.documents.update':
+          if (collection) {
+            const documentIndex = collection.findIndex(doc => doc.$id === payload.$id)
+            const newCollection = [...collection]
 
-              newCollection[documentIndex] = payload
+            newCollection[documentIndex] = payload
 
-              setCollection(newCollection)
-            }
+            setCollection(newCollection)
+          }
 
-            break
-          case 'database.documents.create':
-            // if (collection) {
-            //   setCollection([...collection, payload])
-            // }
-            break
-          default:
-            break
-        }
-      })
+          break
+        default:
+          break
+      }
+    })
+
+    // This is very ineffecient, but will do for now.
+    const creationDestructor = appwrite.subscribe(`collections.${collectionId}.documents`, e => {
+      if (e.event === 'database.documents.create') {
+        fullUpdate()
+      }
+    })
+
+    return () => {
+      destructor()
+      creationDestructor()
     }
-
-    return () => undefined
   }, [collection])
 
   console.log('Collection', collection)

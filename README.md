@@ -1,6 +1,9 @@
 # react-appwrite-hooks
 
 React hooks for [Appwrite](https://appwrite.io). This library is a work-in-progress (as is Appwrite), and was inspired by [react-firebase-hooks](https://www.npmjs.com/package/react-firebase-hooks). Expect bugs, missing functionality, and outdated docs as this project continues to be developed.
+
+Unless stated otherwise, all hooks support realtime capabilities, so you don't have to do any manual refreshing yourself.
+
 The hooks follow this format:
 
 ```typescript
@@ -19,13 +22,19 @@ All hooks take your appwrite instance as their first parameter.
 
 1. [Install `pnpm` if you don't already have it.](https://pnpm.io/installation#nodejs-is-preinstalled)
 
-2. Install dependencies for both the library and the example project inside of it
+2. Install dependencies with `pnpm i`
 
-`pnpm i && cd example && pnpm i && cd ..`
+3. Execute `pnpm run dev` in the root folder and start editing.
 
-3. Rename `.env.local.example` to `.env.local`, and replace the variables inside of it with variables from your own local Appwrite installation.
+Follow these extra instructions if you'd like to test with the provided example project.
 
-4. Execute `pnpm run dev` in the root folder, and start editing files in the src folder. If you'd like to test your changes with the provided example project, open up another terminal, cd into the example folder, and run `pnpm run dev` there as well.
+1. In the example folder, rename `.env.local.example` to `.env.local`, and replace the variables inside of it with variables from your own local Appwrite installation.
+
+2. Open up another terminal that is also in the example folder.
+
+3. Install dependencies with `pnpm i`
+
+4. Execute `pnpm run dev` and start editing.
 
 ### License
 
