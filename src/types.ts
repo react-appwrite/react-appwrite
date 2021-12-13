@@ -1,4 +1,3 @@
-
 import type { Models } from 'appwrite/types/sdk'
 
 export type Loading<T> = T | undefined
