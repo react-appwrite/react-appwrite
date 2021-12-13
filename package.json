@@ -6,10 +6,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "npm run build watch",
-    "createFunctionTag": "wsl appwrite functions createTag --functionId=61b6eeacb2b63 --command='node sum.js' --code='functions'",
+    "dev": "pnpm run build watch",
     "build": "rm -rf dist && tsc && node scripts/build.js",
-    "build:production": "npm run build production"
+    "build:production": "pnpm run build production"
   },
   "exports": {
     ".": "./dist/index.js",
