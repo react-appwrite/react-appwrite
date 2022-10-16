@@ -6,7 +6,7 @@
   html,
   body,
   #__next {
-    @apply h-full text-white bg-gray-900;
+    @apply h-full;
   }
 
   #__next {
@@ -14,35 +14,10 @@
   }
 
   #__next > main {
-    @apply flex-grow flex-shrink-0;
+    @apply flex flex-col w-full h-full;
   }
 
   #__next > footer {
     @apply flex-shrink-0;
-  }
-
-  form {
-    @apply rounded-[10px] bg-gray-800 p-8;
-  }
-
-  .input,
-  input[type=date],
-  input[type=datetime-local],
-  input[type=email],
-  input[type=file],
-  input[type=number],
-  input[type=password],
-  input[type=search],
-  input[type=tel],
-  input[type=text],
-  input[type=url],
-  select,
-  textarea {
-    @apply h-[40px] rounded-[10px] py-2 px-4 block w-full bg-transparent border border-gray-600;
-    @apply outline-none focus:border-gray-400;
-  }
-
-  button {
-    @apply px-4 py-2 !bg-blue-600;
   }
 }

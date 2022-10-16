@@ -1,56 +1,29 @@
-import React, { useEffect, useContext } from 'react'
-import { useRouter } from 'next/router'
-import { useCollection, useDocument } from 'react-appwrite-hooks/database'
-import { Formik } from 'formik'
-import AppwriteContext from '../components/AppwriteContext'
+import { useContext, useEffect } from 'react'
+import { useDocument } from 'react-appwrite-hooks/database'
+import { AppwriteContext, useCollection } from 'react-appwrite-hooks'
 
-export default function Database({ }) {
-  const collectionId = process.env.NEXT_PUBLIC_APPWRITE_COLLECTION as string
-  const documentId = process.env.NEXT_PUBLIC_APPWRITE_DOCUMENT as string
+type Article = {
+  title: string,
+  content: string,
+}
 
-  const appwrite = useContext(AppwriteContext)
-  const router = useRouter()
+export default function DatabasePage() {
+  const [document, loading, documentError] = useDocument<Article>('test', 'articles', 'test')
+  const [articles, , collectionError] = useCollection<Article>('test', 'articles')
 
-  const [collection] = useCollection(appwrite, collectionId)
-  const [doc] = useDocument<{ name: string }>(appwrite, collectionId, documentId)
-
-  const handleSubmitClick = async ({ name }: { name: string }) => {
-    appwrite
-      .database
-      .updateDocument(collectionId, documentId, { name })
-  }
+  console.log({ documentError, collectionError })
 
   useEffect(() => {
-    // console.log('Collection', collection)
-  }, [collection])
+    if (document) {
+      console.log('Document changed', document)
+    }
+  }, [document])
+
+  useEffect(() => {
+    console.log('Collection changed', articles)
+  }, [articles])
 
   return (
-    <main className="container flex items-center">
-      <Formik
-        initialValues={{ name: '' }}
-        onSubmit={handleSubmitClick}
-      >
-        {
-          props => (
-            <form className="mx-auto space-y-4 w-96" onSubmit={props.handleSubmit}>
-              <h1 className="mb-4 text-3xl">Database</h1>
-
-              <label htmlFor="name">Name</label>
-
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={props.values.name}
-                onChange={props.handleChange}
-              />
-
-              <button type="submit">Submit</button>
-              <span className="ml-4">{doc?.name}</span>
-            </form>
-          )
-        }
-      </Formik>
-    </main>
+    null
   )
 }

@@ -1,20 +1,18 @@
-import type { Appwrite, Models } from 'appwrite/types/sdk'
-import type { AsyncEffectResult } from '../types'
-import { useAsyncResult } from '../util'
+import type { Models } from 'appwrite'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { AppwriteContext } from '../context'
+import { usePromiseEffect } from '../hooks/usePromiseEffect'
 
-export type UseAccountResult<Preferences> = AsyncEffectResult<Models.User<Preferences>>
+export function useAccount<Preferences extends Models.Preferences>() {
+  const { account: accountService } = useContext(AppwriteContext)
+  const result = usePromiseEffect(async () => accountService.get<Preferences>())
+  const [account] = result
 
-export default function useAccount<Preferences>(appwrite: Appwrite): UseAccountResult<Preferences> {
-  return useAsyncResult<Models.User<Preferences>>((set, error) => {
-    appwrite
-      .account
-      .get()
-      // @ts-ignore
-      .then(set)
-      .catch(error)
+  useEffect(() => {
+    if (account) {
+      console.log("The account is", account)
+    }
+  }, [account])
 
-    return appwrite.subscribe('account', e => {
-      set(e.payload as Models.User<Preferences>)
-    })
-  })
+  return result
 }

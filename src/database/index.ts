@@ -1,2 +1,2 @@
-export { default as useCollection } from './useCollection'
-export { default as useDocument } from './useDocument'
+export * from './useCollection'
+export * from './useDocument'

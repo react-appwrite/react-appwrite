@@ -1,83 +1,129 @@
-import type { Appwrite, Models } from 'appwrite/types/sdk'
-import type { AsyncEffectResult, Loading } from '../types'
-import { useEffect, useState } from 'react'
+import { Models } from 'appwrite'
+import { useContext, useEffect, useMemo } from 'react'
+import { AppwriteContext } from '../context'
+import { useLoadingReducer } from '../hooks'
+import type { DocumentData, LoadingResult, RealtimeDocumentOperation } from '../types'
 
-export type Collection<Model> = Array<Model & Models.Document>
-export type UseCollectionResult<Model> = AsyncEffectResult<Collection<Model>>
-export type CollectionOptions = {
-  filters?: string[],
-  limit?: number,
-  offset?: number,
-  orderField?: string,
-  orderType?: string,
-  orderCast?: string,
-  search?: string,
-}
-
-export default function useCollection<Model>(
-  appwrite: Appwrite,
+export function useCollection<T>(
+  databaseId: string,
   collectionId: string,
-  options?: CollectionOptions | undefined): UseCollectionResult<Model> {
+  queries?: string[],
+): LoadingResult<DocumentData<T>[]> {
+  const { client, database } = useContext(AppwriteContext)
+  const { state, dispatch } = useLoadingReducer<DocumentData<T>[]>()
+  const { data: documents, loading, error } = state
+  const collectionPath = `databases.${databaseId}.collections.${collectionId}`
 
-  const [collection, setCollection] = useState<Loading<Collection<Model>>>()
-  const [error, setError] = useState<unknown>()
-
-  const fullUpdate = () => {
-    appwrite
-      .database
-      .listDocuments(collectionId,
-        options?.filters,
-        options?.limit,
-        options?.offset,
-        options?.orderField,
-        options?.orderType,
-        options?.orderCast,
-        options?.search,
-      )
-      .then(collection => setCollection(collection.documents as Collection<Model>))
-      .catch(setError)
+  const getDocumentIndex = (documentId: string) => {
+    return documents?.findIndex(document => document.$id === documentId) ?? -1
   }
 
-  useEffect(fullUpdate, [collectionId, options])
+  const upsertDocument = (document: DocumentData<T>) => {
+    if (documents) {
+      const documentIndex = getDocumentIndex(document.$id)
+
+      if (documentIndex >= 0) {
+        const newDocuments = [...documents]
+
+        newDocuments[documentIndex] = document
+
+        dispatch({
+          type: 'update',
+          data: newDocuments
+        })
+      }
+      else {
+        const newDocuments = [...documents]
+
+        newDocuments.push(document)
+
+        dispatch({
+          type: 'update',
+          data: newDocuments,
+        })
+      }
+    }
+  }
+
+  const deleteDocument = (document: DocumentData<T>) => {
+    if (documents) {
+      dispatch({
+        type: 'update',
+        data: documents.filter(storedDocument => storedDocument.$id !== document.$id)
+      })
+    }
+  }
 
   useEffect(() => {
-    const destructor = appwrite.subscribe([...(collection || []).map(doc => `documents.${doc.$id}`)], e => {
-      const payload = e.payload as Model & Models.Document
-
-      switch (e.event) {
-        case 'database.documents.delete':
-          setCollection(collection?.filter(doc => doc.$id !== payload.$id))
-          break
-        case 'database.documents.update':
-          if (collection) {
-            const documentIndex = collection.findIndex(doc => doc.$id === payload.$id)
-            const newCollection = [...collection]
-
-            newCollection[documentIndex] = payload
-
-            setCollection(newCollection)
-          }
-
-          break
-        default:
-          break
-      }
-    })
-
-    // This is very ineffecient, but will do for now.
-    const creationDestructor = appwrite.subscribe(`collections.${collectionId}.documents`, e => {
-      if (e.event === 'database.documents.create') {
-        fullUpdate()
-      }
-    })
-
-    return () => {
-      destructor()
-      creationDestructor()
+    if (!documents) {
+      return
     }
-  }, [collection])
 
-  console.log('Collection', collection)
+    const unsubscribe = client.subscribe(`${collectionPath}.documents`, event => {
+      const [, operation] = event.events[0].match(/\.(\w+)$/) as RegExpMatchArray
 
-  return [collection, collection === undefined && error !== undefined, error]
+      switch (operation as RealtimeDocumentOperation) {
+        case 'create':
+        case 'update':
+          upsertDocument(event.payload as DocumentData<T>)
+          break
+        case 'delete':
+          deleteDocument(event.payload as DocumentData<T>)
+          break
+      }
+    })
+
+    return unsubscribe
+  }, [documents])
+
+  useEffect(() => {
+    (async () => {
+      dispatch({
+        type: 'loading',
+        state: true,
+      })
+
+      try {
+        const response = await database.listDocuments<DocumentData<T>>(databaseId, collectionId, queries)
+
+        dispatch({
+          type: 'success',
+          data: response.documents,
+        })
+      }
+
+      catch (error: unknown) {
+        dispatch({
+          type: 'error',
+
+          // @ts-ignore
+          error: error,
+        })
+      }
+
+      finally {
+        dispatch({
+          type: 'loading',
+          state: false,
+        })
+      }
+    })()
+  }, [])
+
+  return useMemo(
+    () => (
+      [
+        documents,
+        loading,
+        error,
+      ]
+    ),
+    (
+      [
+        documents,
+        loading,
+        error,
+      ]
+    )
+  )
 }

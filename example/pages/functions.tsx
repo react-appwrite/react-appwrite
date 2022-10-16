@@ -1,65 +1,53 @@
-import React, { useEffect, useContext } from 'react'
-import { useRouter } from 'next/router'
-import { useAccount } from 'react-appwrite-hooks/account'
+import { useContext, useEffect } from 'react'
 import { useFunction } from 'react-appwrite-hooks/functions'
-import { useCollection } from 'react-appwrite-hooks/database'
-import { Formik } from 'formik'
-import AppwriteContext from '../components/AppwriteContext'
+import { AppwriteContext } from 'react-appwrite-hooks'
+import { useForm } from 'react-hook-form'
 
-type SumProps = {
-  numbers: number[],
+type Props = {}
+
+type Form = {
+  numbers: string,
 }
 
-type SumResult = {
-  result: number,
-}
+export default function FunctionsPage({ }: Props) {
+  const [sum, execution] = useFunction<{ numbers: number[] }, { result: number }>('sum')
+  const { register, handleSubmit } = useForm()
 
-export default function Functions({ }) {
-  const appwrite = useContext(AppwriteContext)
-  const router = useRouter()
-  const [sum] = useFunction<SumProps, SumResult>(appwrite, process.env.NEXT_PUBLIC_APPWRITE_FUNCTION as string)
-
-  const handleSubmitClick = async ({ numbers }: { numbers: string }) => {
-    sum.execute({ numbers: numbers.split(',').map(number => Number(number)) })
+  const onSubmit = async (data: Form) => {
+    await sum({ numbers: data.numbers.split(',').map(number => Number(number)) })
   }
 
   useEffect(() => {
-    const result = sum.execution?.data.result
-
-    if (result !== undefined) {
-      alert(`Sum is ${result}`)
-      router.push('/')
+    if (execution) {
+      console.log("Execution changed", execution)
     }
-  }, [sum.execution])
+  }, [execution])
 
   return (
-    <main className="container flex items-center">
-      <Formik
-        initialValues={{ numbers: '' }}
-        onSubmit={handleSubmitClick}
+    <form
+      // @ts-ignore
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col m-auto space-y-4"
+    >
+      <input
+        type="text"
+        placeholder="Numbers"
+        {...register("numbers")}
+      />
+
+      <button
+        type="submit"
       >
-        {
-          props => (
-            <form className="mx-auto space-y-4 w-96" onSubmit={props.handleSubmit}>
-              <h1 className="mb-4 text-3xl">Sum</h1>
+        Execute
+      </button>
 
-              <label htmlFor="numbers">Numbers</label>
+      <span>
+        Status: {execution?.status}
+      </span>
 
-              <input
-                type="text"
-                id="numbers"
-                name="numbers"
-                placeholder="1,2,3,4,5"
-                value={props.values.numbers}
-                onChange={props.handleChange}
-              />
-
-              <button type="submit">Submit</button>
-              <span className="ml-4">{sum.execution?.status}</span>
-            </form>
-          )
-        }
-      </Formik>
-    </main>
+      <span>
+        Result: {execution?.data?.result}
+      </span>
+    </form>
   )
 }

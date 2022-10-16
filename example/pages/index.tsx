@@ -1,58 +1,80 @@
-import React, { useEffect, useContext } from 'react'
-import { useRouter } from 'next/router'
+import { useContext } from 'react'
 import { useAccount } from 'react-appwrite-hooks/account'
-import { useFunction } from 'react-appwrite-hooks/functions'
-import { useCollection } from 'react-appwrite-hooks/database'
-import { Formik } from 'formik'
-import AppwriteContext from '../components/AppwriteContext'
+import { AppwriteContext } from 'react-appwrite-hooks'
+import { useForm } from 'react-hook-form'
+import { ID } from 'appwrite'
 
-type CreateAccountProps = {
+
+type Props = {}
+
+type Form = {
   email: string,
   password: string,
+  create: boolean,
 }
 
-export default function Home({ }) {
-  const appwrite = useContext(AppwriteContext)
-  const router = useRouter()
-  const [account] = useAccount(appwrite)
-  const [collection] = useCollection(appwrite, process.env.NEXT_PUBLIC_APPWRITE_COLLECTION as string)
-  const [sum] = useFunction<{ numbers: number[] }, { result: number }>(appwrite, process.env.NEXT_PUBLIC_APPWRITE_FUNCTION as string)
+export default function HomePage({ }: Props) {
+  const [account, loading, error] = useAccount()
+  const { account: accountService } = useContext(AppwriteContext)
+  const { register, handleSubmit } = useForm()
 
-  const handleSubmitClick = async ({ email, password }: CreateAccountProps) => {
-    await appwrite.account.create(email, password)
-    await appwrite.account.createSession(email, password)
+  const onSubmit = async (data: Form) => {
+    console.log({ data })
 
-    router.push('/functions')
+    if (data.create) {
+      const a = await accountService.create(ID.unique(), data.email, data.password)
+
+      console.log({ a })
+    }
+    else {
+      const a = await accountService.createEmailSession(data.email, data.password)
+
+      console.log({ a })
+    }
   }
 
-  useEffect(() => {
-    console.log('Account is', account)
-    console.log('Collection is', collection)
-    console.log(`Sum is ${sum.execution?.data.result}`)
-  }, [account, collection, sum.execution])
+  console.log({ account, loading, error })
 
   return (
-    <main className="container flex items-center">
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={handleSubmitClick}
+    <div className="container flex h-full">
+      <form
+        // @ts-ignore
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col m-auto space-y-4"
       >
-        {
-          props => (
-            <form className="mx-auto space-y-4 w-96" onSubmit={props.handleSubmit}>
-              <h1 className="mb-4 text-3xl">Create Account</h1>
+        <input
+          type="text"
+          placeholder="Email"
+          {...register("email")}
+        />
 
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" value={props.values.email} onChange={props.handleChange} />
+        <input
+          type="text"
+          placeholder="Password"
+          {...register("password")}
+        />
 
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" name="password" value={props.values.password} onChange={props.handleChange} />
+        <div className="flex gap-2">
+          <input
+            defaultChecked
+            type="checkbox"
+            id="create"
+            {...register("create")}
+          />
 
-              <button type="submit">Submit</button>
-            </form>
-          )
-        }
-      </Formik>
-    </main>
+          <label
+            htmlFor="create"
+          >
+            Create
+          </label>
+        </div>
+
+        <button
+          type="submit"
+        >
+          Sign in
+        </button>
+      </form>
+    </div>
   )
 }

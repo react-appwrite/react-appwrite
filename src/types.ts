@@ -1,18 +1,29 @@
-import type { Models } from 'appwrite/types/sdk'
+import type { Account, Client, Databases, Functions, Models } from 'appwrite/types'
 
-export type Loading<T> = T | undefined
-export type AsyncEffectResult<T> = [Loading<T>, boolean, unknown]
+export type Nullable<T> = T | null | undefined
 
-export type AsyncEffectCallback<T> = (
-  set: (data: T) => void,
-  error: (error: unknown) => void,
-) => void | (() => void)
+export type LoadingResult<T> = [Nullable<T>, Nullable<boolean>, Nullable<string | Error>]
+export type LoadingAction<T> =
+  | { type: 'success', data: T }
+  | { type: 'update', data: T }
+  | { type: 'error', error: string | Error }
+  | { type: 'loading', state: boolean }
 
-export type CloudFunctionExecution<Data> = Models.Execution & {
-  data: Data,
+export type AppwriteContextType = {
+  client: Client,
+  account: Account,
+  database: Databases,
+  functions: Functions,
 }
 
-export type CloudFunction<Data, ReturnData> = {
-  execute: (data?: Data) => void,
-  execution?: CloudFunctionExecution<ReturnData>,
+export type DocumentData<T> = T & Models.Document
+export type ExecutionData<T> = Models.Execution & {
+  data: Nullable<T>,
 }
+
+export type RealtimeDocumentOperation =
+  | 'create'
+  | 'update'
+  | 'delete'
+
+export type AppwriteFunction<Request, Response> = [(request: Request) => Promise<ExecutionData<Response>>, Nullable<ExecutionData<Response>>]

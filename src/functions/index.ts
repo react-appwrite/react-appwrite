@@ -1,1 +1,1 @@
-export { default as useFunction } from './useFunction'
+export * from './useFunction'

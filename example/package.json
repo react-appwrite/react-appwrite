@@ -1,5 +1,5 @@
 {
-  "name": "next-template",
+  "name": "example",
   "version": "0.0.1",
   "description": "",
   "author": "sanny-io",
@@ -7,25 +7,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "appwrite functions createDeployment --functionId=sum --activate=true --entrypoint=\"sum.js\" --code=\"./functions\""
   },
   "dependencies": {
-    "appwrite": "^5.0.0",
-    "autoprefixer": "^10.4.0",
-    "formik": "^2.2.9",
-    "next": "^12.0.1",
-    "postcss": "^8.3.11",
+    "appwrite": "^10.0.1",
+    "autoprefixer": "^10.4.11",
+    "next": "^12.3.0",
+    "postcss": "^8.4.16",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^6.7.0",
-    "react": "^17.0.2",
-    "react-appwrite-hooks": "^0.0.1",
-    "react-dom": "^17.0.2",
-    "regenerator-runtime": "^0.13.9",
-    "tailwindcss": "3.0.0"
+    "postcss-preset-env": "^7.8.2",
+    "react": "^18.2.0",
+    "react-appwrite-hooks": "^0.0.2",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.35.0",
+    "tailwindcss": "^3.1.8"
   },
   "devDependencies": {
-    "@types/node": "^16.11.6",
-    "@types/react": "^17.0.33",
-    "typescript": "^4.4.4"
+    "@tailwindcss/typography": "^0.5.7",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "typescript": "^4.8.3"
   }
 }
