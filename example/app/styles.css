@@ -7,6 +7,12 @@
   body,
   #__next {
     @apply h-full;
+    @apply bg-black;
+    @apply text-white;
+  }
+
+  input {
+    @apply bg-gray-900;
   }
 
   #__next {

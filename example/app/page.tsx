@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+'use client'
 import { useAccount } from 'react-appwrite-hooks/account'
-import { AppwriteContext } from 'react-appwrite-hooks'
+import { AppwriteContext, useEmailSignIn } from 'react-appwrite-hooks'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
-
 
 type Props = {}
 
@@ -13,8 +13,13 @@ type Form = {
   create: boolean,
 }
 
-export default function HomePage({ }: Props) {
-  const [account, loading, error] = useAccount()
+function HomePage() {
+  const { data: account } = useAccount({
+    refetchOnWindowFocus: false,
+  })
+
+  const signIn = useEmailSignIn()
+
   const { account: accountService } = useContext(AppwriteContext)
   const { register, handleSubmit } = useForm()
 
@@ -27,13 +32,13 @@ export default function HomePage({ }: Props) {
       console.log({ a })
     }
     else {
-      const a = await accountService.createEmailSession(data.email, data.password)
+      const a = await signIn.mutateAsync(data)
 
       console.log({ a })
     }
   }
 
-  console.log({ account, loading, error })
+  console.log({ account })
 
   return (
     <div className="container flex h-full">
@@ -75,6 +80,15 @@ export default function HomePage({ }: Props) {
           Sign in
         </button>
       </form>
+
+      {
+        account &&
+        <h1>
+          Signed in as {account.email}
+        </h1>
+      }
     </div>
   )
 }
+
+export default HomePage

@@ -1,89 +1,47 @@
 import { Models } from 'appwrite'
 import { useContext, useEffect, useState } from 'react'
+import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { AppwriteContext } from '../context'
-import { useAsyncEffect } from '../hooks'
-import { useLoadingReducer } from '../hooks/useLoadingReducer'
 import type { AppwriteFunction, ExecutionData, LoadingResult } from '../types'
 
-export function useFunction<Request, Response>(id: string): AppwriteFunction<Request, Response> {
-  const { client, functions } = useContext(AppwriteContext)
-  const { state, dispatch } = useLoadingReducer<ExecutionData<Response>>()
+export function useFunction<Request, Response>(id: string): UseMutationResult<Response, unknown, Request, unknown> {
+  const { functions, client } = useContext(AppwriteContext)
+  const mutation = useMutation<Response, unknown, Request, unknown>({
+    mutationFn: async (request: Request) => {
+      const execution = await functions.createExecution(id, JSON.stringify(request))
+      let unsubscribe: (() => void) | null = null
 
-  useEffect(() => {
-    if (!state?.data) {
-      return
-    }
+      if (execution.status === 'completed') {
+        return JSON.parse(execution.response)
+      }
+      else if (execution.status === 'failed') {
+        console.log({ execution })
+        throw new Error(execution.response)
+      }
 
-    const unsubscribe = client.subscribe(`executions.${state.data.$id}`, event => {
-      console.log({ event })
+      const response = await new Promise((resolve, reject) => {
+        unsubscribe = client.subscribe(`executions.${execution.$id}`, event => {
+          // @ts-ignore
+          switch (event.payload.status) {
+            case 'completed':
+              // @ts-ignore
+              resolve(JSON.parse(event.payload.response))
+              break
+            case 'failed':
+              // @ts-ignore
+              reject(event.payload.response)
+              break
+          }
+          return 1
+        })
+      }) as Response
 
       // @ts-ignore
-      switch (event.payload.status) {
-        case 'completed':
-          dispatch({
-            type: 'success',
-            data: {
-              // @ts-ignore
-              ...event.payload,
+      unsubscribe?.()
 
-              // @ts-ignore
-              data: JSON.parse(event.payload.response),
-            }
-          })
-          break
+      return response
+    }
+  })
 
-        case 'failed':
-          dispatch({
-            // @ts-ignore
-            type: 'error',
-            // @ts-ignore
-            error: event.payload.response,
-          })
-          break
-
-        case 'waiting':
-        case 'processing':
-          dispatch({
-            type: 'update',
-
-            // @ts-ignore
-            data: {
-              // @ts-ignore
-              ...event.payload,
-
-              // @ts-ignore
-              data: null,
-            }
-          })
-          break
-      }
-    })
-
-    return unsubscribe
-  }, [state])
-
-  return [
-    async (request: Request) => {
-      dispatch({
-        type: 'loading',
-        state: true,
-      })
-
-      let execution = await functions.createExecution(id, JSON.stringify(request), true) as ExecutionData<Response>
-
-      execution = {
-        ...execution,
-        data: null,
-      }
-
-      dispatch({
-        type: 'update',
-        data: execution,
-      })
-
-      return execution
-    },
-
-    state.data,
-  ]
+  return mutation
 }

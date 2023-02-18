@@ -39,15 +39,19 @@
   },
   "module": "dist/index.js",
   "devDependencies": {
-    "@types/react": "^18.0.20",
-    "@types/react-dom": "^18.0.6",
-    "appwrite": "^10.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.3"
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.10",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
-    "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example"
+    "@lukemorales/query-key-factory": "^1.1.0",
+    "@tanstack/react-query": "^4.24.6",
+    "appwrite": "^10.2.0",
+    "encoding": "^0.1.13",
+    "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.3.3"
   }
 }
