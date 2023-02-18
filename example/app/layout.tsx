@@ -19,6 +19,7 @@ function MainLayout({ children }: Props) {
       <body>
         <main>
           <AppwriteProvider
+            devTools
             client={appwrite}
           >
             {children}

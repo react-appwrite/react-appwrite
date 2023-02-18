@@ -8,7 +8,7 @@ export function useAccount<Preferences extends Models.Preferences>(
 ) {
   const { account: accountService } = useContext(AppwriteContext)
   const queryResult = useQuery({
-    queryKey: ['account'],
+    queryKey: ['appwrite', 'account'],
     queryFn: () => accountService.get<Preferences>(),
 
     ...options,

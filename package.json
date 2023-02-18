@@ -21,7 +21,9 @@
     ".": "./dist/index.js",
     "./account": "./dist/account/index.js",
     "./database": "./dist/database/index.js",
-    "./functions": "./dist/functions/index.js"
+    "./functions": "./dist/functions/index.js",
+    "./storage": "./dist/storage/index.js",
+    "./avatars": "./dist/avatars/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +31,9 @@
     "dist",
     "account.d.ts",
     "database.d.ts",
-    "functions.d.ts"
+    "functions.d.ts",
+    "storage.d.ts",
+    "avatars.d.ts"
   ],
   "engines": {
     "node": ">=10"
@@ -47,6 +51,7 @@
   "dependencies": {
     "@lukemorales/query-key-factory": "^1.1.0",
     "@tanstack/react-query": "^4.24.6",
+    "@tanstack/react-query-devtools": "^4.24.9",
     "appwrite": "^10.2.0",
     "encoding": "^0.1.13",
     "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example",
