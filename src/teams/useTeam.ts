@@ -10,10 +10,6 @@ export function useTeam(teamId: string) {
     queryFn: async () => {
       return await teams.get(teamId)
     },
-
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    retry: false,
   })
 
   return queryResult

@@ -25,10 +25,6 @@ export function useTeams() {
         queryClient.setQueryData(['appwrite', 'teams', team.$id], team)
       }
     },
-
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    retry: false,
   })
 
   return queryResult

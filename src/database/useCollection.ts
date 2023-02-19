@@ -11,7 +11,7 @@ export function useCollection<T>(
   // queries?: string[],
   options?: UseQueryOptions<Document<T>[], unknown, Document<T>[], string[]>
 ) {
-  const { client, database } = useAppwrite()
+  const { database } = useAppwrite()
   const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId], [databaseId, collectionId])
   const queryResult = useQuery({
@@ -38,17 +38,13 @@ export function useCollection<T>(
       }
     },
 
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    retry: false,
-
     ...options,
   })
 
   useEffect(() => {
-    const unsubscribe = client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents`, event => {
-      const [, operation] = event.events[0].match(/\.(\w+)$/) as RegExpMatchArray
-      const document = event.payload as Document<T>
+    const unsubscribe = database.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents`, response => {
+      const [, operation] = response.events[0].match(/\.(\w+)$/) as RegExpMatchArray
+      const document = response.payload as Document<T>
 
       switch (operation as RealtimeDocumentOperation) {
         case 'create':

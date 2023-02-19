@@ -24,7 +24,10 @@ export type AppwriteContextType = {
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-
+      staleTime: Infinity,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      retry: false,
     }
   }
 })

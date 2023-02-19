@@ -8,7 +8,7 @@ export function useFile(
   fileId: string,
   options?: UseQueryOptions<Models.File, unknown, Models.File, string[]>
 ) {
-  const { storage, client } = useAppwrite()
+  const { storage } = useAppwrite()
   const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'storage', bucketId, fileId], [bucketId, fileId])
   const queryResult = useQuery({
@@ -17,20 +17,16 @@ export function useFile(
       return await storage.getFile(bucketId, fileId)
     },
 
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    retry: false,
-
     ...options,
   })
 
   useEffect(() => {
-    const unsubscribe = client.subscribe(`buckets.${bucketId}.files.${fileId}`, event => {
-      queryClient.setQueryData(queryKey, event.payload)
+    const unsubscribe = storage.client.subscribe(`buckets.${bucketId}.files.${fileId}`, response => {
+      queryClient.setQueryData(queryKey, response.payload)
     })
 
     return unsubscribe
-  }, [bucketId, fileId])
+  }, [queryKey])
 
   return queryResult
 }

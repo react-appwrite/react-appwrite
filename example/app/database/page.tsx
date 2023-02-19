@@ -8,14 +8,14 @@ type Article = {
 }
 
 function DatabasePage() {
-  // const { data: document } = useDocument<Article>('test', 'articles', 'test')
+  const { data: document } = useDocument<Article>('test', 'articles', 'test')
   const { data: articles } = useCollection<Article>('test', 'articles')
 
-  // useEffect(() => {
-  //   if (document) {
-  //     console.log('Document changed', document)
-  //   }
-  // }, [document])
+  useEffect(() => {
+    if (document) {
+      console.log('Document changed', document)
+    }
+  }, [document])
 
   useEffect(() => {
     console.log('Collection changed', articles)
@@ -24,12 +24,12 @@ function DatabasePage() {
   return (
     <div>
       <h1>
-        {/* {document?.title} */}
+        {document?.title}
       </h1>
 
-      {/* <p>
+      <p>
         {document?.content}
-      </p> */}
+      </p>
     </div>
   )
 }

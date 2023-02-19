@@ -23,7 +23,8 @@
     "./database": "./dist/database/index.js",
     "./functions": "./dist/functions/index.js",
     "./storage": "./dist/storage/index.js",
-    "./avatars": "./dist/avatars/index.js"
+    "./avatars": "./dist/avatars/index.js",
+    "./next": "./dist/next/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,7 +34,8 @@
     "database.d.ts",
     "functions.d.ts",
     "storage.d.ts",
-    "avatars.d.ts"
+    "avatars.d.ts",
+    "next.d.ts"
   ],
   "engines": {
     "node": ">=10"
@@ -45,6 +47,7 @@
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
+    "next": "^13.1.6",
     "tslib": "^2.5.0",
     "typescript": "^4.9.5"
   },
@@ -56,6 +59,8 @@
     "encoding": "^0.1.13",
     "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example",
     "immer": "^9.0.19",
+    "jose": "^4.12.0",
+    "node-appwrite": "^8.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.3.3"

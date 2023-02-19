@@ -15,9 +15,7 @@ type Form = {
 }
 
 function HomePage() {
-  const { data: account } = useAccount({
-    refetchOnWindowFocus: false,
-  })
+  const { data: account } = useAccount()
 
   const signIn = useEmailSignIn()
 
@@ -38,8 +36,6 @@ function HomePage() {
       console.log({ a })
     }
   }
-
-  console.log({ account })
 
   return (
     <div className="container flex h-full">
