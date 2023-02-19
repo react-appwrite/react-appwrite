@@ -1,3 +1,5 @@
+'use client'
+
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite-hooks'

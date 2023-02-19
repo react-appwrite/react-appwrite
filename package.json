@@ -14,7 +14,8 @@
     "firebase"
   ],
   "scripts": {
-    "dev": "rm -rf dist && tsc -w --preserveWatchOutput"
+    "dev": "rm -rf dist && tsc -w --preserveWatchOutput",
+    "build": "rm -rf dist && tsc"
   },
   "type": "module",
   "exports": {

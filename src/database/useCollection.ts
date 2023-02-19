@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import produce, { castDraft, current } from 'immer'

@@ -1,10 +1,18 @@
+'use client'
+
 import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import type { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
 
+/**
+ * 
+ * @param account The initial account object, obtained from SSR.
+ * @param options Options to pass to `react-query`
+ */
 export function useAccount<Preferences extends Models.Preferences>(
+  account?: Models.Account<Preferences>,
   options?: UseQueryOptions<Models.Account<Preferences>, unknown, Models.Account<Preferences>, string[]>
 ) {
   const { account: accountService } = useAppwrite()
@@ -12,6 +20,7 @@ export function useAccount<Preferences extends Models.Preferences>(
   const queryResult = useQuery({
     queryKey: ['appwrite', 'account'],
     queryFn: () => accountService.get<Preferences>(),
+    initialData: account,
 
     ...options,
   })

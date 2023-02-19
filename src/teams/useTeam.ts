@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'

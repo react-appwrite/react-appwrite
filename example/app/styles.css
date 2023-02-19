@@ -3,27 +3,172 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body,
-  #__next {
-    @apply h-full;
+  html {
+    @apply flex flex-col;
+    @apply min-h-screen;
+  }
+
+  body {
+    @apply flex flex-col flex-grow;
     @apply bg-black;
     @apply text-white;
   }
 
-  input {
-    @apply bg-gray-900;
+  body > main {
+    @apply flex flex-col flex-grow flex-shrink-0;
   }
 
-  #__next {
-    @apply flex flex-col;
-  }
-
-  #__next > main {
-    @apply flex flex-col w-full h-full;
-  }
-
-  #__next > footer {
+  body > footer {
     @apply flex-shrink-0;
+  }
+
+  /* h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  button,
+  span,
+  input,
+  label {
+    @apply selection:bg-fuchsia;
+  } */
+
+  * {
+    @apply focus:outline-none;
+    @apply selection:bg-fuchsia;
+  }
+
+  summary {
+    @apply list-none;
+  }
+
+  [id]:not([id^="headless"]) {
+    @apply before:invisible before:block;
+    @apply before:h-[68px] before:-mt-[68px];
+  }
+}
+
+@layer components {
+  .skeleton.vertical.group {
+    @apply flex flex-col gap-y-4;
+  }
+
+  .skeleton.horizontal.group {
+    @apply flex gap-x-4;
+  }
+
+  .skeleton.item {
+    @apply h-4 rounded-md bg-gray-200/70 animate-pulse;
+  }
+
+  .button {
+    @apply border rounded-[5px];
+    @apply px-3;
+    @apply h-10;
+    @apply font-medium;
+    @apply text-sm;
+    @apply transition-colors;
+    @apply duration-150;
+    
+    @apply disabled:!bg-gray-100 disabled:!border-gray-200 disabled:cursor-not-allowed disabled:!text-gray-300;
+    @apply focus:outline-2 focus:outline-white;
+  }
+
+  .button.primary {
+    @apply bg-white;
+    @apply text-black;
+
+    @apply hover:bg-black;
+    @apply hover:text-white;
+  }
+
+  .button.success {
+    @apply bg-success;
+    @apply border-success;
+    @apply text-white;
+
+    @apply enabled:hover:bg-black;
+    @apply enabled:hover:text-success;
+  }
+
+  .button.secondary {
+    @apply border-gray-200;
+    @apply text-gray-500;
+
+    @apply enabled:hover:bg-black;
+    @apply enabled:hover:border-white;
+    @apply enabled:hover:text-white;
+  }
+  
+  .button.error {
+    @apply bg-error;
+    @apply border-error;
+    @apply text-white;
+
+    @apply enabled:hover:bg-black;
+    @apply enabled:hover:text-error;
+  }
+
+  input,
+  textarea {
+    @apply border rounded-[5px] border-gray-200;
+    @apply bg-black;
+    @apply h-[40px];
+    @apply px-3;
+    @apply transition-[border-color] duration-150;
+
+    @apply focus-within:border-gray-500;
+    @apply placeholder:text-gray-500;
+
+    @apply disabled:!bg-gray-100 disabled:!border-gray-200 disabled:cursor-not-allowed;
+    @apply disabled:text-gray-300 disabled:placeholder:text-gray-300;
+  }
+
+  table {
+    @apply w-full;
+    /* @apply border-separate; */
+    @apply border-spacing-0;
+  }
+
+  /* table > thead {
+    @apply bg-gray-100;
+    @apply border-gray-200 border-y;
+  } */
+
+  table > thead tr {
+    @apply rounded;
+  }
+  
+  table > thead th {
+    @apply text-xs text-gray-500 uppercase;
+    @apply font-normal;
+    @apply bg-gray-100;
+    @apply border-gray-200 border-y;
+    @apply text-left;
+    @apply first:pl-3 last:pr-3;
+    @apply py-3;
+  }
+
+  table > thead th:first-child {
+    @apply rounded-l-[5px];
+    @apply border-l border-gray-200;
+  }
+
+  table > thead th:last-child {
+    @apply rounded-r-[5px];
+    @apply border-r border-gray-200;
+  }
+
+  table > tbody td {
+    @apply py-4;
+    /* @apply text-gray-600; */
+  }
+
+  table > tbody tr {
+    @apply border-t border-gray-300;
+    @apply first:border-0;
   }
 }

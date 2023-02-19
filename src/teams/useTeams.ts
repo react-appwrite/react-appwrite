@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
 import { useAppwrite } from '..'

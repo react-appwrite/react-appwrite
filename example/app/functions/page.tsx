@@ -3,45 +3,84 @@ import { useContext, useEffect } from 'react'
 import { useFunction } from 'react-appwrite-hooks/functions'
 import { useForm } from 'react-hook-form'
 
+const StatusDot = ({ className }: { className?: string }) => {
+  return (
+    // />
+    <svg
+      className="w-[10px] h-[10px]"
+
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        fill="currentColor"
+        cx="50" cy="50"
+        r="50"
+      />
+    </svg>
+  )
+}
+
+export { StatusDot }
+
 type Props = {}
 
 type Form = {
-  numbers: string,
+  digits: string,
 }
 
+type Request = number[]
+type Response = number
+
 export default function FunctionsPage({ }: Props) {
-  const sum = useFunction<{ numbers: number[] }, { result: number }>('sum')
+  const sum = useFunction<Request, Response>('sum')
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data: Form) => {
-    await sum.mutateAsync({ numbers: data.numbers.split(',').map(number => Number(number)) })
+    const numbers = data.digits.split(' ').map(digit => Number(digit))
+    const result = await sum.mutateAsync(numbers)
+
+    console.log('The result is', result)
   }
 
   return (
     <form
       // @ts-ignore
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col m-auto space-y-4"
+      className="flex flex-col items-center justify-center flex-1 m-auto"
     >
-      <input
-        type="text"
-        placeholder="Numbers"
-        {...register("numbers")}
-      />
+      <div className="flex flex-col gap-2">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Digits"
+            {...register("digits")}
+          />
 
-      <button
-        type="submit"
-      >
-        Execute
-      </button>
+          <button
+            type="submit"
+            className="success button"
+          >
+            Execute
+          </button>
+        </div>
 
-      <span>
-        Status: {sum.status}
-      </span>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <div className={typeof sum.data !== 'undefined' ? 'text-success' : sum.error ? 'text-error' : sum.isLoading ? 'text-warning' : ''}>
+              <StatusDot />
+            </div>
 
-      <span>
-        Result: {sum.data?.result}
-      </span>
+            <span className="capitalize">
+              {sum.status}
+            </span>
+          </div>
+
+          <p>
+            Result: {sum.data ?? 'None'}
+          </p>
+        </div>
+      </div>
     </form>
   )
 }
