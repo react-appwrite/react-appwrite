@@ -1,12 +1,16 @@
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { Models } from 'appwrite'
+import type { NextRequest, NextResponse } from 'next/server'
 
 export type AppwriteNextMiddlewareConfiguration = {
   url: string,
-  project: string,
+  projectId: string,
   key: string,
 }
 
-export type AppwriteNextMiddlewareHandler = (request: NextRequest) => NextResponse
+export type AppwriteNextMiddlewareHandler<Preferences extends Models.Preferences> = (
+  request: NextRequest & {
+    account: Models.Account<Preferences>,
+  }
+) => Response | NextResponse | Promise<NextResponse> | Promise<Response>
 
-export type AppwriteNextMiddleware = (handler: AppwriteNextMiddlewareHandler) => AppwriteNextMiddlewareHandler
+export type AppwriteNextMiddleware<Preferences extends Models.Preferences> = (handler: AppwriteNextMiddlewareHandler<Preferences>) => AppwriteNextMiddlewareHandler<Preferences>

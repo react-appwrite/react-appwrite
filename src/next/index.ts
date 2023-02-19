@@ -1,23 +1,46 @@
 import { AppwriteNextMiddlewareConfiguration, AppwriteNextMiddlewareHandler, AppwriteNextMiddleware } from './types'
-import appwrite from 'node-appwrite'
+import type { Models } from 'appwrite'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import { decodeJwt } from 'jose'
 
-export const createMiddleware = (configuration: AppwriteNextMiddlewareConfiguration): AppwriteNextMiddleware => {
+const notAuthorizedResponse = () => {
+  const response = new Response('Unauthorized', {
+    status: 401,
+  })
+
+  return response
+}
+
+export function createMiddleware<Preferences extends Models.Preferences>(configuration: AppwriteNextMiddlewareConfiguration): AppwriteNextMiddleware<Preferences> {
   return handler => {
-    return request => {
-      // @ts-ignore
+    return async request => {
       const appwriteToken = request.cookies.get('a_session_test_legacy')?.value
 
-      if (appwriteToken) {
+      if (!appwriteToken) {
+        return notAuthorizedResponse()
+      }
+
+      try {
         const decodedToken = JSON.parse(atob(appwriteToken))
         const userId = decodedToken.id as string
 
-        console.log({ decodedToken })
+        const response = await fetch(`${configuration.url}/account`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Cookie: `a_session_test_legacy=${appwriteToken}`,
+            'x-appwrite-project': configuration.projectId,
+          },
+        })
+
+        request.account = await response.json() as Models.Account<never>
+
+        return handler(request)
       }
 
-      return NextResponse.next()
+      catch (error) {
+        return notAuthorizedResponse()
+      }
     }
   }
 }
