@@ -1,9 +1,10 @@
 'use client'
 import { useAccount } from 'react-appwrite-hooks/account'
-import { AppwriteContext, useEmailSignIn } from 'react-appwrite-hooks'
-import { useContext } from 'react'
+import { useAppwrite } from 'react-appwrite-hooks'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
+
+import { useEmailSignIn } from 'react-appwrite-hooks/account'
 
 type Props = {}
 
@@ -20,7 +21,7 @@ function HomePage() {
 
   const signIn = useEmailSignIn()
 
-  const { account: accountService } = useContext(AppwriteContext)
+  const { account: accountService } = useAppwrite()
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data: Form) => {

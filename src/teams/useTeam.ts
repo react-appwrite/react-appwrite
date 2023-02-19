@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
-import { AppwriteContext } from '../context'
+import { useAppwrite } from '..'
 
 export function useTeam(teamId: string) {
-  const { teams } = useContext(AppwriteContext)
+  const { teams } = useAppwrite()
   const queryKey = useMemo(() => ['appwrite', 'teams', teamId], [teamId])
   const queryResult = useQuery({
     queryKey,
@@ -13,6 +13,7 @@ export function useTeam(teamId: string) {
 
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    retry: false,
   })
 
   return queryResult

@@ -1,25 +1,34 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
+import { useAppwrite } from '..'
 import { useAccount } from '../account'
-import { AppwriteContext } from '../context'
 
 /**
  * All teams the local user is a member of.
  */
 export function useTeams() {
-  const { teams } = useContext(AppwriteContext)
+  const { teams } = useAppwrite()
   const { data: account } = useAccount()
+  const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'teams'], [])
   const queryResult = useQuery({
     enabled: !!account,
     queryKey,
-    select: response => response.teams,
     queryFn: async () => {
-      return await teams.list()
+      const response = await teams.list()
+
+      return response.teams
+    },
+
+    onSuccess: teams => {
+      for (const team of teams) {
+        queryClient.setQueryData(['appwrite', 'teams', team.$id], team)
+      }
     },
 
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    retry: false,
   })
 
   return queryResult

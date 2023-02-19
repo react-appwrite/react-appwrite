@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { AppwriteContext } from '../context'
+import { useAppwrite } from '..'
 
 export function useAvatar(type: AvatarType) {
-  const { avatars } = useContext(AppwriteContext)
+  const { avatars } = useAppwrite()
 }

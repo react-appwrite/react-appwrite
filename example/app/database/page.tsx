@@ -8,13 +8,8 @@ type Article = {
 }
 
 function DatabasePage() {
-  const { data: document } = useDocument<Article>('test', 'articles', 'test', {
-    refetchOnWindowFocus: false,
-  })
-
-  const { data: articles } = useCollection<Article>('test', 'articles', null, {
-    refetchOnWindowFocus: false,
-  })
+  const { data: document } = useDocument<Article>('test', 'articles', 'test')
+  const { data: articles } = useCollection<Article>('test', 'articles')
 
   useEffect(() => {
     if (document) {

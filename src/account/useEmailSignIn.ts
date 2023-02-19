@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext } from 'react'
-import { AppwriteContext } from '../context'
 import { Models } from 'appwrite'
+import { useAppwrite } from '..'
 
 type Request = {
   email: string,
@@ -9,7 +9,7 @@ type Request = {
 }
 
 function useEmailSignIn() {
-  const { account } = useContext(AppwriteContext)
+  const { account } = useAppwrite()
   const queryClient = useQueryClient()
   const mutation = useMutation<Models.Session, unknown, Request, unknown>({
     mutationFn: async request => {

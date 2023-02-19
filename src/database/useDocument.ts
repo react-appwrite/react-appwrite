@@ -1,8 +1,8 @@
 import { Models } from 'appwrite'
 import { useContext, useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
-import { AppwriteContext } from '../context'
 import type { DocumentData, LoadingResult } from '../types'
+import { useAppwrite } from '..'
 
 export function useDocument<T>(
   databaseId: string,
@@ -10,7 +10,7 @@ export function useDocument<T>(
   documentId: string,
   options?: UseQueryOptions<T & Models.Document, unknown, T & Models.Document, string[]>
 ) {
-  const { client, database } = useContext(AppwriteContext)
+  const { client, database } = useAppwrite()
   const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId, documentId], [databaseId, collectionId, documentId])
   const queryResult = useQuery({
@@ -21,6 +21,7 @@ export function useDocument<T>(
 
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    retry: false,
 
     ...options,
   })

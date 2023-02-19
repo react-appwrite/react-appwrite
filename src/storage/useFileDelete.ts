@@ -6,21 +6,22 @@ import { useAppwrite } from '..'
 type Props = {
   bucketId: string,
   fileId: string,
-  file: File,
   permissions?: string[],
 }
 
-export function useFileUpload() {
+export function useFileDelete() {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: async ({ bucketId, fileId, file, permissions }: Props) => {
-      return await storage.createFile(bucketId, fileId, file, permissions)
+    mutationFn: async ({ bucketId, fileId }: Props) => {
+      return await storage.deleteFile(bucketId, fileId)
     },
 
-    onSuccess: async (file, { bucketId, fileId }) => {
-      queryClient.setQueriesData(['appwrite', 'storage', bucketId, fileId], file)
+    onSuccess: async (_, { bucketId, fileId }) => {
+      queryClient.removeQueries(['appwrite', 'storage', bucketId, fileId])
     },
+
+    retry: false,
   })
 
   return mutation

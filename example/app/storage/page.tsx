@@ -1,10 +1,10 @@
 'use client'
-import { useQueryClient } from '@tanstack/react-query'
-import { useFile, useFileUpload } from 'react-appwrite-hooks/storage'
+import { useFile, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite-hooks/storage'
 
 export default function StoragePage() {
-  const upload = useFileUpload('test', 'test')
+  const upload = useFileUpload()
   const { data } = useFile('test', 'test')
+  const deleteFile = useFileDelete()
 
   return (
     <div>
@@ -15,7 +15,9 @@ export default function StoragePage() {
 
           if (file) {
             upload.mutate({
-              file
+              bucketId: 'test',
+              fileId: 'test',
+              file,
             })
           }
         }}
@@ -27,6 +29,25 @@ export default function StoragePage() {
           Loading
         </span>
       }
+
+      {
+        data &&
+        <span>
+          {data.name}
+        </span>
+      }
+
+      <button
+        type="button"
+        onClick={() => {
+          const url = deleteFile.mutate({
+            bucketId: 'test',
+            fileId: 'test',
+          })
+        }}
+      >
+        Delete
+      </button>
     </div>
   )
 }

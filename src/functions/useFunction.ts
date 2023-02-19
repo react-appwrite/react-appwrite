@@ -1,11 +1,11 @@
 import { Models } from 'appwrite'
 import { useContext, useEffect, useState } from 'react'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { AppwriteContext } from '../context'
 import type { AppwriteFunction, ExecutionData, LoadingResult } from '../types'
+import { useAppwrite } from '..'
 
 export function useFunction<Request, Response>(id: string): UseMutationResult<Response, unknown, Request, unknown> {
-  const { functions, client } = useContext(AppwriteContext)
+  const { functions, client } = useAppwrite()
   const mutation = useMutation<Response, unknown, Request, unknown>({
     mutationFn: async (request: Request) => {
       const execution = await functions.createExecution(id, JSON.stringify(request))
