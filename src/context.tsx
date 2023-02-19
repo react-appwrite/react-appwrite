@@ -1,4 +1,4 @@
-import { Account, Client, Databases, Functions, Storage } from 'appwrite'
+import { Account, Avatars, Client, Databases, Functions, Storage, Teams } from 'appwrite'
 import { createContext, useMemo, type ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppwriteContextType } from './types'
@@ -9,6 +9,7 @@ type Props = {
   client: Client,
   children: ReactNode,
   devTools: boolean | DevtoolsOptions,
+  queryClient?: QueryClient,
 }
 
 const queryClient = new QueryClient()
@@ -16,9 +17,7 @@ const queryClient = new QueryClient()
 // @ts-ignore
 export const AppwriteContext = createContext<AppwriteContextType>()
 
-// export const AppwriteQueryContext: React.Context<QueryClient> = createContext(queryClient)
-
-export function AppwriteProvider({ client, children, devTools }: Props) {
+export function AppwriteProvider({ client, children, devTools, ...props }: Props) {
   const value = useMemo<AppwriteContextType>(() => ({
     client,
     account: new Account(client),
@@ -26,6 +25,8 @@ export function AppwriteProvider({ client, children, devTools }: Props) {
     functions: new Functions(client),
     storage: new Storage(client),
     health: new Storage(client),
+    avatars: new Avatars(client),
+    teams: new Teams(client),
   }), [])
 
   return (
@@ -34,7 +35,7 @@ export function AppwriteProvider({ client, children, devTools }: Props) {
     >
       <QueryClientProvider
         // context={AppwriteQueryContext}
-        client={queryClient}
+        client={props.queryClient || queryClient}
       >
         {children}
 

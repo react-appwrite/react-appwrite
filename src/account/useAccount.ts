@@ -11,6 +11,9 @@ export function useAccount<Preferences extends Models.Preferences>(
     queryKey: ['appwrite', 'account'],
     queryFn: () => accountService.get<Preferences>(),
 
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+
     ...options,
   })
 

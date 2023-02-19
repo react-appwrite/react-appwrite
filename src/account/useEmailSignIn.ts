@@ -9,15 +9,15 @@ type Request = {
 }
 
 function useEmailSignIn() {
-  const { account: accountService } = useContext(AppwriteContext)
+  const { account } = useContext(AppwriteContext)
   const queryClient = useQueryClient()
   const mutation = useMutation<Models.Session, unknown, Request, unknown>({
     mutationFn: async request => {
-      return await accountService.createEmailSession(request.email, request.password)
+      return await account.createEmailSession(request.email, request.password)
     },
 
     onSuccess: async () => {
-      queryClient.setQueryData(['appwrite', 'account'], await accountService.get())
+      queryClient.setQueryData(['appwrite', 'account'], await account.get())
     },
   })
 

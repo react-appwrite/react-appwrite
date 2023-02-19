@@ -17,6 +17,9 @@ export function useFile(
       return await storage.getFile(bucketId, fileId)
     },
 
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+
     ...options,
   })
 

@@ -1,4 +1,4 @@
-import type { Account, Client, Databases, Functions, Models, Storage } from 'appwrite/types'
+import type { Account, Avatars, Client, Databases, Functions, Models, Storage, Teams } from 'appwrite/types'
 
 export type Nullable<T> = T | null | undefined
 
@@ -15,6 +15,8 @@ export type AppwriteContextType = {
   database: Databases,
   functions: Functions,
   storage: Storage,
+  avatars: Avatars,
+  teams: Teams,
 }
 
 export type DocumentData<T> = T & Models.Document

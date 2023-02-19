@@ -12,12 +12,15 @@ export function useDocument<T>(
 ) {
   const { client, database } = useContext(AppwriteContext)
   const queryClient = useQueryClient()
-  const queryKey = useMemo(() => ['appwrite', 'documents', databaseId, collectionId, documentId], [databaseId, collectionId, documentId])
+  const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId, documentId], [databaseId, collectionId, documentId])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
       return await database.getDocument<T & Models.Document>(databaseId, collectionId, documentId)
     },
+
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
 
     ...options,
   })

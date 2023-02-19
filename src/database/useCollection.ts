@@ -13,7 +13,7 @@ export function useCollection<T>(
 ) {
   const { client, database } = useContext(AppwriteContext)
   const collectionPath = `databases.${databaseId}.collections.${collectionId}`
-  const queryKey = useMemo(() => ['appwrite', 'documents', databaseId, collectionId], [databaseId, collectionId])
+  const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId], [databaseId, collectionId])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
@@ -21,6 +21,9 @@ export function useCollection<T>(
 
       return response.documents
     },
+
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
 
     ...options,
   })
