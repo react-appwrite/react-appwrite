@@ -1,7 +1,5 @@
-import { AppwriteNextMiddlewareConfiguration, AppwriteNextMiddlewareHandler, AppwriteNextMiddleware } from './types'
 import type { Models } from 'appwrite'
-import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import { AppwriteNextMiddleware, AppwriteServerConfiguration } from './types'
 
 const notAuthorizedResponse = () => {
   const response = new Response('Unauthorized', {
@@ -11,36 +9,59 @@ const notAuthorizedResponse = () => {
   return response
 }
 
-export function createMiddleware<Preferences extends Models.Preferences>(configuration: AppwriteNextMiddlewareConfiguration): AppwriteNextMiddleware<Preferences> {
+export async function getAccount<Preferences extends Models.Preferences>(configuration: AppwriteServerConfiguration, token: string) {
+  try {
+    const response = await fetch(`${configuration.url}/account`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Cookie: `a_session_test_legacy=${token}`,
+        'x-appwrite-project': configuration.projectId,
+      },
+    })
+
+    const json = await response.json() as any
+
+    if (json.code) {
+      return null
+    }
+
+    return json as Models.Account<Preferences>
+  }
+
+  catch (error) {
+    return null
+  }
+}
+
+export function createMiddleware<Preferences extends Models.Preferences>(configuration: AppwriteServerConfiguration): AppwriteNextMiddleware<Preferences> {
   return handler => {
     return async request => {
-      const appwriteToken = request.cookies.get('a_session_test_legacy')?.value
+      const token = request.cookies.get('a_session_test_legacy')?.value
 
-      if (!appwriteToken) {
+      if (!token) {
         return notAuthorizedResponse()
       }
 
       try {
-        const decodedToken = JSON.parse(atob(appwriteToken))
-        const userId = decodedToken.id as string
+        const account = await getAccount<Preferences>(configuration, token)
 
-        const response = await fetch(`${configuration.url}/account`, {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            Cookie: `a_session_test_legacy=${appwriteToken}`,
-            'x-appwrite-project': configuration.projectId,
-          },
-        })
+        if (!account) {
+          return notAuthorizedResponse()
+        }
 
-        request.account = await response.json() as Models.Account<never>
+        request.account = account
 
         return handler(request)
       }
 
       catch (error) {
+        console.error(error)
+
         return notAuthorizedResponse()
       }
     }
   }
 }
+
+export * from './types'

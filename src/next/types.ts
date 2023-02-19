@@ -1,7 +1,7 @@
 import { Models } from 'appwrite'
 import type { NextRequest, NextResponse } from 'next/server'
 
-export type AppwriteNextMiddlewareConfiguration = {
+export type AppwriteServerConfiguration = {
   url: string,
   projectId: string,
   key: string,
