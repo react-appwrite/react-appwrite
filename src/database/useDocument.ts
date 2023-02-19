@@ -1,14 +1,15 @@
-import { Models } from 'appwrite'
-import { useContext, useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
+import { useEffect, useMemo } from 'react'
+import { useAppwrite } from 'react-appwrite-hooks'
+import type { Collection, Document } from './types'
 
 export function useDocument<T>(
   databaseId: string,
   collectionId: string,
   documentId: string,
-  options?: UseQueryOptions<T & Models.Document, unknown, T & Models.Document, string[]>
+  options?: UseQueryOptions<Document<T>, unknown, Document<T>, string[]>
 ) {
   const { client, database } = useAppwrite()
   const queryClient = useQueryClient()
@@ -16,13 +17,13 @@ export function useDocument<T>(
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      return await database.getDocument<T & Models.Document>(databaseId, collectionId, documentId)
+      return await database.getDocument<Document<T>>(databaseId, collectionId, documentId)
     },
 
     onSuccess: document => {
-      queryClient.setQueriesData<(T & Models.Document)[]>(['appwrite', 'database', collectionId], collection => produce(collection, draft => {
+      queryClient.setQueryData<Collection<T>>(['appwrite', 'database', collectionId], collection => produce(collection, draft => {
         if (draft) {
-          const documentIndex = draft.findIndex(storedDocument => storedDocument.$id == document.$id)
+          const documentIndex = draft.findIndex(storedDocument => storedDocument.$id === document.$id)
 
           if (documentIndex >= 0) {
             draft[documentIndex] = castDraft(document)
@@ -44,7 +45,7 @@ export function useDocument<T>(
     })
 
     return unsubscribe
-  }, [databaseId, collectionId, documentId])
+  }, [queryKey])
 
   return queryResult
 }

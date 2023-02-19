@@ -1,9 +1,8 @@
 import { Account, Avatars, Client, Databases, Functions, Storage, Teams } from 'appwrite'
 import { createContext, useContext, useMemo, type ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { AppwriteContextType } from './types'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { type DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/devtools'
+import type { DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/devtools'
 
 type Props = {
   client: Client,
@@ -12,7 +11,23 @@ type Props = {
   queryClient?: QueryClient,
 }
 
-const queryClient = new QueryClient()
+export type AppwriteContextType = {
+  client: Client,
+  account: Account,
+  database: Databases,
+  functions: Functions,
+  storage: Storage,
+  avatars: Avatars,
+  teams: Teams,
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+
+    }
+  }
+})
 
 // @ts-ignore
 export const AppwriteContext = createContext<AppwriteContextType>()

@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
-import { useContext, useEffect, useMemo } from 'react'
 import { Models } from 'appwrite'
+import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
 
 export function useFile(
@@ -26,7 +26,7 @@ export function useFile(
 
   useEffect(() => {
     const unsubscribe = client.subscribe(`buckets.${bucketId}.files.${fileId}`, event => {
-      queryClient.setQueriesData(queryKey, event.payload)
+      queryClient.setQueryData(queryKey, event.payload)
     })
 
     return unsubscribe

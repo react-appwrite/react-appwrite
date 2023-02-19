@@ -1,6 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useContext } from 'react'
-import { AppwriteException } from 'appwrite'
 import { useAppwrite } from 'react-appwrite-hooks'
 
 type Props = {
@@ -19,7 +17,7 @@ export function useFileUpload() {
     },
 
     onSuccess: async (file, { bucketId, fileId }) => {
-      queryClient.setQueriesData(['appwrite', 'storage', bucketId, fileId], file)
+      queryClient.setQueryData(['appwrite', 'storage', bucketId, fileId], file)
     },
   })
 

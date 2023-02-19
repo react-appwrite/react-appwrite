@@ -1,6 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useContext } from 'react'
-import { AppwriteException } from 'appwrite'
+import { useMutation } from '@tanstack/react-query'
 import { useAppwrite } from 'react-appwrite-hooks'
 
 type Props = {

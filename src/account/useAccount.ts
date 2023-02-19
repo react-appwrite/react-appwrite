@@ -1,6 +1,5 @@
-import type { Models } from 'appwrite'
-import { useCallback, useContext, useEffect, useState } from 'react'
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
+import type { Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite-hooks'
 
 export function useAccount<Preferences extends Models.Preferences>(
