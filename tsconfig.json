@@ -12,6 +12,15 @@
       "dom",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "react-appwrite-hooks": [
+        "src"
+      ],
+      "react-appwrite-hooks/*": [
+        "src/*"
+      ],
+    },
     "importHelpers": true,
     "outDir": "dist",
     // output .d.ts declaration files for consumers

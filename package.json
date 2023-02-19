@@ -55,6 +55,7 @@
     "appwrite": "^10.2.0",
     "encoding": "^0.1.13",
     "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example",
+    "immer": "^9.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.3.3"

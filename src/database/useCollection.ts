@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import type { DocumentData, LoadingResult, RealtimeDocumentOperation } from '../types'
 import { createQueryKeyStore } from '@lukemorales/query-key-factory'
-import { useAppwrite } from '..'
+import { useAppwrite } from 'react-appwrite-hooks'
 
 export function useCollection<T>(
   databaseId: string,

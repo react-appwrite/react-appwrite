@@ -2,7 +2,7 @@ import { Models } from 'appwrite'
 import { useContext, useEffect, useState } from 'react'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import type { AppwriteFunction, ExecutionData, LoadingResult } from '../types'
-import { useAppwrite } from '..'
+import { useAppwrite } from 'react-appwrite-hooks'
 
 export function useFunction<Request, Response>(id: string): UseMutationResult<Response, unknown, Request, unknown> {
   const { functions, client } = useAppwrite()

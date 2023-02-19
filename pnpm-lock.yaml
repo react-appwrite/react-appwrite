@@ -9,6 +9,7 @@ specifiers:
   appwrite: ^10.2.0
   encoding: ^0.1.13
   example: link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example
+  immer: ^9.0.19
   react: ^18.2.0
   react-dom: ^18.2.0
   tslib: ^2.5.0
@@ -22,9 +23,10 @@ dependencies:
   appwrite: 10.2.0_encoding@0.1.13
   encoding: 0.1.13
   example: link:example
+  immer: 9.0.19
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  zustand: 4.3.3_react@18.2.0
+  zustand: 4.3.3_immer@9.0.19+react@18.2.0
 
 devDependencies:
   '@types/react': 18.0.28
@@ -175,6 +177,10 @@ packages:
       safer-buffer: 2.1.2
     dev: false
 
+  /immer/9.0.19:
+    resolution: {integrity: sha512-eY+Y0qcsB4TZKwgQzLaE/lqYMlKhv5J9dyd2RhhtGhNo2njPXDqU9XPfcNfa3MIDsdtZt5KlkIsirlo4dHsWdQ==}
+    dev: false
+
   /is-what/4.1.8:
     resolution: {integrity: sha512-yq8gMao5upkPoGEU9LsB2P+K3Kt8Q3fQFCGyNCWOAnJAMzEXVV9drYb0TXr42TTliLLhKIBvulgAXgtLLnwzGA==}
     engines: {node: '>=12.13'}
@@ -293,7 +299,7 @@ packages:
       webidl-conversions: 3.0.1
     dev: false
 
-  /zustand/4.3.3_react@18.2.0:
+  /zustand/4.3.3_immer@9.0.19+react@18.2.0:
     resolution: {integrity: sha512-x2jXq8S0kfLGNwGh87nhRfEc2eZy37tSatpSoSIN+O6HIaBhgQHSONV/F9VNrNcBcKQu/E80K1DeHDYQC/zCrQ==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -305,6 +311,7 @@ packages:
       react:
         optional: true
     dependencies:
+      immer: 9.0.19
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false

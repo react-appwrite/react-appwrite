@@ -1,8 +1,8 @@
 import { Models } from 'appwrite'
 import { useContext, useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
-import type { DocumentData, LoadingResult } from '../types'
-import { useAppwrite } from '..'
+import { useAppwrite } from 'react-appwrite-hooks'
+import produce, { castDraft } from 'immer'
 
 export function useDocument<T>(
   databaseId: string,
@@ -17,6 +17,18 @@ export function useDocument<T>(
     queryKey,
     queryFn: async () => {
       return await database.getDocument<T & Models.Document>(databaseId, collectionId, documentId)
+    },
+
+    onSuccess: document => {
+      queryClient.setQueriesData<(T & Models.Document)[]>(['appwrite', 'database', collectionId], collection => produce(collection, draft => {
+        if (draft) {
+          const documentIndex = draft.findIndex(storedDocument => storedDocument.$id == document.$id)
+
+          if (documentIndex >= 0) {
+            draft[documentIndex] = castDraft(document)
+          }
+        }
+      }))
     },
 
     refetchOnMount: false,
