@@ -27,7 +27,7 @@ const { data, isLoading } = useHook(...)
 
 ### Supported Services
 
-This library is a work in progress. Features are still being added,
+This library is a work in progress. The intent is to eventually reach 100% feature parity with Appwrite.
 
 - [Account](/src/account)
 - [Avatars](/src/avatars)

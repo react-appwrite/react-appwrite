@@ -13,7 +13,9 @@ type Props = {
 
 function MainLayout({ children }: Props) {
   return (
-    <html lang="en">
+    <html lang="en" style={{
+      background: 'black'
+    }}>
       <head />
 
       <body>

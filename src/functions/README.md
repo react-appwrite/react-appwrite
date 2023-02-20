@@ -11,7 +11,7 @@ const sum = useFunction<Request, Response>(functionId)
 
 ### Example
 
-Here's an example that assumes you have a cloud function that takes an array of numbers, and returns the sum of those numbers.
+This example assumes you have a cloud function that takes an array of numbers, and returns the sum of those numbers.
 
 ```tsx
 type Request = number[]

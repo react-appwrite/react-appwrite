@@ -4,7 +4,7 @@ import { useAppwrite } from 'react-appwrite-hooks'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
 
-import { useEmailSignIn } from 'react-appwrite-hooks/account'
+import { useEmailSignIn, useEmailSignUp } from 'react-appwrite-hooks/account'
 
 type Props = {}
 
@@ -18,27 +18,23 @@ function HomePage() {
   const { data: account } = useAccount()
 
   const signIn = useEmailSignIn()
+  const signUp = useEmailSignUp()
 
-  const { account: accountService } = useAppwrite()
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data: Form) => {
     console.log({ data })
 
     if (data.create) {
-      const a = await accountService.create(ID.unique(), data.email, data.password)
-
-      console.log({ a })
+      signUp.mutateAsync(data)
     }
     else {
-      const a = await signIn.mutateAsync(data)
-
-      console.log({ a })
+      signIn.mutateAsync(data)
     }
   }
 
   return (
-    <div className="container flex h-full">
+    <div className="container flex flex-1">
       <form
         // @ts-ignore
         onSubmit={handleSubmit(onSubmit)}
@@ -56,7 +52,7 @@ function HomePage() {
           {...register("password")}
         />
 
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <input
             defaultChecked
             type="checkbox"
@@ -72,18 +68,19 @@ function HomePage() {
         </div>
 
         <button
+          className="success button"
           type="submit"
         >
           Sign in
         </button>
-      </form>
 
-      {
-        account &&
-        <h1>
-          Signed in as {account.email}
-        </h1>
-      }
+        {
+          account &&
+          <p>
+            Signed in as {account.email}
+          </p>
+        }
+      </form>
     </div>
   )
 }

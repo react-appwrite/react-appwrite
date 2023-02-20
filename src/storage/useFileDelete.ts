@@ -6,7 +6,6 @@ import { useAppwrite } from 'react-appwrite-hooks'
 type Props = {
   bucketId: string,
   fileId: string,
-  permissions?: string[],
 }
 
 export function useFileDelete() {
