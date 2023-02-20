@@ -4,9 +4,9 @@ import { User } from './User'
 import { Models } from 'appwrite'
 
 export default async function SsrPage() {
-  const account = await appwrite.getUser(cookies())
+  const user = await appwrite.getUser(cookies())
 
-  if (!account) {
+  if (!user) {
     return (
       <span>
         You are not logged in.
@@ -16,7 +16,7 @@ export default async function SsrPage() {
 
   return (
     <User
-      account={account}
+      {...user}
     />
   )
 }

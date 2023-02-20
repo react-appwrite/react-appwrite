@@ -14,7 +14,7 @@ export class AppwriteNextServer {
     this.configuration = configuration
   }
 
-  userMiddleware<Preferences extends Models.Preferences>(
+  authMiddleware<Preferences extends Models.Preferences>(
     handler: AppwriteNextMiddlewareHandler<Preferences>
   ): AppwriteNextMiddlewareHandler<Preferences> {
     return async request => {

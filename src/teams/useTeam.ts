@@ -1,8 +1,9 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { AppwriteException } from 'appwrite'
 import { useContext, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { isAppwriteError, useAppwrite } from 'react-appwrite-hooks'
 
 export function useTeam(teamId: string) {
   const { teams } = useAppwrite()

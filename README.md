@@ -48,7 +48,7 @@ This library is a work in progress. The intent is to eventually reach 100% featu
 Follow these extra instructions if you'd like to test with the provided example
 project.
 
-1. In the example folder, rename `.env.local.example` to `.env.local`, and
+1. In the example folder, rename `.env.example` to `.env`, and
    replace the variables inside of it with variables from your own local
    Appwrite installation.
 
