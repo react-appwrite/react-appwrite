@@ -7,9 +7,11 @@ export type AppwriteServerConfiguration = {
   key: string,
 }
 
+export type AppwriteNextHandlerResult = Response | NextResponse | Promise<NextResponse> | Promise<Response>
+
 export type AppwriteNextMiddlewareHandler<Preferences extends Models.Preferences> = (
   request: NextRequest & {
-    account: Models.Account<Preferences>,
+    user?: Models.Account<Preferences>,
   }
 ) => Response | NextResponse | Promise<NextResponse> | Promise<Response>
 

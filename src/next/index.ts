@@ -1,44 +1,37 @@
 import type { Models } from 'appwrite'
-import type { AppwriteNextMiddleware, AppwriteServerConfiguration, AppwriteNextMiddlewareHandler } from './types'
+import type { AppwriteNextMiddleware, AppwriteServerConfiguration, AppwriteNextMiddlewareHandler, AppwriteNextHandlerResult } from './types'
 import { cookies } from 'next/headers'
 import type { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
 import type { ReadonlyRequestCookies } from 'next/dist/server/app-render'
+import { NextRequest, NextResponse } from 'next/server'
 
 export * from './types'
 
-const notAuthorizedResponse = () => {
-  const response = new Response('Unauthorized', {
-    status: 401,
-  })
-
-  return response
-}
-
-export class AppwriteServer {
+export class AppwriteNextServer {
   private configuration: AppwriteServerConfiguration
 
   constructor(configuration: AppwriteServerConfiguration) {
     this.configuration = configuration
   }
 
-  authMiddleware<Preferences extends Models.Preferences>(
+  userMiddleware<Preferences extends Models.Preferences>(
     handler: AppwriteNextMiddlewareHandler<Preferences>
   ): AppwriteNextMiddlewareHandler<Preferences> {
     return async request => {
       const token = request.cookies.get('a_session_test_legacy')?.value
 
       if (!token) {
-        return notAuthorizedResponse()
+        return handler(request)
       }
 
       try {
-        const account = await this.getAccount<Preferences>(request.cookies)
+        const account = await this.getUser<Preferences>(request.cookies)
 
         if (!account) {
-          return notAuthorizedResponse()
+          return handler(request)
         }
 
-        request.account = account
+        request.user = account
 
         return handler(request)
       }
@@ -46,12 +39,12 @@ export class AppwriteServer {
       catch (error) {
         console.error(error)
 
-        return notAuthorizedResponse()
+        return handler(request)
       }
     }
   }
 
-  async getAccount<Preferences extends Models.Preferences>(cookies: RequestCookies | ReadonlyRequestCookies) {
+  async getUser<Preferences extends Models.Preferences>(cookies: RequestCookies | ReadonlyRequestCookies) {
     try {
       const token = cookies.get('a_session_test_legacy')?.value ?? ''
       const response = await fetch(`${this.configuration.url}/account`, {

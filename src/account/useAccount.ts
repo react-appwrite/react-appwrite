@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
 
 /**
- * 
+ * Access to the local user's account.
  * @param account The initial account object, obtained from SSR.
  * @param options Options to pass to `react-query`
  */
@@ -20,7 +20,9 @@ export function useAccount<Preferences extends Models.Preferences>(
   const queryResult = useQuery({
     queryKey: ['appwrite', 'account'],
     queryFn: () => accountService.get<Preferences>(),
-    initialData: account,
+
+    // Should be initialData, but it's causing problems with SSR.
+    placeholderData: account,
 
     ...options,
   })
