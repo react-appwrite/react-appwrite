@@ -25,7 +25,8 @@
     "./functions": "./dist/functions/index.js",
     "./storage": "./dist/storage/index.js",
     "./avatars": "./dist/avatars/index.js",
-    "./next": "./dist/next/index.js"
+    "./next": "./dist/next/index.js",
+    "./teams": "./dist/teams/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +37,8 @@
     "functions.d.ts",
     "storage.d.ts",
     "avatars.d.ts",
-    "next.d.ts"
+    "next.d.ts",
+    "teams.d.ts"
   ],
   "engines": {
     "node": ">=10"
