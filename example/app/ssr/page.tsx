@@ -1,17 +1,20 @@
-import { getAccount } from 'react-appwrite-hooks/next'
-import { appwriteConfiguration } from '../../util'
+import { appwrite } from '../../util'
 import { cookies } from 'next/headers'
+import { User } from './User'
 
 export default async function SsrPage() {
-  const token = cookies().get('a_session_test_legacy')?.value ?? ''
-  const account = await getAccount(appwriteConfiguration, token)
+  const account = await appwrite.getAccount(cookies())
 
   return (
     <span>
       {
         account
-          ? `Logged in as ${account.$id}`
-          : 'You are logged out'
+          ? <User
+            account={account}
+          />
+          : <>
+            You are logged out
+          </>
       }
     </span>
   )

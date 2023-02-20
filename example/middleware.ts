@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
-import { createMiddleware } from 'react-appwrite-hooks/next'
-import { appwriteMiddleware } from './util'
+import { appwrite } from './util'
 
-export const middleware = appwriteMiddleware(request => {
+export const middleware = appwrite.authMiddleware(request => {
   return NextResponse.json(request.account)
 })
 
