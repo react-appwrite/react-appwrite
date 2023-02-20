@@ -1,6 +1,8 @@
 import type { Models } from 'appwrite'
 import { AppwriteNextMiddleware, AppwriteServerConfiguration } from './types'
 
+export * from './types'
+
 const notAuthorizedResponse = () => {
   const response = new Response('Unauthorized', {
     status: 401,
@@ -63,5 +65,3 @@ export function createMiddleware<Preferences extends Models.Preferences>(configu
     }
   }
 }
-
-export * from './types'

@@ -1,12 +1,12 @@
 # Storage Hooks
 
-## useAccount
+## useFile
 
 ```typescript
 import { useFile } from 'react-appwrite-hooks/storage'
 
 // In your component.
-const { data: file } = useFile<Preferences>(bucketId, fileId)
+const { data: file } = useFile(bucketId, fileId)
 ```
 
 `file` is a [user object](https://appwrite.io/docs/models/file).
