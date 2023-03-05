@@ -1,4 +1,4 @@
-type AvatarType =
+export type AvatarType =
   | 'card'
   | 'browser'
   | 'country'
@@ -7,7 +7,7 @@ type AvatarType =
   | 'qr'
   | 'initials'
 
-type AvatarDimensions = {
+export type AvatarDimensions = {
   width?: number,
   height?: number,
 }

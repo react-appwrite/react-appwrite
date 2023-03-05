@@ -3,3 +3,4 @@ out
 next-env.d.ts
 .next
 .env.local
+functions/**/*.js

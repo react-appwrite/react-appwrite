@@ -1,6 +1,5 @@
 'use client'
-import { useAccount } from 'react-appwrite-hooks/account'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAccount, useOAuth2SignIn } from 'react-appwrite-hooks/account'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
 
@@ -19,6 +18,7 @@ function HomePage() {
 
   const signIn = useEmailSignIn()
   const signUp = useEmailSignUp()
+  const oAuthSignIn = useOAuth2SignIn()
 
   const { register, handleSubmit } = useForm()
 
@@ -72,6 +72,20 @@ function HomePage() {
           type="submit"
         >
           Sign in
+        </button>
+
+        <button
+          type="button"
+          className="primary button"
+          onClick={() => {
+            oAuthSignIn.mutate({
+              provider: 'google',
+              successUrl: 'http://localhost:3000/ssr',
+              failureUrl: '',
+            })
+          }}
+        >
+          Google sign in
         </button>
 
         {

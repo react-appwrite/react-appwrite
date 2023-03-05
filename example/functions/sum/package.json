@@ -1,0 +1,13 @@
+{
+  "name": "sum",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w --preserveWatchOutput"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "appwrite-functions": "^0.0.5"
+  }
+}

@@ -19,8 +19,6 @@ export function useFileDelete() {
     onSuccess: async (_, { bucketId, fileId }) => {
       queryClient.removeQueries(['appwrite', 'storage', bucketId, fileId])
     },
-
-    retry: false,
   })
 
   return mutation

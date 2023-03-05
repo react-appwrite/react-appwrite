@@ -1,9 +1,7 @@
 import type { Models } from 'appwrite'
-import type { AppwriteNextMiddleware, AppwriteServerConfiguration, AppwriteNextMiddlewareHandler, AppwriteNextHandlerResult } from './types'
-import { cookies } from 'next/headers'
-import type { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
 import type { ReadonlyRequestCookies } from 'next/dist/server/app-render'
-import { NextRequest, NextResponse } from 'next/server'
+import type { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
+import type { AppwriteNextMiddlewareHandler, AppwriteServerConfiguration } from './types'
 
 export * from './types'
 
@@ -27,11 +25,7 @@ export class AppwriteNextServer {
       try {
         const account = await this.getUser<Preferences>(request.cookies)
 
-        if (!account) {
-          return handler(request)
-        }
-
-        request.user = account
+        request.user = account || undefined
 
         return handler(request)
       }

@@ -1,6 +1,6 @@
 import { Account, AppwriteException, Avatars, Client, Databases, Functions, Storage, Teams } from 'appwrite'
 import { createContext, useContext, useMemo, type ReactNode } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, type QueryClientConfig, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/devtools'
 
@@ -21,16 +21,22 @@ export type AppwriteContextType = {
   teams: Teams,
 }
 
-const queryClient = new QueryClient({
+export const queryClientConfiguration: QueryClientConfig = {
   defaultOptions: {
     queries: {
       staleTime: Infinity,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       retry: false,
-    }
-  }
-})
+    },
+
+    mutations: {
+      retry: false,
+    },
+  },
+}
+
+const queryClient = new QueryClient(queryClientConfiguration)
 
 type Props = {
   client: Client,

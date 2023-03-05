@@ -8,7 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "appwrite functions createDeployment --functionId=sum --activate=true --entrypoint=\"sum.js\" --code=\"./functions\""
+    "deploy": "appwrite functions createDeployment --functionId=sum --activate=true --entrypoint=\"index.js\" --code=\"./functions/sum\""
   },
   "dependencies": {
     "appwrite": "^10.2.0",

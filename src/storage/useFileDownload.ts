@@ -14,8 +14,6 @@ export function useFileDownload() {
     mutationFn: async ({ bucketId, fileId, }: Props) => {
       return storage.getFileDownload(bucketId, fileId)
     },
-
-    retry: false,
   })
 
   return mutation

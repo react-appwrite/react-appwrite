@@ -3,10 +3,10 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { useAppwrite } from 'react-appwrite-hooks'
 
-export function useFunction<Request, Response>(id: string): UseMutationResult<Response, unknown, Request, unknown> {
+export function useFunction<TRequest, TResponse>(id: string): UseMutationResult<TResponse, unknown, TRequest, unknown> {
   const { functions, client } = useAppwrite()
-  const mutation = useMutation<Response, unknown, Request, unknown>({
-    mutationFn: async (request: Request) => {
+  const mutation = useMutation<TResponse, unknown, TRequest, unknown>({
+    mutationFn: async (request: TRequest) => {
       const execution = await functions.createExecution(id, JSON.stringify(request))
       let unsubscribe: (() => void) | null = null
 
@@ -33,7 +33,7 @@ export function useFunction<Request, Response>(id: string): UseMutationResult<Re
           }
           return 1
         })
-      }) as Response
+      }) as TResponse
 
       // @ts-ignore
       unsubscribe?.()

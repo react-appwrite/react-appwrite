@@ -15,7 +15,7 @@ export function useFile(
   const queryKey = useMemo(() => ['appwrite', 'storage', bucketId, fileId], [bucketId, fileId])
   const queryResult = useQuery({
     queryKey,
-    queryFn: async () => {
+    queryFn: async ({ queryKey: [, , bucketId, fileId] }) => {
       return await storage.getFile(bucketId, fileId)
     },
 
@@ -28,7 +28,7 @@ export function useFile(
     })
 
     return unsubscribe
-  }, [queryKey])
+  }, [bucketId, fileId, queryKey])
 
   return queryResult
 }

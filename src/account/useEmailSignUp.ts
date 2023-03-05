@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ID, Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite-hooks'
 
-type Request = {
+type TRequest = {
   userId?: string,
   name?: string,
   email: string,
@@ -13,7 +13,7 @@ type Request = {
 
 function useEmailSignUp<Preferences extends Models.Preferences>() {
   const { account } = useAppwrite()
-  const mutation = useMutation<Models.Account<Preferences>, unknown, Request, unknown>({
+  const mutation = useMutation<Models.Account<Preferences>, unknown, TRequest, unknown>({
     mutationFn: async request => {
       return await account.create(request.userId ?? ID.unique(), request.email, request.password, request.name)
     },
