@@ -29,7 +29,7 @@ export function useAccount<Preferences extends Models.Preferences>(
 
   useEffect(() => {
     const unsubscribe = accountService.client.subscribe('account', response => {
-      const isUpdatingPreferences = !!response.events.find(event => event.endsWith('prefs'))
+      const isUpdatingPreferences = response.events.some(event => event.endsWith('prefs'))
 
       if (isUpdatingPreferences) {
         queryClient.setQueryData<Models.Account<Preferences>>(['appwrite', 'account'], account => produce(account, draft => {

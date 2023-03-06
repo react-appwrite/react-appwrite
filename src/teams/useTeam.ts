@@ -10,7 +10,7 @@ export function useTeam(teamId: string) {
   const queryKey = useMemo(() => ['appwrite', 'teams', teamId], [teamId])
   const queryResult = useQuery({
     queryKey,
-    queryFn: async () => {
+    queryFn: async ({ queryKey: [, , teamId] }) => {
       return await teams.get(teamId)
     },
   })
