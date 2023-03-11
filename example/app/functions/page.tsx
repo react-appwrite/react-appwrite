@@ -1,6 +1,6 @@
 'use client'
 import { useContext, useEffect } from 'react'
-import { useFunction } from 'react-appwrite-hooks/functions'
+import { useFunction } from 'react-appwrite/functions'
 import { useForm } from 'react-hook-form'
 
 const StatusDot = ({ className }: { className?: string }) => {

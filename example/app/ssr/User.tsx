@@ -1,8 +1,8 @@
 'use client'
 
 import { Models } from 'appwrite'
-import { useAccount } from 'react-appwrite-hooks/account'
-import { useAvatar } from 'react-appwrite-hooks/avatars'
+import { useAccount } from 'react-appwrite/account'
+import { useAvatar } from 'react-appwrite/avatars'
 
 type Props<Preferences extends Models.Preferences> = Models.Account<Preferences>
 

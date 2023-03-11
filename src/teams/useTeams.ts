@@ -3,7 +3,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { useAppwrite } from '..'
-import { useAccount } from 'react-appwrite-hooks/account'
+import { useAccount } from 'react-appwrite/account'
 
 /**
  * All teams the local user is a member of.

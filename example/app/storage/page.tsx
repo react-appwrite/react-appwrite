@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import { useFile, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite-hooks/storage'
+import { useFile, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite/storage'
 
 export default function StoragePage() {
   const upload = useFileUpload()

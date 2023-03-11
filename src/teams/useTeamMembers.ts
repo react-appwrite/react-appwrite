@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 export function useTeamMembers(teamId: string) {
   const { teams } = useAppwrite()

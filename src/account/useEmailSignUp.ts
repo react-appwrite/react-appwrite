@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { ID, Models } from 'appwrite'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 type TRequest = {
   userId?: string,

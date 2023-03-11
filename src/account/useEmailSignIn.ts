@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Models } from 'appwrite'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 type TRequest = {
   email: string,

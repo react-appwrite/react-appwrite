@@ -4,8 +4,8 @@ import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-
 import { Models } from 'appwrite'
 import produce, { castDraft, current } from 'immer'
 import { useEffect, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
-import type { RealtimeDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite-hooks/database/types'
+import { useAppwrite } from 'react-appwrite'
+import type { RealtimeDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite/database/types'
 
 export function useCollection<TDocument>(
   databaseId: string,

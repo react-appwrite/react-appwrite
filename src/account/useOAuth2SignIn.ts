@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Models } from 'appwrite'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 import type { OAuth2Provider } from './types'
 
 type TRequest = {

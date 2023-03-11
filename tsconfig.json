@@ -14,10 +14,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "react-appwrite-hooks": [
+      "react-appwrite": [
         "src"
       ],
-      "react-appwrite-hooks/*": [
+      "react-appwrite/*": [
         "src/*"
       ],
     },

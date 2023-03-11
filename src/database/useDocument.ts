@@ -4,7 +4,7 @@ import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query
 import { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 import type { DatabaseCollection, DatabaseDocument } from './types'
 
 export function useDocument<TDocument>(

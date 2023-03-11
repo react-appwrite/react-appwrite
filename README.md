@@ -1,4 +1,4 @@
-# react-appwrite-hooks
+# react-appwrite
 
 Gorgeous library for integrating React with Appwrite.
 

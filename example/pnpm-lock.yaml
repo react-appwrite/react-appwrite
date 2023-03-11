@@ -11,7 +11,7 @@ specifiers:
   postcss-flexbugs-fixes: ^5.0.2
   postcss-preset-env: ^8.0.1
   react: ^18.2.0
-  react-appwrite-hooks: ^0.0.2
+  react-appwrite: ^0.0.2
   react-dom: ^18.2.0
   react-hook-form: ^7.43.1
   tailwindcss: ^3.2.6
@@ -25,7 +25,7 @@ dependencies:
   postcss-flexbugs-fixes: 5.0.2_postcss@8.4.21
   postcss-preset-env: 8.0.1_postcss@8.4.21
   react: 18.2.0
-  react-appwrite-hooks: 0.0.2_react@18.2.0
+  react-appwrite: 0.0.2_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.1_react@18.2.0
   tailwindcss: 3.2.6_postcss@8.4.21
@@ -1329,7 +1329,7 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
 
-  /react-appwrite-hooks/0.0.2_react@18.2.0:
+  /react-appwrite/0.0.2_react@18.2.0:
     resolution: {integrity: sha512-canRCmcMwn8huntIboK4n4oRDOEguwMSX4Pjpz/HkcVPZcdiD/ujZ4RIxgFVCC5HuDNXm3HyqKd1ZyFqIPEdGg==}
     engines: {node: '>=10'}
     peerDependencies:

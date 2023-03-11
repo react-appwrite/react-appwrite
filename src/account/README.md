@@ -1,44 +1,105 @@
 # Account Hooks
 
+➡️ [Appwrite Documentation](https://appwrite.io/docs/client/account)
+
 ## useAccount
 
-```typescript
-import { useAccount } from 'react-appwrite-hooks/account'
+```tsx
+import { useAccount } from 'react-appwrite/account'
 
-// In your component.
-const { data: account } = useAccount<Preferences>()
+type Preferences = {
+  darkMode?: boolean,
+}
+
+function Component() {
+  const { data: account, isLoading } = useAccount<Preferences>()
+
+  if (account) {
+    return <p>Signed in as {account.name}</p>
+  }
+
+  if (isLoading) {
+    return <p>Loading</p>
+  }
+
+  return <p>You are signed out</p>
+}
 ```
-
-`account` is a [user object](https://appwrite.io/docs/models/user).
 
 ---
 
 ## useEmailSignIn
 
-```typescript
-import { useEmailSignIn } from 'react-appwrite-hooks/account'
+```tsx
+import { useEmailSignIn } from 'react-appwrite/account'
 
-// In your component.
-const signIn = useEmailSignIn()
+function SignInButton() {
+  const signIn = useEmailSignIn()
 
-const session = await signIn.mutateAsync({
-  email: 'test@example.com',
-  password: 'Appwrite123!',
-})
+  return (
+    <button
+      onClick={() => {
+        signIn.mutateAsync({
+          email: 'test@example.com',
+          password: 'Appwrite123!',
+        })
+      }}
+    >
+      Sign In
+    </button>
+  )
+}
 ```
 
-`session` is a [session object](https://appwrite.io/docs/models/session).
+---
 
 ## useEmailSignUp
 
-```typescript
-import { useEmailSignUp } from 'react-appwrite-hooks/account'
+```tsx
+import { useEmailSignUp } from 'react-appwrite/account'
 
-// In your component.
-const signUp = useEmailSignUp()
+function SignUpButton() {
+  const signUp = useEmailSignUp()
 
-const account = await signUp.mutateAsync({
-  email: 'test@example.com',
-  password: 'Appwrite123!',
-})
+  return (
+    <button
+      onClick={() => {
+        signUp.mutateAsync({
+          email: 'test@example.com',
+          password: 'Appwrite123!',
+        })
+      }}
+    >
+      Sign Up
+    </button>
+  )
+}
+```
+
+---
+
+## useOAuth2SignIn
+
+```tsx
+import { useOAuth2SignIn } from 'react-appwrite/account'
+
+function GoogleSignIn() {
+  const signIn = useOAuth2SignIn()
+
+  const provider = 'google'
+  const successUrl = 'https://example.com/auth'
+  const failureUrl = 'https://example.com/auth/fail'
+
+  <button
+    onClick={() => {
+      signIn.mutateAsync({
+        provider,
+        successUrl,
+        failureUrl,
+      })
+    }}
+  >
+    Sign In With Google
+  </button>
+}
 ```

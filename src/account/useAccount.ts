@@ -4,7 +4,7 @@ import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-
 import type { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 /**
  * Access to the local user's account.

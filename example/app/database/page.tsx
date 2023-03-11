@@ -2,7 +2,7 @@
 
 import { Query } from 'appwrite'
 import { useContext, useEffect } from 'react'
-import { useDocument, useCollection } from 'react-appwrite-hooks/database'
+import { useDocument, useCollection } from 'react-appwrite/database'
 
 type Article = {
   title: string,

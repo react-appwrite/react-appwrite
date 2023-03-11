@@ -3,7 +3,7 @@
 ## useFile
 
 ```typescript
-import { useFile } from 'react-appwrite-hooks/storage'
+import { useFile } from 'react-appwrite/storage'
 
 // In your component.
 const { data: file } = useFile(bucketId, fileId)
@@ -16,7 +16,7 @@ const { data: file } = useFile(bucketId, fileId)
 ## useFileDelete
 
 ```typescript
-import { useFileDelete } from 'react-appwrite-hooks/storage'
+import { useFileDelete } from 'react-appwrite/storage'
 
 // In your component.
 const deleteFile = useFileDelete()
@@ -32,7 +32,7 @@ deleteFile.mutateAsync({
 ## useFileUpdate
 
 ```typescript
-import { useFileUpdate } from 'react-appwrite-hooks/storage'
+import { useFileUpdate } from 'react-appwrite/storage'
 
 // In your component.
 const updateFile = useFileUpdate()
@@ -49,7 +49,7 @@ updateFile.mutateAsync({
 ## useFileUpload
 
 ```typescript
-import { useFileUpload } from 'react-appwrite-hooks/storage'
+import { useFileUpload } from 'react-appwrite/storage'
 
 // In your component.
 const uploadFile = useFileUpload()

@@ -1,30 +1,70 @@
 # Database Hooks
 
+➡️ [Appwrite Documentation](https://appwrite.io/docs/client/databases)
+
 These hooks automatically subscribe to realtime updates.
 
 ## useCollection
 
-```typescript
-import { useCollection } from 'react-appwrite-hooks/database'
+```tsx
+import { useCollection } from 'react-appwrite/database'
+import { Query } from 'appwrite'
 
-// In your component.
-const { data: collection } = useCollection<Model>(databaseId, collectionId)
+type Article = {
+  title: string,
+  content: string,
+  published: boolean,
+}
+
+function PublishedArticlesList() {
+  const databaseId = 'myDatabase'
+  const collectionId = 'articles'
+  
+  const { data: publishedArticles } = useCollection<Article>(databaseId, collectionId, [
+    Query.equal('published', true)
+  ])
+  
+  return (
+    <ol>
+      {
+        publishedArticles?.map(article => (
+          <li
+            key={article.$id}
+          >
+            {article.title}
+          </li>
+        ))
+      }
+    </ol>
+  )
+}
 ```
-
-`collection` is an array of [documents](https://appwrite.io/docs/models/document) that also contain the fields from `Model`.
 
 ---
 
 ## useDocument
 
-```typescript
-import { useDocument } from 'react-appwrite-hooks/database'
+```tsx
+import { useDocument } from 'react-appwrite/database'
 
-// In your component.
-const { data: document } = useDocument<Model>(databaseId, collectionId, documentId)
+type Article = {
+  title: string,
+  content: string,
+  published: boolean,
+}
+
+function ArticleDetails() {
+  const databaseId = 'myDatabase'
+  const collectionId = 'articles'
+  const documentId = 'my-cool-vacation'
+
+  const { data: article } = useDocument<Article>(databaseId, collectionId, documentId)
+
+  return (
+    <div>
+      <h3>{article?.name}</h3>
+      <p>{article?.content}</p>
+    </div>
+  )
+}
 ```
-
-`document` is a [document](https://appwrite.io/docs/models/document) that also contains the fields from `Model`.
-
-### Example
-

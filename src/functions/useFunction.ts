@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 /**
  * 

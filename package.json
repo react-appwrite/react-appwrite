@@ -1,12 +1,12 @@
 {
-  "name": "react-appwrite-hooks",
+  "name": "react-appwrite",
   "description": "React hooks for Appwrite.",
   "author": "sanny-io",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
-  "repository": "github:sanny-io/react-appwrite-hooks",
-  "homepage": "https://github.com/sanny-io/react-appwrite-hooks",
-  "bugs": "https://github.com/sanny-io/react-appwrite-hooks/issues",
+  "repository": "github:sanny-io/react-appwrite",
+  "homepage": "https://github.com/sanny-io/react-appwrite",
+  "bugs": "https://github.com/sanny-io/react-appwrite/issues",
   "keywords": [
     "react",
     "appwrite",
@@ -59,7 +59,7 @@
     "@tanstack/react-query-devtools": "^4.24.9",
     "appwrite": "^10.2.0",
     "encoding": "^0.1.13",
-    "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite-hooks/example",
+    "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite/example",
     "immer": "^9.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

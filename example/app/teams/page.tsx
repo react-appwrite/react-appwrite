@@ -1,6 +1,6 @@
 'use client'
 
-import { useTeams } from 'react-appwrite-hooks/teams'
+import { useTeams } from 'react-appwrite/teams'
 
 export default function TeamsPage() {
   const { data: teams } = useTeams()

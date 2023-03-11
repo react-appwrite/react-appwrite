@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { AppwriteException } from 'appwrite'
 import { useContext, useMemo } from 'react'
-import { isAppwriteError, useAppwrite } from 'react-appwrite-hooks'
+import { isAppwriteError, useAppwrite } from 'react-appwrite'
 
 export function useTeam(teamId: string) {
   const { teams } = useAppwrite()

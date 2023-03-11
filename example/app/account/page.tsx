@@ -1,6 +1,6 @@
 'use client'
 
-import { useAccount, useAvatar } from 'react-appwrite-hooks'
+import { useAccount, useAvatar } from 'react-appwrite'
 
 export default function AccountPage() {
   const { data: account } = useAccount()

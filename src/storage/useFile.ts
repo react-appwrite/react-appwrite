@@ -3,7 +3,7 @@
 import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import { useEffect, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 
 export function useFile(
   bucketId: string,

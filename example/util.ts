@@ -1,4 +1,4 @@
-import { AppwriteNextServer } from 'react-appwrite-hooks/next'
+import { AppwriteNextServer } from 'react-appwrite/next'
 
 export const appwrite = new AppwriteNextServer({
   url: process.env.NEXT_PUBLIC_APPWRITE_URL as string,

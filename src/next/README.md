@@ -1,9 +1,9 @@
 # Next.js
 
-Create an instance of `AppwriteNextServer`.
+➡️ [Next.js Documentation](https://nextjs.org/docs/advanced-features/middleware#using-middleware)
 
 ```typescript
-import { AppwriteNextServer } from 'react-appwrite-hooks/next'
+import { AppwriteNextServer } from 'react-appwrite/next'
 
 export const appwrite = new AppwriteNextServer({
   url: process.env.APPWRITE_URL,
@@ -31,7 +31,7 @@ export const middleware = appwrite.authMiddleware(request => {
 ```typescript
 import { cookies } from 'next/headers'
 
-export default async function MyServerComponent() {
+export default async function ServerComponent() {
   const user = await appwrite.getUser(cookies())
 
   // You can also pass it to a client component and call `useAccount(user)` there.

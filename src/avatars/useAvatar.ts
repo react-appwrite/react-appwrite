@@ -3,7 +3,7 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import { useContext, useMemo } from 'react'
-import { useAppwrite } from 'react-appwrite-hooks'
+import { useAppwrite } from 'react-appwrite'
 import type { Avatar, AvatarType } from './types'
 
 /**

@@ -1,12 +1,30 @@
 # Functions Hooks
 
+➡️ [Appwrite Documentation](https://appwrite.io/docs/client/functions)
+
 ## useFunction
 
 ```tsx
-import { useFunction } from 'react-appwrite-hooks/functions'
+import { useFunction } from 'react-appwrite/functions'
 
-// In your component.
-const sum = useFunction<Request, Response>(functionId)
+function Component() {
+  const cloudFunction = useFunction<TRequest, TResponse>(functionId)
+
+  useEffect(() => {
+    console.log('Cloud function finished executing with', cloudFunction.data)
+  }, [cloudFunction.data])
+
+  return (
+    <button
+      onClick={async () => {
+        const response = await cloudFunction.mutateAsync(request)
+      }}
+    >
+      Execute
+    </button>
+  )
+}
+
 ```
 
 ### Example
@@ -14,15 +32,15 @@ const sum = useFunction<Request, Response>(functionId)
 This example assumes you have a cloud function that takes an array of numbers, and returns the sum of those numbers.
 
 ```tsx
-type Request = number[]
-type Response = number
+type TRequest = number[]
+type TResponse = number
 
-function MyComponent() {
-  const sum = useFunction<Request, Response>('sum')
+function Component() {
+  const sum = useFunction<TRequest, TResponse>('sum')
   const [text, setText] = useState('')
 
   const handleClick = async () => {
-    const request = text.split(' ').map(digit => Number(digit))
+    const request = text.split(' ').map(number => Number(number))
     const response = await sum.mutateAsync(request)
 
     console.log('The result is', result)

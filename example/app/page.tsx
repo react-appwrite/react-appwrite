@@ -1,9 +1,9 @@
 'use client'
-import { useAccount, useOAuth2SignIn } from 'react-appwrite-hooks/account'
+import { useAccount, useOAuth2SignIn } from 'react-appwrite/account'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
 
-import { useEmailSignIn, useEmailSignUp } from 'react-appwrite-hooks/account'
+import { useEmailSignIn, useEmailSignUp } from 'react-appwrite/account'
 
 type Props = {}
 

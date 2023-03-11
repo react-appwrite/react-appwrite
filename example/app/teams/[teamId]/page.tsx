@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useTeam, useTeamMembers } from 'react-appwrite-hooks/teams'
+import { useTeam, useTeamMembers } from 'react-appwrite/teams'
 
 type Props = {
   params: {
