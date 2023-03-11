@@ -1,11 +1,20 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
+import { Models } from 'appwrite'
 import { useContext, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
 import type { Avatar, AvatarType } from './types'
 
-export function useAvatar(avatar: Avatar) {
+/**
+ * Used to generate image URLs.
+ * @param avatar The avatar to generate.
+ * @param options Options to pass to `react-query`
+ */
+export function useAvatar(
+  avatar: Avatar,
+  options?: UseQueryOptions<URL, unknown, URL, (string | Avatar)[]>
+) {
   const { avatars } = useAppwrite()
   const queryKey = useMemo(() => ['appwrite', 'avatars', avatar], [avatar])
   const queryResult = useQuery({
@@ -26,6 +35,9 @@ export function useAvatar(avatar: Avatar) {
           return avatars.getCreditCard(avatar.code, avatar.dimensions?.width, avatar.dimensions?.height, avatar.quality)
       }
     },
+
+    cacheTime: 0,
+    ...options,
   })
 
   return queryResult

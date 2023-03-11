@@ -5,5 +5,5 @@ export type RealtimeDocumentOperation =
   | 'update'
   | 'delete'
 
-export type Document<T> = T & Models.Document
-export type Collection<T> = Document<T>[]
+export type DatabaseDocument<T> = T & Models.Document
+export type DatabaseCollection<T> = DatabaseDocument<T>[]

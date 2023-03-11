@@ -3,6 +3,11 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { useAppwrite } from 'react-appwrite-hooks'
 
+/**
+ * 
+ * @param id The ID of the function.
+ * @returns The function's response, automatically JSON deserialized.
+ */
 export function useFunction<TRequest, TResponse>(id: string): UseMutationResult<TResponse, unknown, TRequest, unknown> {
   const { functions, client } = useAppwrite()
   const mutation = useMutation<TResponse, unknown, TRequest, unknown>({

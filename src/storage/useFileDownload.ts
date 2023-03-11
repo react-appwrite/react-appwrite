@@ -8,6 +8,10 @@ type Props = {
   fileId: string,
 }
 
+/**
+ * Retrieves a file URL for download.
+ * @returns 
+ */
 export function useFileDownload() {
   const { storage } = useAppwrite()
   const mutation = useMutation({

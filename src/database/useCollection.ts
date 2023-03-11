@@ -5,21 +5,21 @@ import { Models } from 'appwrite'
 import produce, { castDraft, current } from 'immer'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
-import type { RealtimeDocumentOperation, Document, Collection } from 'react-appwrite-hooks/database/types'
+import type { RealtimeDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite-hooks/database/types'
 
-export function useCollection<T>(
+export function useCollection<TDocument>(
   databaseId: string,
   collectionId: string,
-  // queries?: string[],
-  options?: UseQueryOptions<Document<T>[], unknown, Document<T>[], string[]>
+  queries: string[] = [],
+  options?: UseQueryOptions<(TDocument & Models.Document)[], unknown, (TDocument & Models.Document)[], (string | string[])[]>
 ) {
   const { database } = useAppwrite()
   const queryClient = useQueryClient()
-  const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId], [databaseId, collectionId])
+  const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId, queries], [databaseId, collectionId, queries])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await database.listDocuments<Document<T>>(databaseId, collectionId)
+      const response = await database.listDocuments<DatabaseDocument<TDocument>>(databaseId, collectionId, queries)
 
       return response.documents
     },
@@ -27,16 +27,6 @@ export function useCollection<T>(
     onSuccess: documents => {
       for (const document of documents) {
         queryClient.setQueryData(['appwrite', 'database', databaseId, collectionId, document.$id], document)
-
-        queryClient.setQueryData<Collection<T>>(queryKey, collection => produce(collection, draft => {
-          if (collection && draft) {
-            const documentIndex = draft.findIndex(storedDocument => storedDocument.$id === document.$id)
-
-            if (documentIndex >= 0) {
-              draft[documentIndex] = castDraft(document)
-            }
-          }
-        }))
       }
     },
 
@@ -46,14 +36,14 @@ export function useCollection<T>(
   useEffect(() => {
     const unsubscribe = database.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents`, response => {
       const [, operation] = response.events[0].match(/\.(\w+)$/) as RegExpMatchArray
-      const document = response.payload as Document<T>
+      const document = response.payload as DatabaseDocument<TDocument>
 
       switch (operation as RealtimeDocumentOperation) {
         case 'create':
         case 'update':
           queryClient.setQueryData(['appwrite', 'database', databaseId, collectionId, document.$id], document)
 
-          queryClient.setQueryData<Collection<T>>(queryKey, collection => produce(collection, draft => {
+          queryClient.setQueryData<DatabaseCollection<TDocument>>(queryKey, collection => produce(collection, draft => {
             if (collection && draft) {
               const documentIndex = draft.findIndex(storedDocument => storedDocument.$id === document.$id)
 
@@ -67,7 +57,7 @@ export function useCollection<T>(
         case 'delete':
           queryClient.removeQueries(['appwrite', 'database', databaseId, collectionId, document.$id])
 
-          queryClient.setQueryData<Collection<T>>(queryKey, collection => {
+          queryClient.setQueryData<DatabaseCollection<TDocument>>(queryKey, collection => {
             if (collection) {
               return collection.filter(storedDocument => storedDocument.$id !== document.$id)
             }

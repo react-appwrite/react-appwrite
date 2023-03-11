@@ -1,13 +1,27 @@
 'use client'
 
-import { useAccount } from 'react-appwrite-hooks'
+import { useAccount, useAvatar } from 'react-appwrite-hooks'
 
 export default function AccountPage() {
-  const account = useAccount()
+  const { data: account } = useAccount()
+  const { data: avatar, isFetching } = useAvatar({
+    type: 'initials',
+    name: account?.name,
+    dimensions: {
+      width: 50,
+      height: 50,
+    },
+  })
 
   return (
-    <p>
-      {account?.data?.$id}
-    </p>
+    <div>
+      <p>
+        {account?.$id}
+      </p>
+
+      <img
+        src={avatar?.href}
+      />
+    </div>
   )
 }

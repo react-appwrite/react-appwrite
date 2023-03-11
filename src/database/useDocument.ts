@@ -5,13 +5,13 @@ import { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite-hooks'
-import type { Collection, Document } from './types'
+import type { DatabaseCollection, DatabaseDocument } from './types'
 
-export function useDocument<T>(
+export function useDocument<TDocument>(
   databaseId: string,
   collectionId: string,
   documentId: string,
-  options?: UseQueryOptions<Document<T>, unknown, Document<T>, string[]>
+  options?: UseQueryOptions<DatabaseDocument<TDocument>, unknown, DatabaseDocument<TDocument>, string[]>
 ) {
   const { database } = useAppwrite()
   const queryClient = useQueryClient()
@@ -19,11 +19,11 @@ export function useDocument<T>(
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      return await database.getDocument<Document<T>>(databaseId, collectionId, documentId)
+      return await database.getDocument<DatabaseDocument<TDocument>>(databaseId, collectionId, documentId)
     },
 
     onSuccess: document => {
-      queryClient.setQueryData<Collection<T>>(['appwrite', 'database', collectionId], collection => produce(collection, draft => {
+      queryClient.setQueriesData<DatabaseCollection<TDocument>>(['appwrite', 'database', collectionId], collection => produce(collection, draft => {
         if (draft) {
           const documentIndex = draft.findIndex(storedDocument => storedDocument.$id === document.$id)
 
@@ -43,7 +43,7 @@ export function useDocument<T>(
     })
 
     return unsubscribe
-  }, [queryKey])
+  }, [databaseId, collectionId, documentId, queryKey])
 
   return queryResult
 }
