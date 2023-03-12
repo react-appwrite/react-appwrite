@@ -32,7 +32,9 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 7.29.1
-      - run: pnpm install --no-frozen-lockfile --shamefully-hoist=true
-      - run: pnpm publish --no-git-checks
+      - name: Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: pnpm install --no-frozen-lockfile --shamefully-hoist=true
+      - run: pnpm publish --no-git-checks
