@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 import { useAccount } from 'react-appwrite/account'
 
-const queryKey = ['appwrite', 'account', 'locale', 'languages']
+const queryKey = ['appwrite', 'locale', 'languages']
 
 /**
  * Access to a list of all languages.

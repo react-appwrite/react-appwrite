@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 import { useAccount } from 'react-appwrite/account'
 
-const queryKey = ['appwrite', 'account', 'locale', 'countries']
+const queryKey = ['appwrite', 'locale', 'countries']
 
 /**
  * Access to a list of all countries.
