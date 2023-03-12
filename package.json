@@ -2,7 +2,7 @@
   "name": "react-appwrite",
   "description": "React hooks for Appwrite.",
   "author": "sanny-io",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "repository": "github:sanny-io/react-appwrite",
   "homepage": "https://github.com/sanny-io/react-appwrite",
