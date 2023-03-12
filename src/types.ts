@@ -1,2 +1,2 @@
 export * from '.'
-export * from './database/types'
+export * from './databases/types'

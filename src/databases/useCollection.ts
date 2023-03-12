@@ -5,7 +5,7 @@ import { Models } from 'appwrite'
 import produce, { castDraft, current } from 'immer'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
-import type { RealtimeDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite/database/types'
+import type { RealtimeDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite/databases/types'
 
 export function useCollection<TDocument>(
   databaseId: string,
@@ -13,13 +13,13 @@ export function useCollection<TDocument>(
   queries: string[] = [],
   options?: UseQueryOptions<(TDocument & Models.Document)[], unknown, (TDocument & Models.Document)[], (string | string[])[]>
 ) {
-  const { database } = useAppwrite()
+  const { databases } = useAppwrite()
   const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId, queries], [databaseId, collectionId, queries])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await database.listDocuments<DatabaseDocument<TDocument>>(databaseId, collectionId, queries)
+      const response = await databases.listDocuments<DatabaseDocument<TDocument>>(databaseId, collectionId, queries)
 
       return response.documents
     },
@@ -34,7 +34,7 @@ export function useCollection<TDocument>(
   })
 
   useEffect(() => {
-    const unsubscribe = database.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents`, response => {
+    const unsubscribe = databases.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents`, response => {
       const [, operation] = response.events[0].match(/\.(\w+)$/) as RegExpMatchArray
       const document = response.payload as DatabaseDocument<TDocument>
 

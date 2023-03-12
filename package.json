@@ -22,7 +22,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./account": "./dist/account/index.js",
-    "./database": "./dist/database/index.js",
+    "./databases": "./dist/databases/index.js",
     "./functions": "./dist/functions/index.js",
     "./storage": "./dist/storage/index.js",
     "./avatars": "./dist/avatars/index.js",
@@ -34,7 +34,7 @@
   "files": [
     "dist",
     "account.d.ts",
-    "database.d.ts",
+    "databases.d.ts",
     "functions.d.ts",
     "storage.d.ts",
     "avatars.d.ts",

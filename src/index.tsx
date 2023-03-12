@@ -6,7 +6,7 @@ import type { DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/d
 import { defaultMutationOptions, defaultQueryOptions } from './query'
 
 export * from './account'
-export * from './database'
+export * from './databases'
 export * from './functions'
 export * from './storage'
 export * from './avatars'
@@ -15,7 +15,7 @@ export * from './teams'
 export type AppwriteContextType = {
   client: Client,
   account: Account,
-  database: Databases,
+  databases: Databases,
   functions: Functions,
   storage: Storage,
   avatars: Avatars,
@@ -42,7 +42,7 @@ export function AppwriteProvider({ client, children, devTools, ...props }: Props
   const value = useMemo<AppwriteContextType>(() => ({
     client,
     account: new Account(client),
-    database: new Databases(client),
+    databases: new Databases(client),
     functions: new Functions(client),
     storage: new Storage(client),
     health: new Storage(client),

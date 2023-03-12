@@ -52,7 +52,7 @@ This library is a work in progress. The intent is to eventually reach 100% featu
 
 - [Account](/src/account)
 - [Avatars](/src/avatars)
-- [Database](/src/database)
+- [Databases](/src/databases)
 - [Functions](/src/functions)
 - [Next.js](/src/next)
 - [Storage](/src/storage)
