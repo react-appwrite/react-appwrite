@@ -7,7 +7,6 @@ specifiers:
   '@types/react-dom': ^18.0.10
   appwrite: ^10.2.0
   encoding: ^0.1.13
-  example: link:C:/Users/sanny/Documents/Projects/react-appwrite/example
   immer: ^9.0.19
   next: ^13.1.6
   react: ^18.2.0
@@ -20,7 +19,6 @@ dependencies:
   '@tanstack/react-query-devtools': 4.26.1_brdhmlf72zuns3lsk66phyptty
   appwrite: 10.2.0_encoding@0.1.13
   encoding: 0.1.13
-  example: link:example
   immer: 9.0.19
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
