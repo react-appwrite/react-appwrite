@@ -1,8 +1,7 @@
 'use client'
 
-import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
+import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
-import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 import { useAccount } from 'react-appwrite/account'
 
@@ -16,12 +15,12 @@ const queryKey = ['appwrite', 'account', 'locale']
 export function useLocale(
   options?: UseQueryOptions<Models.Locale, unknown, Models.Locale, string[]>
 ) {
-  const { locale: localeService } = useAppwrite()
+  const { locale } = useAppwrite()
   const { data: account } = useAccount()
   const queryResult = useQuery({
     enabled: !!account,
     queryKey,
-    queryFn: async () => await localeService.get(),
+    queryFn: async () => await locale.get(),
 
     ...options,
   })
