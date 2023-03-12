@@ -107,24 +107,53 @@ const { data, isLoading } = useHook(...)
 
 Follow these steps to get started with local development.
 
-1. Install `pnpm` if you don't already have it by running `npm i -g pnpm`
+1. Clone the repository.
 
-2. Install dependencies with `pnpm i`
+```
+git clone https://github.com/sanny-io/react-appwrite.git
+cd react-appwrite
+```
 
-3. Execute `pnpm run dev` in the root folder and start editing.
+2. Install dependencies.
+
+```
+npm i
+```
+
+3. Execute the development script.
+
+```
+npm run dev
+```
 
 Follow these extra steps if you'd like to test with the provided example
 project.
 
-1. In the example folder, rename `.env.example` to `.env`, and
-   replace the variables inside of it with variables from your own local
-   Appwrite installation.
+1. In another terminal, navigate to the `example` directory.
 
-2. Open up another terminal that is also in the example folder.
+```
+cd example
+```
 
-3. Install dependencies with `pnpm i`
+2. Create your `.env` file.
 
-4. Execute `pnpm run dev` and start editing.
+```
+cp .env.example .env
+```
+
+3. Replace the environment variables in `.env` with your own.
+
+4. Install dependencies.
+
+```
+npm i
+```
+
+5. Execute development script.
+
+```
+npm run dev
+```
 
 ### License
 

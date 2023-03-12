@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "rm -rf dist && tsc -w --preserveWatchOutput",
     "build": "rm -rf dist && tsc",
-    "prepare": "pnpm run build"
+    "prepare": "npm run build"
   },
   "type": "module",
   "exports": {
@@ -50,6 +50,7 @@
   },
   "module": "dist/index.js",
   "devDependencies": {
+    "appwrite": "^10.2.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
     "next": "^13.1.6",
