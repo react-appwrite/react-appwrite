@@ -5,6 +5,7 @@ import type { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect } from 'react'
 import { useAppwrite } from 'react-appwrite'
+import { defaultQueryOptions } from 'react-appwrite/query'
 
 /**
  * Access to the local user's account.
@@ -17,6 +18,7 @@ export function useAccount<Preferences extends Models.Preferences>(
 ) {
   const { account: accountService } = useAppwrite()
   const queryClient = useQueryClient()
+
   const queryResult = useQuery({
     queryKey: ['appwrite', 'account'],
     queryFn: () => accountService.get<Preferences>(),

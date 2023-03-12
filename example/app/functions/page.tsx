@@ -26,18 +26,18 @@ export { StatusDot }
 type Props = {}
 
 type Form = {
-  digits: string,
+  numbers: string,
 }
 
-type Request = number[]
-type Response = number
+type TRequest = number[]
+type TResponse = number
 
 export default function FunctionsPage({ }: Props) {
-  const sum = useFunction<Request, Response>('sum')
+  const sum = useFunction<TRequest, TResponse>('sum')
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data: Form) => {
-    const numbers = data.digits.split(' ').map(digit => Number(digit))
+    const numbers = data.numbers.split(' ').map(number => Number(number))
     const result = await sum.mutateAsync(numbers)
 
     console.log('The result is', result)
@@ -53,8 +53,8 @@ export default function FunctionsPage({ }: Props) {
         <div className="flex gap-2">
           <input
             type="text"
-            placeholder="Digits"
-            {...register("digits")}
+            placeholder="Numbers"
+            {...register("numbers")}
           />
 
           <button

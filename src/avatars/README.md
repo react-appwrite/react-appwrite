@@ -4,7 +4,7 @@
 
 ## useAvatar
 
-```typescript
+```tsx
 import { useAvatar } from 'react-appwrite/avatars'
 
 function MyAvatar() {

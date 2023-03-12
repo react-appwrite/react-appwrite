@@ -3,6 +3,7 @@ import { createContext, useContext, useMemo, type ReactNode } from 'react'
 import { QueryClient, type QueryClientConfig, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/devtools'
+import { defaultMutationOptions, defaultQueryOptions } from './query'
 
 export * from './account'
 export * from './database'
@@ -23,16 +24,8 @@ export type AppwriteContextType = {
 
 export const queryClientConfiguration: QueryClientConfig = {
   defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      retry: false,
-    },
-
-    mutations: {
-      retry: false,
-    },
+    queries: defaultQueryOptions,
+    mutations: defaultMutationOptions,
   },
 }
 

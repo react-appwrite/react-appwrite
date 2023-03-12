@@ -5,45 +5,19 @@
 ## useFunction
 
 ```tsx
-import { useFunction } from 'react-appwrite/functions'
-
-function Component() {
-  const cloudFunction = useFunction<TRequest, TResponse>(functionId)
-
-  useEffect(() => {
-    console.log('Cloud function finished executing with', cloudFunction.data)
-  }, [cloudFunction.data])
-
-  return (
-    <button
-      onClick={async () => {
-        const response = await cloudFunction.mutateAsync(request)
-      }}
-    >
-      Execute
-    </button>
-  )
-}
-
-```
-
-### Example
-
-This example assumes you have a cloud function that takes an array of numbers, and returns the sum of those numbers.
-
-```tsx
 type TRequest = number[]
 type TResponse = number
 
-function Component() {
-  const sum = useFunction<TRequest, TResponse>('sum')
+function SumCalculator() {
+  const functionId = 'sum'
+  const sum = useFunction<TRequest, TResponse>(functionId)
   const [text, setText] = useState('')
 
   const handleClick = async () => {
     const request = text.split(' ').map(number => Number(number))
     const response = await sum.mutateAsync(request)
 
-    console.log('The result is', result)
+    console.log('The result is', response)
   }
 
   return (
@@ -57,15 +31,15 @@ function Component() {
       <button
         onClick={handleClick}
       >
-        Sum
+        Execute
       </button>
 
       <p>
-        Result: {sum.data ?? 'None'}
+        Status: {sum.status}
       </p>
 
       <p>
-        Status: {sum.status}
+        Result: {sum.data ?? 'None'}
       </p>
     </div>
   )

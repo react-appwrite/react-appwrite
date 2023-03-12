@@ -1,0 +1,7 @@
+example
+docs
+node_modules
+tsconfig.json
+pnpm-lock.yaml
+*.tar
+*.tar.gz

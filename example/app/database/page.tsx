@@ -1,23 +1,23 @@
 'use client'
 
-import { Query } from 'appwrite'
-import { useContext, useEffect } from 'react'
-import { useDocument, useCollection } from 'react-appwrite/database'
+import { useEffect } from 'react'
+import { useDocument, useCollection, Query } from 'react-appwrite/database'
 
 type Article = {
   title: string,
   content: string,
+  published: boolean,
 }
 
 function DatabasePage() {
   const { data: document } = useDocument<Article>('test', 'articles', 'test')
   const { data: articles } = useCollection<Article>('test', 'articles')
   const { data: publishedArticles } = useCollection<Article>('test', 'articles', [
-    Query.equal('published', true)
+    Query.equal<Article>('published', true)
   ])
 
   const { data: unpublishedArticles } = useCollection<Article>('test', 'articles', [
-    Query.notEqual('published', true),
+    Query.notEqual<Article>('published', true),
   ])
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 'use client'
-import { useAccount, useOAuth2SignIn } from 'react-appwrite/account'
+import { useAccount, useOAuth2SignIn, useSignOut } from 'react-appwrite/account'
 import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
 
@@ -18,6 +18,7 @@ function HomePage() {
 
   const signIn = useEmailSignIn()
   const signUp = useEmailSignUp()
+  const signOut = useSignOut()
   const oAuthSignIn = useOAuth2SignIn()
 
   const { register, handleSubmit } = useForm()
@@ -86,6 +87,16 @@ function HomePage() {
           }}
         >
           Google sign in
+        </button>
+
+        <button
+          type="button"
+          className="error button"
+          onClick={() => {
+            signOut.mutateAsync()
+          }}
+        >
+          Sign out
         </button>
 
         {

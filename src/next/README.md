@@ -1,4 +1,4 @@
-# Next.js
+# Next.js Integrations
 
 ➡️ [Next.js Documentation](https://nextjs.org/docs/advanced-features/middleware#using-middleware)
 
@@ -36,17 +36,11 @@ export default async function ServerComponent() {
 
   // You can also pass it to a client component and call `useAccount(user)` there.
 
-  return (
-    user
-      ?
-        <span>
-          Logged in as {user.name}
-        </span>
-      :
-        <span>
-          You are not logged in.
-        </span>
-  )
+  if (user) {
+    return <span>Logged in as {user.name}</span>
+  }
+
+  return <span>You are not logged in</span>
 }
 ```
 
