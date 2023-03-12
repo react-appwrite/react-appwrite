@@ -18,7 +18,7 @@
   </p>
 
   <p align="center">
-    <a href="https://github.com/sanny-io/react-appwrite/blob/main/LICENSE" alt="Latest npm version">
+    <a href="https://www.npmjs.com/package/react-appwrite" alt="Latest npm version">
         <img alt="Latest npm version" src="https://img.shields.io/npm/v/react-appwrite?color=blue"></a>
     <a href="https://github.com/sanny-io/react-appwrite/blob/main/LICENSE" alt="MIT license">
         <img alt="MIT license" src="https://img.shields.io/github/license/sanny-io/react-appwrite?color=success" /></a>
