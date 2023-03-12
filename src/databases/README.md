@@ -7,7 +7,7 @@ These hooks automatically subscribe to realtime updates.
 ## useCollection
 
 ```tsx
-import { useCollection } from 'react-appwrite/database'
+import { useCollection } from 'react-appwrite/databases'
 import { Query } from 'appwrite'
 
 type Article = {
@@ -45,7 +45,7 @@ function PublishedArticlesList() {
 ## useDocument
 
 ```tsx
-import { useDocument } from 'react-appwrite/database'
+import { useDocument } from 'react-appwrite/databases'
 
 type Article = {
   title: string,

@@ -22,7 +22,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./account": "./dist/account/index.js",
-    "./database": "./dist/database/index.js",
+    "./databases": "./dist/databases/index.js",
     "./functions": "./dist/functions/index.js",
     "./locale": "./dist/locale/index.js",
     "./storage": "./dist/storage/index.js",
@@ -35,7 +35,7 @@
   "files": [
     "dist",
     "account.d.ts",
-    "database.d.ts",
+    "databases.d.ts",
     "functions.d.ts",
     "locale.d.ts",
     "storage.d.ts",

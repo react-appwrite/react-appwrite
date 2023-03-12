@@ -13,13 +13,13 @@ export function useDocument<TDocument>(
   documentId: string,
   options?: UseQueryOptions<DatabaseDocument<TDocument>, unknown, DatabaseDocument<TDocument>, string[]>
 ) {
-  const { database } = useAppwrite()
+  const { databases } = useAppwrite()
   const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'database', databaseId, collectionId, documentId], [databaseId, collectionId, documentId])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      return await database.getDocument<DatabaseDocument<TDocument>>(databaseId, collectionId, documentId)
+      return await databases.getDocument<DatabaseDocument<TDocument>>(databaseId, collectionId, documentId)
     },
 
     onSuccess: document => {
@@ -38,7 +38,7 @@ export function useDocument<TDocument>(
   })
 
   useEffect(() => {
-    const unsubscribe = database.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents.${documentId}`, response => {
+    const unsubscribe = databases.client.subscribe(`databases.${databaseId}.collections.${collectionId}.documents.${documentId}`, response => {
       queryClient.setQueriesData(queryKey, response.payload)
     })
 

@@ -7,7 +7,7 @@ import { defaultMutationOptions, defaultQueryOptions } from './query'
 
 export * from './account'
 export * from './avatars'
-export * from './database'
+export * from './databases'
 export * from './functions'
 export * from './locale'
 export * from './storage'
@@ -17,7 +17,7 @@ export type AppwriteContextType = {
   client: Client,
   account: Account,
   avatars: Avatars,
-  database: Databases,
+  databases: Databases,
   functions: Functions,
   locale: Locale,
   storage: Storage,
@@ -45,7 +45,7 @@ export function AppwriteProvider({ client, children, devTools, ...props }: Props
     client,
     account: new Account(client),
     avatars: new Avatars(client),
-    database: new Databases(client),
+    databases: new Databases(client),
     functions: new Functions(client),
     locale: new Locale(client),
     storage: new Storage(client),

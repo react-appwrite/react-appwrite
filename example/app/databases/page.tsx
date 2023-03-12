@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useDocument, useCollection, Query } from 'react-appwrite/database'
+import { useDocument, useCollection, Query } from 'react-appwrite/databases'
 
 type Article = {
   title: string,
