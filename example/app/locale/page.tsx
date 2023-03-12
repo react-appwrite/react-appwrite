@@ -1,6 +1,6 @@
 'use client'
 
-import { useAccount, useAvatar, useCountries, useLocale } from 'react-appwrite'
+import { useCountries, useLocale } from 'react-appwrite/locale'
 
 export default function LocalePage() {
   // const { data: account } = useAccount()
