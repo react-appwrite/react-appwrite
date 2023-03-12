@@ -2,7 +2,7 @@
   "name": "react-appwrite",
   "description": "React hooks for Appwrite.",
   "author": "sanny-io",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "repository": "github:sanny-io/react-appwrite",
   "homepage": "https://github.com/sanny-io/react-appwrite",
@@ -45,24 +45,26 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "appwrite": "^10.2.0"
+    "appwrite": "^10.2.0",
+    "react": ">=16"
   },
   "module": "dist/index.js",
   "devDependencies": {
-    "appwrite": "^10.2.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
+    "appwrite": "^10.2.0",
     "next": "^13.1.6",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "react": ">=16",
+    "react-dom": "^18.2.0"
+  },
+  "optionalDependencies": {
+    "encoding": "^0.1.13"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.24.9",
     "@tanstack/react-query-devtools": "^4.24.9",
-    "encoding": "^0.1.13",
-    "immer": "^9.0.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "immer": "^9.0.19"
   }
 }

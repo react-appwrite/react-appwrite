@@ -1,5 +1,6 @@
 <div
   align="center"
+  style="padding-top: 50px;"
 >
   <img
     alt="React logo"
