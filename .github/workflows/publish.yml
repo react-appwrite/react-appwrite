@@ -33,6 +33,6 @@ jobs:
         with:
           version: 7.29.1
       - run: pnpm install --no-frozen-lockfile --shamefully-hoist=true
-      - run: pnpm publish
+      - run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
