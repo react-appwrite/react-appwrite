@@ -44,7 +44,8 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "appwrite": "^10.2.0"
   },
   "module": "dist/index.js",
   "devDependencies": {
@@ -57,7 +58,6 @@
   "dependencies": {
     "@tanstack/react-query": "^4.24.9",
     "@tanstack/react-query-devtools": "^4.24.9",
-    "appwrite": "^10.2.0",
     "encoding": "^0.1.13",
     "example": "link:C:/Users/sanny/Documents/Projects/react-appwrite/example",
     "immer": "^9.0.19",

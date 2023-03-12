@@ -1,6 +1,34 @@
-# react-appwrite
+<div
+  align="center"
+>
+  <img
+    alt="React logo"
+    width="100"
+    src="docs/logos/react.svg"
+  />
 
-Gorgeous library for integrating React with Appwrite.
+  <img
+    alt="Appwrite logo"
+    width="300"
+    src="docs/logos/appwrite.svg"
+  />
+
+  <p>
+    Gorgeous library for integrating React with Appwrite.
+  </p>
+
+  <p align="center">
+    <a href="https://github.com/sanny-io/react-appwrite/blob/main/LICENSE" alt="Latest npm version">
+        <img alt="Latest npm version" src="https://img.shields.io/npm/v/react-appwrite?color=blue"></a>
+    <a href="https://github.com/sanny-io/react-appwrite/blob/main/LICENSE" alt="MIT license">
+        <img alt="MIT license" src="https://img.shields.io/github/license/sanny-io/react-appwrite?color=success" /></a>
+    <a href="https://github.com/sanny-io/react-appwrite/issues" alt="GitHub issues">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/sanny-io/react-appwrite" />
+        </a>
+</p>
+</div>
+
+---
 
 ## Features
 
@@ -18,14 +46,7 @@ Gorgeous library for integrating React with Appwrite.
 
 ✅ Eventual feature parity with the Appwrite SDK
 
-This library is powered by [react-query](https://tanstack.com/query/latest).
-Hooks follow this format.
-
-```typescript
-const { data, isLoading } = useHook(...)
-```
-
-### Supported Services
+## Supported Services
 
 This library is a work in progress. The intent is to eventually reach 100% feature parity with Appwrite.
 
@@ -37,15 +58,62 @@ This library is a work in progress. The intent is to eventually reach 100% featu
 - [Storage](/src/storage)
 - [Teams](/src/teams)
 
+### Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+
+### Installation
+
+```
+npm i react-appwrite appwrite
+```
+
+### Configuration
+
+```tsx
+import { Client } from 'appwrite'
+import { AppwriteProvider } from 'react-appwrite'
+
+const appwrite = new Client().setEndpoint('https://my-appwrite-url.com')
+  .setProject('myAppwriteProjectId')
+
+function App() {
+  return (
+    <AppwriteProvider
+      client={appwrite}
+    >
+      {
+        // ...
+      }
+    </AppwriteProvider>
+  )
+}
+```
+
+This library is powered by [react-query](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+Hooks follow this format.
+
+```typescript
+const { data, isLoading } = useHook(...)
+```
+
 ### Contributing
 
-1. Install `pnpm` if you don't already have it by running `npm install -g pnpm`
+> **Note**
+> We're looking for maintainers! [Leave a comment](https://github.com/sanny-io/react-appwrite/discussions/1) if you'd like to help out.
+
+Follow these steps to get started with local development.
+
+1. Install `pnpm` if you don't already have it by running `npm i -g pnpm`
 
 2. Install dependencies with `pnpm i`
 
 3. Execute `pnpm run dev` in the root folder and start editing.
 
-Follow these extra instructions if you'd like to test with the provided example
+Follow these extra steps if you'd like to test with the provided example
 project.
 
 1. In the example folder, rename `.env.example` to `.env`, and
