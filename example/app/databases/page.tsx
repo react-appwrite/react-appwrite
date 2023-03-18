@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useDocument, useCollection, Query, useDocumentUpdate, DatabaseDocument } from 'react-appwrite/databases'
+import { useDocument, useCollection, Query, useDocumentUpdate, DatabaseDocument, useDocumentDelete } from 'react-appwrite/databases'
 
 type Article = DatabaseDocument<{
   title: string,
@@ -81,6 +81,7 @@ function DatabasePage() {
 
 function ArticleListItem(article: Article) {
   const update = useDocumentUpdate<Article>()
+  const del = useDocumentDelete()
 
   return (
     <div className="flex items-center gap-2">
@@ -103,6 +104,20 @@ function ArticleListItem(article: Article) {
           })
         }}
       />
+
+      <button
+        type="button"
+        className="error button"
+        onClick={() => {
+          del.mutateAsync({
+            databaseId: 'test',
+            collectionId: 'articles',
+            documentId: article.$id,
+          })
+        }}
+      >
+        Delete
+      </button>
     </div>
   )
 }
