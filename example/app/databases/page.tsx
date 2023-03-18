@@ -1,16 +1,16 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useDocument, useCollection, Query } from 'react-appwrite/databases'
+import { useDocument, useCollection, Query, useDocumentUpdate, DatabaseDocument, useDocumentDelete } from 'react-appwrite/databases'
 
-type Article = {
+type Article = DatabaseDocument<{
   title: string,
   content: string,
   published: boolean,
-}
+}>
 
 function DatabasePage() {
-  const { data: document } = useDocument<Article>('test', 'articles', 'test')
+  const { data: article } = useDocument<Article>('test', 'articles', 'test')
   const { data: articles } = useCollection<Article>('test', 'articles')
   const { data: publishedArticles } = useCollection<Article>('test', 'articles', [
     Query.equal<Article>('published', true)
@@ -21,10 +21,10 @@ function DatabasePage() {
   ])
 
   useEffect(() => {
-    if (document) {
-      console.log('Document changed', document)
+    if (article) {
+      console.log('Document changed', article)
     }
-  }, [document])
+  }, [article])
 
   useEffect(() => {
     console.log('Collection changed', articles)
@@ -33,11 +33,11 @@ function DatabasePage() {
   return (
     <div>
       <h1>
-        {document?.title}
+        {article?.title}
       </h1>
 
       <p>
-        {document?.content}
+        {article?.content}
       </p>
 
       <h2 className="mt-4">
@@ -50,7 +50,9 @@ function DatabasePage() {
             <li
               key={article.$id}
             >
-              {article.title}
+              <ArticleListItem
+                {...article}
+              />
             </li>
           ))
         }
@@ -66,11 +68,56 @@ function DatabasePage() {
             <li
               key={article.$id}
             >
-              {article.title}
+              <ArticleListItem
+                {...article}
+              />
             </li>
           ))
         }
       </ol>
+    </div>
+  )
+}
+
+function ArticleListItem(article: Article) {
+  const update = useDocumentUpdate<Article>()
+  const del = useDocumentDelete()
+
+  return (
+    <div className="flex items-center gap-2">
+      <span>
+        {article.title}
+      </span>
+
+      <input
+        type="checkbox"
+        name={article.$id}
+        checked={article.published}
+        onChange={() => {
+          update.mutateAsync({
+            databaseId: 'test',
+            collectionId: 'articles',
+            documentId: article.$id,
+            data: {
+              published: !article.published,
+            },
+          })
+        }}
+      />
+
+      <button
+        type="button"
+        className="error button"
+        onClick={() => {
+          del.mutateAsync({
+            databaseId: 'test',
+            collectionId: 'articles',
+            documentId: article.$id,
+          })
+        }}
+      >
+        Delete
+      </button>
     </div>
   )
 }
