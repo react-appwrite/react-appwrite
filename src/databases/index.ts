@@ -1,4 +1,6 @@
 export * from './types'
+export * from './Query'
 export * from './useCollection'
 export * from './useDocument'
-export * from './Query'
+export * from './useDocumentDelete'
+export * from './useDocumentUpdate'

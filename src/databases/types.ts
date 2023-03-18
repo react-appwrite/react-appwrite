@@ -1,6 +1,6 @@
 import type { Models } from 'appwrite'
 
-export type RealtimeDocumentOperation =
+export type DatabaseDocumentOperation =
   | 'create'
   | 'update'
   | 'delete'

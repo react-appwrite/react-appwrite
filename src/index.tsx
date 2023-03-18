@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo, type ReactNode } from 'react'
 import { QueryClient, type QueryClientConfig, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { DevtoolsOptions } from '@tanstack/react-query-devtools/build/lib/devtools'
-import { defaultMutationOptions, defaultQueryOptions } from './query'
+import { defaultMutationOptions, defaultQueryOptions, queryClient } from './query'
 
 export * from './account'
 export * from './avatars'
@@ -23,15 +23,6 @@ export type AppwriteContextType = {
   storage: Storage,
   teams: Teams,
 }
-
-export const queryClientConfiguration: QueryClientConfig = {
-  defaultOptions: {
-    queries: defaultQueryOptions,
-    mutations: defaultMutationOptions,
-  },
-}
-
-const queryClient = new QueryClient(queryClientConfiguration)
 
 type Props = {
   client: Client,
