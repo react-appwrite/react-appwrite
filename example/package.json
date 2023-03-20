@@ -8,11 +8,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "appwrite functions createDeployment --functionId=sum --activate=true --entrypoint=\"index.js\" --code=\"./functions/sum\""
+    "deploy-sum": "appwrite functions createDeployment --functionId=sum --activate=true --entrypoint=\"index.js\" --code=\"./functions/sum\"",
+    "deploy-createComment": "appwrite functions createDeployment --functionId=createComment --activate=true --entrypoint=\"index.js\" --code=\"./functions/createComment\""
   },
   "dependencies": {
     "appwrite": "^10.2.0",
     "autoprefixer": "^10.4.13",
+    "dayjs": "^1.11.7",
     "next": "^13.1.6",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
