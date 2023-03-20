@@ -25,10 +25,8 @@ function useSignOut() {
       return session
     },
 
-    onSuccess: async () => {
-      queryClient.setQueryData(['appwrite', 'account'], null)
-      // queryClient.removeQueries(['appwrite', 'account'])
-      // queryClient.resetQueries(['appwrite', 'account'])
+    onSettled: async () => {
+      queryClient.resetQueries(['appwrite', 'account'])
     },
   })
 
