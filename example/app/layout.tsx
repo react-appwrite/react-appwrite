@@ -3,6 +3,7 @@ import './styles.css'
 import type { ReactNode } from 'react'
 import { AppwriteProvider } from 'react-appwrite'
 import { Client } from 'appwrite'
+import NavBar from '../components/NavBar'
 
 const appwrite = new Client().setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_URL as string)
   .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string)
@@ -24,6 +25,8 @@ function MainLayout({ children }: Props) {
             devTools
             client={appwrite}
           >
+            <NavBar />
+
             {children}
           </AppwriteProvider>
         </main>

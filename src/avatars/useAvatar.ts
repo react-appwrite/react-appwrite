@@ -18,6 +18,21 @@ export function useAvatar(
   const { avatars } = useAppwrite()
   const queryKey = useMemo(() => ['appwrite', 'avatars', avatar], [avatar])
   const queryResult = useQuery({
+    enabled: useMemo(() => {
+      switch (avatar.type) {
+        case 'initials':
+          return !!avatar.name
+        case 'favicon':
+        case 'image':
+          return !!avatar.url
+        case 'qr':
+          return !!avatar.text
+        case 'browser':
+        case 'card':
+          return !!avatar.code
+      }
+    }, [avatar]),
+
     queryKey,
     queryFn: () => {
       switch (avatar.type) {

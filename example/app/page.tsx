@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form'
 import { ID } from 'appwrite'
 
 import { useEmailSignIn, useEmailSignUp } from 'react-appwrite/account'
+import { Query, useCollection } from 'react-appwrite/databases'
+import { Article as ArticleType } from '../types'
+import { Article } from '../components/Article'
 
 type Props = {}
 
@@ -14,98 +17,27 @@ type Form = {
 }
 
 function HomePage() {
-  const { data: account } = useAccount()
-
-  const signIn = useEmailSignIn()
-  const signUp = useEmailSignUp()
-  const signOut = useSignOut()
-  const oAuthSignIn = useOAuth2SignIn()
-
-  const { register, handleSubmit } = useForm()
-
-  const onSubmit = async (data: Form) => {
-    console.log({ data })
-
-    if (data.create) {
-      signUp.mutateAsync(data)
-    }
-    else {
-      signIn.mutateAsync(data)
-    }
-  }
+  const { data: articles } = useCollection<ArticleType>('test', 'articles', [
+    Query.equal<ArticleType>('published', true),
+    Query.orderDesc<ArticleType>('$createdAt'),
+  ])
 
   return (
-    <div className="container flex flex-1">
-      <form
-        // @ts-ignore
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col m-auto space-y-4"
-      >
-        <input
-          type="text"
-          placeholder="Email"
-          {...register("email")}
-        />
+    <div className="container py-4">
+      <h1 className="text-6xl font-bold text-center">
+        Example Blog
+      </h1>
 
-        <input
-          type="text"
-          placeholder="Password"
-          {...register("password")}
-        />
-
-        <div className="flex items-center gap-2">
-          <input
-            defaultChecked
-            type="checkbox"
-            id="create"
-            {...register("create")}
-          />
-
-          <label
-            htmlFor="create"
-          >
-            Create
-          </label>
-        </div>
-
-        <button
-          className="success button"
-          type="submit"
-        >
-          Sign in
-        </button>
-
-        <button
-          type="button"
-          className="primary button"
-          onClick={() => {
-            oAuthSignIn.mutate({
-              provider: 'google',
-              successUrl: 'http://localhost:3000/ssr',
-              failureUrl: '',
-            })
-          }}
-        >
-          Google sign in
-        </button>
-
-        <button
-          type="button"
-          className="error button"
-          onClick={() => {
-            signOut.mutateAsync()
-          }}
-        >
-          Sign out
-        </button>
-
+      <ol className="flex flex-col gap-2 mt-16">
         {
-          account &&
-          <p>
-            Signed in as {account.email}
-          </p>
+          articles?.map(article => (
+            <Article
+              key={article.$id}
+              {...article}
+            />
+          ))
         }
-      </form>
+      </ol>
     </div>
   )
 }

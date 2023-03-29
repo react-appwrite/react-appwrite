@@ -13,8 +13,6 @@ export default function StoragePage() {
     download.mutate({ bucketId: 'test', fileId: 'test' })
   }, [])
 
-  console.log({ download })
-
   return (
     <div>
       <div className="flex gap-2">
