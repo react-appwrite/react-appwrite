@@ -16,7 +16,8 @@ export class AppwriteNextServer {
     handler: AppwriteNextMiddlewareHandler<Preferences>
   ): AppwriteNextMiddlewareHandler<Preferences> {
     return async request => {
-      const token = request.cookies.get('a_session_test_legacy')?.value
+      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`;
+      const token = request.cookies.get(cookieName)?.value
 
       if (!token) {
         return handler(request)
@@ -40,12 +41,13 @@ export class AppwriteNextServer {
 
   async getUser<Preferences extends Models.Preferences>(cookies: RequestCookies | ReadonlyRequestCookies) {
     try {
-      const token = cookies.get('a_session_test_legacy')?.value ?? ''
+      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`;
+      const token = cookies.get(cookieName)?.value ?? ''
       const response = await fetch(`${this.configuration.url}/account`, {
         method: 'GET',
         credentials: 'include',
         headers: {
-          Cookie: `a_session_test_legacy=${token}`,
+          Cookie: `${cookieName}=${token}`,
           'x-appwrite-project': this.configuration.projectId,
         },
 
