@@ -10,7 +10,7 @@ type TRequest = {
 }
 /**
  * Create email session
- * @link [appwrite create email session documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession) 
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession) 
  */
 function useEmailSignIn() {
   const { account } = useAppwrite()
