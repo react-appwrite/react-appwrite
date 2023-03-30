@@ -111,15 +111,15 @@ function GoogleSignIn() {
 ## useAnonSignIn
 
 ```tsx
-import { useAnonSignIn } from "react-appwrite/account"
+import { useAnonymousSignIn } from "react-appwrite/account"
 
 function SignInButton() {
-  const anonSignIn = useAnonSignIn()
+  const anonymousSignIn = useAnonymousSignIn()
 
   return (
     <button
       onClick={() => {
-        anonSignIn.mutate()
+        anonymousSignIn.mutate()
       }}
     >
       Anonymous Sign In

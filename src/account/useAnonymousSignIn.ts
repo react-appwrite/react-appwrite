@@ -4,6 +4,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite'
 
+/**
+ * Create anonymous session.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateAnonymousSession) 
+ */
 function useAnonymousSignIn() {
   const { account } = useAppwrite()
   const queryClient = useQueryClient()
