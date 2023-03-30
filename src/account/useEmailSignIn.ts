@@ -8,7 +8,10 @@ type TRequest = {
   email: string,
   password: string,
 }
-
+/**
+ * Create email session
+ * {@link https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession | create email session documentation}
+ */
 function useEmailSignIn() {
   const { account } = useAppwrite()
   const queryClient = useQueryClient()
@@ -24,5 +27,4 @@ function useEmailSignIn() {
 
   return mutation
 }
-
 export { useEmailSignIn }
