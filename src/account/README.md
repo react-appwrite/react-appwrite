@@ -108,7 +108,7 @@ function GoogleSignIn() {
 
 ---
 
-## useAnonSignIn
+## useAnonymousSignIn
 
 ```tsx
 import { useAnonymousSignIn } from "react-appwrite/account"
