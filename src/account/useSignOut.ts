@@ -3,12 +3,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite'
-import { useAccount } from 'react-appwrite/account'
 
 type TRequest = {
   sessionId?: string,
 }
 
+/**
+ * Delete current or the specified session
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountDeleteSession)
+ */
 function useSignOut() {
   const { account: accountService } = useAppwrite()
   const queryClient = useQueryClient()
@@ -27,8 +30,6 @@ function useSignOut() {
 
     onSuccess: async () => {
       queryClient.setQueryData(['appwrite', 'account'], null)
-      // queryClient.removeQueries(['appwrite', 'account'])
-      // queryClient.resetQueries(['appwrite', 'account'])
     },
   })
 

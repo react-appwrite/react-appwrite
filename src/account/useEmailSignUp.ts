@@ -1,6 +1,6 @@
 'use client'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { ID, Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite'
 
@@ -11,6 +11,10 @@ type TRequest = {
   password: string,
 }
 
+/**
+ * Create new account using email
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession)
+ */
 function useEmailSignUp<Preferences extends Models.Preferences>() {
   const { account } = useAppwrite()
   const mutation = useMutation<Models.Account<Preferences>, unknown, TRequest, unknown>({
