@@ -12,7 +12,7 @@ type TRequest = {
 }
 
 /**
- * Create new account using email
+ * Create new account using email.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession)
  */
 function useEmailSignUp<Preferences extends Models.Preferences>() {

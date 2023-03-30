@@ -9,7 +9,7 @@ type TRequest = {
   password: string,
 }
 /**
- * Create email session
+ * Create email session.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateEmailSession) 
  */
 function useEmailSignIn() {

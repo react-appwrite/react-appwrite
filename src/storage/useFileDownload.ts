@@ -10,7 +10,7 @@ type Props = {
 
 /**
  * Retrieves a file URL for download.
- * @returns 
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageGetFileDownload)
  */
 export function useFileDownload() {
   const { storage } = useAppwrite()

@@ -10,6 +10,10 @@ type Props = {
   permissions?: string[],
 }
 
+/**
+ * Upload a file to a bucket.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageCreateFile)
+ */
 export function useFileUpload() {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()

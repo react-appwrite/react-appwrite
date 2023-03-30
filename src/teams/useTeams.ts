@@ -1,12 +1,13 @@
 'use client'
 
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useContext, useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useAppwrite } from '..'
 import { useAccount } from 'react-appwrite/account'
 
 /**
- * All teams the local user is a member of.
+ * Access to all teams the local user is a member of.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsList)
  */
 export function useTeams() {
   const { teams } = useAppwrite()

@@ -12,7 +12,7 @@ type TRequest = {
 }
 
 /**
- * Create Oauth2 session using one of the OAuth2 providers
+ * Create Oauth2 session using one of the OAuth2 providers.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateOAuth2Session)
  */
 function useOAuth2SignIn() {

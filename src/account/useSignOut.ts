@@ -9,7 +9,7 @@ type TRequest = {
 }
 
 /**
- * Delete current or the specified session
+ * Delete current or the specified session.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountDeleteSession)
  */
 function useSignOut() {
