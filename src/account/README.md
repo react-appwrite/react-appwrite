@@ -5,24 +5,24 @@
 ## useAccount
 
 ```tsx
-import { useAccount } from "react-appwrite/account";
+import { useAccount } from 'react-appwrite/account'
 
 type Preferences = {
-  darkMode?: boolean;
-};
+  darkMode?: boolean,
+}
 
 function Component() {
-  const { data: account, isLoading } = useAccount<Preferences>();
+  const { data: account, isLoading } = useAccount<Preferences>()
 
   if (account) {
-    return <p>Signed in as {account.name}</p>;
+    return <p>Signed in as {account.name}</p>
   }
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return <p>Loading</p>
   }
 
-  return <p>You are signed out</p>;
+  return <p>You are signed out</p>
 }
 ```
 
@@ -31,23 +31,23 @@ function Component() {
 ## useEmailSignIn
 
 ```tsx
-import { useEmailSignIn } from "react-appwrite/account";
+import { useEmailSignIn } from 'react-appwrite/account'
 
 function SignInButton() {
-  const signIn = useEmailSignIn();
+  const signIn = useEmailSignIn()
 
   return (
     <button
       onClick={() => {
         signIn.mutateAsync({
-          email: "test@example.com",
-          password: "Appwrite123!",
-        });
+          email: 'test@example.com',
+          password: 'Appwrite123!',
+        })
       }}
     >
       Sign In
     </button>
-  );
+  )
 }
 ```
 
@@ -56,23 +56,23 @@ function SignInButton() {
 ## useEmailSignUp
 
 ```tsx
-import { useEmailSignUp } from "react-appwrite/account";
+import { useEmailSignUp } from 'react-appwrite/account'
 
 function SignUpButton() {
-  const signUp = useEmailSignUp();
+  const signUp = useEmailSignUp()
 
   return (
     <button
       onClick={() => {
         signUp.mutateAsync({
-          email: "test@example.com",
-          password: "Appwrite123!",
-        });
+          email: 'test@example.com',
+          password: 'Appwrite123!',
+        })
       }}
     >
       Sign Up
     </button>
-  );
+  )
 }
 ```
 
@@ -81,14 +81,14 @@ function SignUpButton() {
 ## useOAuth2SignIn
 
 ```tsx
-import { useOAuth2SignIn } from "react-appwrite/account";
+import { useOAuth2SignIn } from 'react-appwrite/account'
 
 function GoogleSignIn() {
-  const signIn = useOAuth2SignIn();
+  const signIn = useOAuth2SignIn()
 
-  const provider = "google";
-  const successUrl = "https://example.com/auth";
-  const failureUrl = "https://example.com/auth/fail";
+  const provider = 'google'
+  const successUrl = 'https://example.com/auth'
+  const failureUrl = 'https://example.com/auth/fail'
 
   return (
     <button
@@ -97,12 +97,12 @@ function GoogleSignIn() {
           provider,
           successUrl,
           failureUrl,
-        });
+        })
       }}
     >
       Sign In With Google
     </button>
-  );
+  )
 }
 ```
 
@@ -111,15 +111,15 @@ function GoogleSignIn() {
 ## useAnonSignIn
 
 ```tsx
-import { useAnonSignIn } from "react-appwrite/account";
+import { useAnonSignIn } from "react-appwrite/account"
 
 function SignInButton() {
-  const anonSignIn = useAnonSignIn();
+  const anonSignIn = useAnonSignIn()
 
   return (
     <button
       onClick={() => {
-        anonSignIn.mutate();
+        anonSignIn.mutate()
       }}
     >
       Anonymous Sign In
@@ -133,19 +133,19 @@ function SignInButton() {
 ## useSignOut
 
 ```tsx
-import { useSignOut } from "react-appwrite/account";
+import { useSignOut } from 'react-appwrite/account'
 
 function SignOutButton() {
-  const signOut = useSignOut();
+  const signOut = useSignOut()
 
   return (
     <button
       onClick={() => {
-        signOut.mutateAsync();
+        signOut.mutateAsync()
       }}
     >
       Sign Out
     </button>
-  );
+  )
 }
 ```
