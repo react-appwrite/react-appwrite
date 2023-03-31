@@ -108,6 +108,28 @@ function GoogleSignIn() {
 
 ---
 
+## useAnonymousSignIn
+
+```tsx
+import { useAnonymousSignIn } from "react-appwrite/account"
+
+function SignInButton() {
+  const anonymousSignIn = useAnonymousSignIn()
+
+  return (
+    <button
+      onClick={() => {
+        anonymousSignIn.mutate()
+      }}
+    >
+      Anonymous Sign In
+    </button>
+  );
+}
+```
+
+---
+
 ## useSignOut
 
 ```tsx
