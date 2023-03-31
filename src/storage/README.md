@@ -77,3 +77,19 @@ downloadFile.mutateAsync({
   fileId,
 })
 ```
+
+---
+
+## useFileView
+
+```typescript
+import { useFileView } from 'react-appwrite/storage'
+
+// In your component.
+const viewFile = useFileView()
+
+viewFile.mutateAsync({
+  bucketId,
+  fileId,
+})
+```
