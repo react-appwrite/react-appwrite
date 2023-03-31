@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { useTeamCreate, useTeams } from 'react-appwrite/teams'
-import { FiExternalLink } from "react-icons/fi"
+import { useTeamCreate, useTeamDelete, useTeams } from 'react-appwrite/teams'
+import { FiExternalLink, FiDelete } from "react-icons/fi"
 
 export default function TeamsPage() {
   const { data: teams } = useTeams()
   const createTeam = useTeamCreate();
+  const deleteTeam = useTeamDelete();
   const [newTeamName, setNewTeamName] = useState("")
 
   return (
@@ -27,6 +28,7 @@ export default function TeamsPage() {
       <div className='flex flex-col gap-4 items-center justify-center'>
         {
           teams?.map((team, idx) => (
+            <div className='flex gap-2 items-center justify-center w-full'>
             <Link
             href={`/teams/${team.$id}`}
             key={team.$id}
@@ -35,6 +37,10 @@ export default function TeamsPage() {
               {team.name}
               <FiExternalLink />
             </Link>
+            <FiDelete className='cursor-pointer' size={32} onClick={async () => {
+              await deleteTeam.mutateAsync({teamId: team.$id})
+            }}/>
+            </div>
           ))
         }
       </div>
