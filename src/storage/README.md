@@ -1,5 +1,34 @@
 # Storage Hooks
 
+## useBucket
+
+```tsx
+import { useBucket } from 'react-appwrite/storage'
+import { Query } from 'appwrite'
+
+function UploadedImagesList() {
+  const bucketId = 'myBucket'
+  
+  const { data: uploadedImages } = useBucket(bucketId, [
+    Query.orderDesc('$updatedAt')
+  ])
+  
+  return (
+    <ol>
+      {
+        uploadedImages?.map(image => (
+          <li
+            key={image.$id}
+          >
+            {image.name}
+          </li>
+        ))
+      }
+    </ol>
+  )
+}
+```
+
 ## useFile
 
 ```typescript
