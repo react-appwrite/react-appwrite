@@ -1,30 +1,43 @@
 'use client'
 
+import Link from 'next/link';
+import { useState } from 'react';
 import { useTeamCreate, useTeams } from 'react-appwrite/teams'
+import { FiExternalLink } from "react-icons/fi"
 
 export default function TeamsPage() {
   const { data: teams } = useTeams()
   const createTeam = useTeamCreate();
+  const [newTeamName, setNewTeamName] = useState("")
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1">
-      <h1>
-        Teams
-      </h1>
+    <div className="flex items-center justify-center gap-4 flex-1">
+      <form className='bg-white text-black rounded-sm p-4 flex flex-col items-center justify-center gap-4' onSubmit={async (e) => {
+        e.preventDefault();
+        await createTeam.mutateAsync({name: newTeamName})
+        setNewTeamName("")
+      }}>
+        <span>Create new Team</span>
+        <input type="text" placeholder='New team name' className='text-white' value={newTeamName} onChange={(e) => {
+          setNewTeamName(e.target.value)
+        }}/>
       <button onClick={() => {
-        createTeam.mutate({name: "Nice Team"})
-      }}>Create team</button>
-      <ul>
+      }} className='p-2 bg-blue-500 rounded-md w-full'>Submit</button>
+      </form>
+      <div className='flex flex-col gap-4 items-center justify-center'>
         {
-          teams?.map(team => (
-            <li
-              key={team.$id}
+          teams?.map((team, idx) => (
+            <Link
+            href={`/teams/${team.$id}`}
+            key={team.$id}
+            className='bg-white rounded-sm text-black p-2 w-full flex gap-2 items-center justify-between'
             >
-              • {team.name}
-            </li>
+              {team.name}
+              <FiExternalLink />
+            </Link>
           ))
         }
-      </ul>
+      </div>
     </div>
   )
 }
