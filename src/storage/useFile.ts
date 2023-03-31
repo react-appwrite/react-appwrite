@@ -5,6 +5,13 @@ import { Models } from 'appwrite'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 
+/**
+ * Access to the file object by its unique file ID.
+ * @param bucketId Storage bucket unique ID
+ * @param fileId  File ID
+ * @param options Options to pass to `react-query`
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageGetFile)
+ */
 export function useFile(
   bucketId: string,
   fileId: string,

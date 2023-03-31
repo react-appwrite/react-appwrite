@@ -8,6 +8,10 @@ type Props = {
   fileId: string,
 }
 
+/**
+ * Delete a file by its unique ID.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageDeleteFile)
+ */
 export function useFileDelete() {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()

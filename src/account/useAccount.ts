@@ -5,7 +5,6 @@ import type { Models } from 'appwrite'
 import produce, { castDraft } from 'immer'
 import { useEffect } from 'react'
 import { useAppwrite } from 'react-appwrite'
-import { defaultQueryOptions } from 'react-appwrite/query'
 
 /**
  * Access to the local user's account.

@@ -9,6 +9,10 @@ type Props = {
   permissions?: string[],
 }
 
+/**
+ * Update a file in a bucket.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageUpdateFile)
+ */
 export function useFileUpdate() {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()

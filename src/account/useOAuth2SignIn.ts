@@ -1,7 +1,6 @@
 'use client'
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Models } from 'appwrite'
+import { useMutation } from '@tanstack/react-query'
 import { useAppwrite } from 'react-appwrite'
 import type { OAuth2Provider } from './types'
 
@@ -12,6 +11,10 @@ type TRequest = {
   scopes?: string[],
 }
 
+/**
+ * Create Oauth2 session using one of the OAuth2 providers.
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/account?sdk=web-default#accountCreateOAuth2Session)
+ */
 function useOAuth2SignIn() {
   const { account } = useAppwrite()
   const mutation = useMutation<void | URL, unknown, TRequest, unknown>({
