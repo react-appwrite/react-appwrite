@@ -10,7 +10,7 @@ type Props = {
 }
 
 /**
- * Create a new Team
+ * Update team
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsUpdate)
  */
 export function useTeamUpdate() {
