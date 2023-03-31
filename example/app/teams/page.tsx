@@ -1,6 +1,6 @@
 'use client'
 
-import { useTeamCreate, useTeams,  } from 'react-appwrite/teams'
+import { useTeamCreate, useTeams } from 'react-appwrite/teams'
 
 export default function TeamsPage() {
   const { data: teams } = useTeams()
@@ -21,7 +21,6 @@ export default function TeamsPage() {
               key={team.$id}
             >
               • {team.name}
-              
             </li>
           ))
         }

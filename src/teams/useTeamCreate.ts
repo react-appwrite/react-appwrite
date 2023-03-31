@@ -10,6 +10,10 @@ type Props = {
   roles?: string[]
 }
 
+/**
+ * Create a new Team
+ * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsCreate)
+ */
 export function useTeamCreate() {
 
   const queryClient = useQueryClient();
