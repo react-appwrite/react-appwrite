@@ -12,7 +12,7 @@ function useAnonymousSignIn() {
   const { account } = useAppwrite()
   const queryClient = useQueryClient()
   const mutation = useMutation<Models.Session>({
-    mutationFn: async (request) => {
+    mutationFn: async () => {
       return await account.createAnonymousSession()
     },
 
