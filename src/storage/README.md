@@ -61,3 +61,19 @@ uploadFile.mutateAsync({
   permissions,
 })
 ```
+
+---
+
+## useFileDownload
+
+```typescript
+import { useFileDownload } from 'react-appwrite/storage'
+
+// In your component.
+const downloadFile = useFileDownload()
+
+downloadFile.mutateAsync({
+  bucketId,
+  fileId,
+})
+```
