@@ -4,7 +4,7 @@ import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query
 import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 
-type ImageOptions = {
+type ImageOptionsProp = {
   width?: number,
   height?: number,
   gravity?: number,
@@ -29,7 +29,7 @@ type ImageOptions = {
 export function useFilePreview(
   bucketId: string,
   fileId: string,
-  imageOptions: ImageOptions = {
+  imageOptions: ImageOptionsProp = {
     width: undefined,
     height: undefined,
     gravity: undefined,
