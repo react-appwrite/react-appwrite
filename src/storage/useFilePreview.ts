@@ -22,6 +22,7 @@ type ImageOptions = {
  * Access to the file object by its unique file ID.
  * @param bucketId Storage bucket unique ID
  * @param fileId  File ID
+ * @param imageOptions Options for cutting and resizing your preview image.
  * @param options Options to pass to `react-query`
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageGetFile)
  */
