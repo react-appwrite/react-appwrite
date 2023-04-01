@@ -8,6 +8,12 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "ignorePatterns": [
+    "dist/*",
+    "example/*",
+    ".github/*",
+    ".vscode/*"
+  ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -38,6 +44,7 @@
       "error",
       "never"
     ],
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/ban-ts-comment": "off"
   }
 }
