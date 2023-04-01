@@ -1,18 +1,23 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite/storage'
+import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload, useFileView } from 'react-appwrite/storage'
 
 export default function StoragePage() {
   const upload = useFileUpload()
-  const { data } = useFile('test', 'test')
+  const { data } = useFile('test', '6428a8b2f3e353df1be3')
   const deleteFile = useFileDelete()
   // const testPreview = useFilePreview('test', 'test')
   const download = useFileDownload()
-    const { data: uploadedImages } = useBucket("test")
+  const fileView = useFileView()
+  const { data: uploadedImages } = useBucket("test")
 
   useEffect(() => {
-    download.mutate({ bucketId: 'test', fileId: 'test' })
+    download.mutate({ bucketId: 'test', fileId: '6428a8b2f3e353df1be3' })
+  }, [])
+
+  useEffect(() => {
+    fileView.mutate({ bucketId: 'test', fileId: '6428a8b2f3e353df1be3' })
   }, [])
 
   return (
@@ -68,6 +73,13 @@ export default function StoragePage() {
           href={download.data?.href}
         >
           Download
+        </a>
+        <a
+          download={data?.name}
+          className="success button"
+          href={fileView.data?.href}
+        >
+          Get File for View
         </a>
       </div>
       <ol>
