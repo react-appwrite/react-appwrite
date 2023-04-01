@@ -16,7 +16,9 @@
   "scripts": {
     "dev": "rimraf dist && tsc -w --preserveWatchOutput",
     "build": "rimraf dist && tsc",
-    "prepare": "npm run build"
+    "lint": "eslint --ext .ts,.tsx ./",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint"
   },
   "type": "module",
   "exports": {
