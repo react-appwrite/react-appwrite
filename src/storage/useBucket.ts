@@ -2,7 +2,6 @@
 
 import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
-import produce, { castDraft, current } from 'immer'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 import type { StorageFileOperation, StorageFile, StorageBucket } from 'react-appwrite/storage/types'
@@ -15,28 +14,26 @@ import type { StorageFileOperation, StorageFile, StorageBucket } from 'react-app
  * @param options Options to pass to `react-query`.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageListFiles)
  */
-export function useBucket<TDocument>(
+export function useBucket(
     bucketId: string,
     queries: string[] = [],
     search?: string,
-    options?: UseQueryOptions<(TDocument & Models.File)[], unknown, (TDocument & Models.File)[], (string | {
-    queries: string[];
-  })[]>
+    options?: UseQueryOptions<(Models.File)[], unknown, (Models.File)[]>
 ) {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()
-  const queryKey = useMemo(() => ['appwrite', 'buckets', bucketId, { queries }, search], [bucketId, queries, search])
+  const queryKey = useMemo(() => ['appwrite', 'storage', bucketId, { queries }], [bucketId, queries])
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await storage.listFiles<StorageFile<TDocument>>(bucketId, collectionId, queries, search)
+      const response = await storage.listFiles(bucketId, queries, search)
 
       return response.files
     },
 
     onSuccess: files => {
       for (const file of files) {
-        queryClient.setQueryData(['appwrite', 'buckets', bucketId, 'file', file.$id], file)
+        queryClient.setQueryData(['appwrite', 'storage', bucketId, 'files', file.$id], file)
       }
     },
 
@@ -46,7 +43,7 @@ export function useBucket<TDocument>(
   useEffect(() => {
     const unsubscribe = storage.client.subscribe(`buckets.${bucketId}.files`, response => {
       const [, operation] = response.events[0].match(/\.(\w+)$/) as RegExpMatchArray
-      const file = response.payload as StorageFile<TDocument>
+      const file = response.payload as Models.File
 
       switch (operation as StorageFileOperation) {
         case 'create':
@@ -62,7 +59,7 @@ export function useBucket<TDocument>(
 
           break
         case 'delete':
-          queryClient.setQueryData<StorageBucket<TDocument>>(queryKey, collection => {
+          queryClient.setQueryData<Models.File[]>(queryKey, collection => {
             if (collection) {
               return collection.filter(storedFile => storedFile.$id !== file.$id)
             }
