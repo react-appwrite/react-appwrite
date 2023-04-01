@@ -4,7 +4,7 @@ import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-
 import { Models } from 'appwrite'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
-import type { StorageFileOperation, StorageFile, StorageBucket } from 'react-appwrite/storage/types'
+import type { StorageFileOperation } from 'react-appwrite/storage/types'
 
 /**
  * Fetches a collection from a database.
@@ -12,7 +12,7 @@ import type { StorageFileOperation, StorageFile, StorageBucket } from 'react-app
  * @param queries Queries to filter the bucket by.
  * @param search Search term to filter the bucket by.
  * @param options Options to pass to `react-query`.
- * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageListFiles)
+* @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageListFiles)
  */
 export function useBucket(
     bucketId: string,
