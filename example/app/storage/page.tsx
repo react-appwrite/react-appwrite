@@ -1,6 +1,7 @@
 'use client'
+
 import { useEffect } from 'react'
-import { useFile, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite/storage'
+import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite/storage'
 
 export default function StoragePage() {
   const upload = useFileUpload()
@@ -8,12 +9,11 @@ export default function StoragePage() {
   const deleteFile = useFileDelete()
   // const testPreview = useFilePreview('test', 'test')
   const download = useFileDownload()
+    const { data: uploadedImages } = useBucket("test")
 
   useEffect(() => {
     download.mutate({ bucketId: 'test', fileId: 'test' })
   }, [])
-
-  console.log({ download })
 
   return (
     <div>
@@ -70,6 +70,17 @@ export default function StoragePage() {
           Download
         </a>
       </div>
+      <ol>
+        {
+          uploadedImages?.map(image => (
+            <li
+              key={image.$id}
+            >
+              {image.name}
+            </li>
+          ))
+        }
+      </ol>
     </div>
   )
 }
