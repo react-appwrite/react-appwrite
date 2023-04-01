@@ -12,6 +12,7 @@
     "dist/*",
     "example/*",
     ".github/*",
+    ".husky/*",
     ".vscode/*"
   ],
   "overrides": [],
