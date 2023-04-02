@@ -16,7 +16,7 @@ import { Image } from './types'
 export function useFilePreview(
   bucketId: string,
   fileId: string,
-  imageOptions: Image,
+  imageOptions?: Image,
   options?: UseQueryOptions<URL, unknown, URL, string[]>
 ) {
   const { storage } = useAppwrite()
@@ -35,7 +35,8 @@ export function useFilePreview(
         imageOptions?.opacity, 
         imageOptions?.rotation, 
         imageOptions?.background, 
-        imageOptions?.output )
+        imageOptions?.output 
+      )
     },
 
     ...options,
