@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload, useFileView, useFilePreview } from 'react-appwrite/storage'
-import { FiExternalLink, FiDelete, FiImage, FiTrash, FiFile, FiDownload } from "react-icons/fi"
+import { FiTrash, FiDownload } from "react-icons/fi"
 import Image from 'next/image'
 import { ID, Models } from 'appwrite'
 
