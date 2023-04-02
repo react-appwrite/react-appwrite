@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload, useFileView } from 'react-appwrite/storage'
+import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload, useFileView, useFilePreview } from 'react-appwrite/storage'
+import Image from 'next/image'
 
 export default function StoragePage() {
   const upload = useFileUpload()
@@ -11,6 +12,7 @@ export default function StoragePage() {
   const download = useFileDownload()
   const fileView = useFileView()
   const { data: uploadedImages } = useBucket("test")
+  const { data: preview } = useFilePreview('test', 'test', { height: 100, width: 100})
 
   useEffect(() => {
     download.mutate({ bucketId: 'test', fileId: 'test' })
@@ -93,6 +95,7 @@ export default function StoragePage() {
           ))
         }
       </ol>
+      {preview ? <Image width={100} height={100} src={preview.href} alt="Preview Image" /> : <p>Could not load preview.</p>}
     </div>
   )
 }
