@@ -30,7 +30,6 @@ export default function StoragePage() {
             if (file) {
               upload.mutate({
                 bucketId: 'test',
-                fileId: ID.unique(),
                 file,
               })
             }
@@ -49,7 +48,7 @@ export default function StoragePage() {
 }
 
 function FileListItem({ file }: { file: Models.File }) {
-  const { data: preview } = useFilePreview('test', file.$id, { height: 50, width: 50})
+  const { data: preview } = useFilePreview('test', file.$id, { width: 50, height: 50 })
   const { data: fileView } = useFileView('test', file.$id)
   const deleteFile = useFileDelete()
 
