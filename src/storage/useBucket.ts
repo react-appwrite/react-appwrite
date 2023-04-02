@@ -48,7 +48,7 @@ export function useBucket(
       switch (operation as StorageFileOperation) {
         case 'create':
         case 'update':
-          queryClient.setQueryData(['appwrite', 'buckets', bucketId, 'file', file.$id], file)
+          queryClient.setQueryData(['appwrite', 'storage', bucketId, file.$id], file)
 
           // This is not optimal, but is needed until this is implemented.
           // https://github.com/appwrite/appwrite/issues/2490
