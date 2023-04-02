@@ -24,6 +24,8 @@ export function useFileView(
 
       return null
     },
+
+    cacheTime: 0,
   })
 
   return queryResult
