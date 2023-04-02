@@ -33,7 +33,7 @@ export function useBucket(
 
     onSuccess: files => {
       for (const file of files) {
-        queryClient.setQueryData(['appwrite', 'storage', bucketId, file.$id], [bucketId, file.$id])
+        queryClient.setQueryData(['appwrite', 'storage', bucketId, file.$id], file)
       }
     },
 
