@@ -15,10 +15,10 @@ import type { StorageFileOperation } from 'react-appwrite/storage/types'
 * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageListFiles)
  */
 export function useBucket(
-    bucketId: string,
-    queries: string[] = [],
-    search?: string,
-    options?: UseQueryOptions<(Models.File)[], unknown, (Models.File)[]>
+  bucketId: string,
+  queries: string[] = [],
+  search?: string,
+  options?: UseQueryOptions<(Models.File)[], unknown, (Models.File)[]>
 ) {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()
@@ -59,12 +59,12 @@ export function useBucket(
 
           break
         case 'delete':
-          queryClient.setQueryData<Models.File[]>(queryKey, collection => {
-            if (collection) {
-              return collection.filter(storedFile => storedFile.$id !== file.$id)
+          queryClient.setQueryData<Models.File[]>(queryKey, bucket => {
+            if (bucket) {
+              return bucket.filter(storedFile => storedFile.$id !== file.$id)
             }
 
-            return collection
+            return bucket
           })
 
           break
