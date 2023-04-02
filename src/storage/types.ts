@@ -3,42 +3,42 @@ export type StorageFileOperation =
   | 'update'
   | 'delete'
 
-export type Image = PreviewImage & PreviewBorder & PreviewDimensions
+export type PreviewCropGravity =
+  | 'center'
+  | 'top-left'
+  | 'top'
+  | 'top-right'
+  | 'left'
+  | 'right'
+  | 'bottom-left'
+  | 'bottom'
+  | 'bottom-right'
 
-export type ImageCropGravity = 
-  | "center" 
-  | "top-left" 
-  | "top" 
-  | "top-right" 
-  | "left" 
-  | "right" 
-  | "bottom-left" 
-  | "bottom" 
-  | "bottom-right"
+export type PreviewOutputFormat =
+  | 'jpeg'
+  | 'jpg'
+  | 'png'
+  | 'gif'
+  | 'webp'
 
-export type OutputFormat = 
-  | "jpeg"
-  | "jpg"
-  | "png"
-  | "gif"
-  | "webp"
-
-export type PreviewImage = {
-  gravity?: ImageCropGravity,
+export type Preview = {
+  gravity?: PreviewCropGravity,
   quality?: number,
   opacity?: number,
   rotation?: number,
   background?: string,
-  output?: OutputFormat,
+  output?: PreviewOutputFormat,
+  border?: PreviewBorder,
+  dimensions?: PreviewDimensions,
 }
 
 export type PreviewBorder = {
-  borderColor?: string,
-  borderRadius?: number,
-  borderWidth?: number,
+  color?: string,
+  radius?: number,
+  width?: number,
 }
 
 export type PreviewDimensions = {
   width?: number,
-  height?: number
+  height?: number,
 }
