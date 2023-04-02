@@ -132,4 +132,6 @@ import { useFilePreview } from 'react-appwrite/storage'
 
 // In your component.
  const { data: preview} = useFilePreview('test', 'test', { width: 100, height: 100 })
+
+ <Image width={100} height={100} src={preview.href} alt="Preview Image" />
 ```
