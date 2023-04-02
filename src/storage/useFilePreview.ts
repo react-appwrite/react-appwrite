@@ -1,25 +1,12 @@
 'use client'
 
-import { useQuery, useQueryClient, UseQueryOptions } from '@tanstack/react-query'
+import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
-
-type ImageOptionsProp = {
-  width?: number,
-  height?: number,
-  gravity?: number,
-  quality?: number,
-  borderWidth?: number,
-  borderColor?: string,
-  borderRadius?: number,
-  opacity?: number,
-  rotation?: number,
-  background?: string,
-  output?: string,
-}
+import { Image } from './types'
 
 /**
- * Access to the file object by its unique file ID.
+ * Get a file preview of an image.
  * @param bucketId Storage bucket unique ID
  * @param fileId  File ID
  * @param imageOptions Options for cutting and resizing your preview image.
@@ -29,28 +16,26 @@ type ImageOptionsProp = {
 export function useFilePreview(
   bucketId: string,
   fileId: string,
-  imageOptions: ImageOptionsProp = {
-    width: undefined,
-    height: undefined,
-    gravity: undefined,
-    quality: undefined,
-    borderWidth: undefined,
-    borderColor: undefined,
-    borderRadius: undefined,
-    opacity: undefined,
-    rotation: undefined,
-    background: undefined,
-    output: undefined,
-  },
+  imageOptions: Image,
   options?: UseQueryOptions<URL, unknown, URL, string[]>
 ) {
   const { storage } = useAppwrite()
-  const queryClient = useQueryClient()
   const queryKey = useMemo(() => ['appwrite', 'storage', bucketId, fileId], [bucketId, fileId])
   const queryResult = useQuery({
     queryKey,
     queryFn: async ({ queryKey: [, , bucketId, fileId] }) => {
-      return await storage.getFilePreview(bucketId, fileId,  ...Object.values<any>(imageOptions))
+      return await storage.getFilePreview(bucketId, fileId,  
+        imageOptions?.width, 
+        imageOptions?.height, 
+        imageOptions?.gravity, 
+        imageOptions?.quality, 
+        imageOptions?.borderWidth, 
+        imageOptions?.borderColor, 
+        imageOptions?.borderRadius, 
+        imageOptions?.opacity, 
+        imageOptions?.rotation, 
+        imageOptions?.background, 
+        imageOptions?.output )
     },
 
     ...options,
