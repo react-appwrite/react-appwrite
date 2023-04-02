@@ -6,21 +6,18 @@ import Image from 'next/image'
 
 export default function StoragePage() {
   const upload = useFileUpload()
-  const { data } = useFile('test', 'test')
+  const { data } = useFile('test', '6428a8b2f3e353df1be3')
   const deleteFile = useFileDelete()
-  // const testPreview = useFilePreview('test', 'test')
   const download = useFileDownload()
-  const fileView = useFileView()
+  const fileView = useFileView('test', '6428a8b2f3e353df1be3')
   const { data: uploadedImages } = useBucket("test")
-  const { data: preview } = useFilePreview('test', 'test', { height: 100, width: 100})
+  const { data: preview } = useFilePreview('test', '6428a8b2f3e353df1be3', { height: 100, width: 100})
 
   useEffect(() => {
     download.mutate({ bucketId: 'test', fileId: 'test' })
   }, [])
 
-  useEffect(() => {
-    fileView.mutate({ bucketId: 'test', fileId: 'test' })
-  }, [])
+  console.log(preview)
 
   return (
     <div>
