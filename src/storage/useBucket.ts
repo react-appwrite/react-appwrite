@@ -7,7 +7,7 @@ import { useAppwrite } from 'react-appwrite'
 import type { StorageFileOperation } from 'react-appwrite/storage/types'
 
 /**
- * Fetches a collection from a database.
+ * Fetches a files from a bucket.
  * @param bucketId The bucket the files belong to.
  * @param queries Queries to filter the bucket by.
  * @param search Search term to filter the bucket by.
@@ -33,7 +33,7 @@ export function useBucket(
 
     onSuccess: files => {
       for (const file of files) {
-        queryClient.setQueryData(['appwrite', 'storage', bucketId, 'files', file.$id], file)
+        queryClient.setQueryData(['appwrite', 'storage', bucketId, file.$id], [bucketId, file.$id])
       }
     },
 
