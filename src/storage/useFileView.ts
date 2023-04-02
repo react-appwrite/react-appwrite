@@ -1,24 +1,30 @@
 'use client'
 
-import { useMutation } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
-
-type Props = {
-  bucketId: string,
-  fileId: string,
-}
 
 /**
  * Retrieves a file URL for download, with no 'Content-Disposition: attachment' header.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/storage?sdk=web-default#storageGetFileView)
  */
-export function useFileView() {
+export function useFileView(
+  bucketId?: string,
+  fileId?: string,
+) {
   const { storage } = useAppwrite()
-  const mutation = useMutation({
-    mutationFn: async ({ bucketId, fileId, }: Props) => {
-      return storage.getFileView(bucketId, fileId)
+  const queryKey = useMemo(() => ['appwrite', 'storage', 'downloads', bucketId, fileId], [bucketId, fileId])
+  const queryResult = useQuery<URL | null, unknown, URL | null, (string | void)[]>({
+    queryKey,
+    enabled: !!bucketId && !!fileId,
+    queryFn: ({ queryKey: [, , , bucketId, fileId] }) => {
+      if (bucketId && fileId) {
+        return storage.getFileView(bucketId, fileId)
+      }
+
+      return null
     },
   })
 
-  return mutation
+  return queryResult
 }
