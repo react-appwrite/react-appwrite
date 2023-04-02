@@ -7,7 +7,7 @@ import { useAppwrite } from 'react-appwrite'
 import type { StorageFileOperation } from 'react-appwrite/storage/types'
 
 /**
- * Fetches a files from a bucket.
+ * Fetches files from a bucket.
  * @param bucketId The bucket the files belong to.
  * @param queries Queries to filter the bucket by.
  * @param search Search term to filter the bucket by.

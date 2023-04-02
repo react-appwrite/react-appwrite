@@ -6,7 +6,7 @@ import { useAppwrite } from 'react-appwrite'
 import { Image } from './types'
 
 /**
- * Get a file preview of an image.
+ * Get a file preview image.
  * @param bucketId Storage bucket unique ID
  * @param fileId  File ID
  * @param imageOptions Options for cutting and resizing your preview image.
