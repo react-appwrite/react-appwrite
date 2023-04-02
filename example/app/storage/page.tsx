@@ -48,7 +48,13 @@ export default function StoragePage() {
 }
 
 function FileListItem({ file }: { file: Models.File }) {
-  const { data: preview } = useFilePreview('test', file.$id, { width: 50, height: 50 })
+  const { data: preview } = useFilePreview('test', file.$id, {
+    dimensions: {
+      width: 50,
+      height: 50,
+    },
+  })
+
   const { data: fileView } = useFileView('test', file.$id)
   const deleteFile = useFileDelete()
 
