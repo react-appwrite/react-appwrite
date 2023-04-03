@@ -159,3 +159,7 @@ npm run dev
 ### License
 
 [MIT](/LICENSE)
+
+<a href="https://vercel.com?utm_source=react-appwrite&utm_campaign=oss" alt="GitHub issues">
+        <img alt="GitHub issues" src="docs/logos/vercel.svg" />
+        </a>
