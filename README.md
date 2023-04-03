@@ -160,6 +160,6 @@ npm run dev
 
 [MIT](/LICENSE)
 
-<a href="https://vercel.com?utm_source=react-appwrite&utm_campaign=oss" alt="GitHub issues">
-        <img alt="GitHub issues" src="docs/logos/vercel.svg" />
+<a href="https://vercel.com?utm_source=react-appwrite&utm_campaign=oss" alt="Powered by Vercel">
+        <img alt="Vercel logo" src="docs/logos/vercel.svg" />
         </a>
