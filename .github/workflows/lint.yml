@@ -12,9 +12,9 @@ name: Lint
 on:
   push:
     branches-ignore: [main]
-  pull_request:
-    branches: [main]
-    types: [opened, reopened]
+  # pull_request:
+  #   branches: [main]
+  #   types: [opened, reopened]
 
 ###############
 # Set the Job #
