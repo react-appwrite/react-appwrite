@@ -16,7 +16,7 @@ export function useAccount<Preferences extends Models.Preferences>(
   options?: UseQueryOptions<Models.Account<Preferences>, unknown, Models.Account<Preferences>, string[]>
 ) {
   const { account: accountService } = useAppwrite()
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   const queryResult = useQuery({
     queryKey: ['appwrite', 'account'],
