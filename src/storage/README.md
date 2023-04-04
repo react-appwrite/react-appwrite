@@ -31,29 +31,55 @@ function UploadedImagesList() {
 
 ## useFile
 
-```typescript
+```tsx
 import { useFile } from 'react-appwrite/storage'
 
-// In your component.
-const { data: file } = useFile(bucketId, fileId)
-```
+function FileLabel() {
+  const bucketId = 'photos'
+  const fileId = 'headshot.png'
 
-`file` is a [user object](https://appwrite.io/docs/models/file).
+  const { data: file, isLoading } = useFile(bucketId, fileId)
+
+  if (file) {
+    return (
+      <span>
+        {file.name} - {file.sizeOriginal}
+      </span>
+    )
+  }
+
+  return (
+    <span>
+      Loading
+    </span>
+  )
+}
+```
 
 ---
 
 ## useFileDelete
 
-```typescript
+```tsx
 import { useFileDelete } from 'react-appwrite/storage'
 
-// In your component.
-const deleteFile = useFileDelete()
+function PhotoDeleteButton() {
+  const bucketId = 'photos'
+  const fileId = 'headshot.png'
+  const deleteFile = useFileDelete()
 
-deleteFile.mutateAsync({
-  bucketId,
-  fileId,
-})
+  return (
+    <button
+      type="button"
+      onClick={() => deleteFile.mutate({
+        bucketId,
+        fileId,
+      })
+    >
+      Delete
+    </button>
+  )
+}
 ```
 
 ---
@@ -77,66 +103,110 @@ updateFile.mutateAsync({
 
 ## useFileUpload
 
-```typescript
+```tsx
 import { useFileUpload } from 'react-appwrite/storage'
 
-// In your component.
-const uploadFile = useFileUpload()
+function ImageUploader() {
+  const bucketId = 'photos'
+  const upload = useFileUpload()
 
-uploadFile.mutateAsync({
-  bucketId,
-  fileId,
-  file,
-  permissions,
-})
+  return (
+    <form>
+      <input
+        type="file"
+        onChange={event => {
+          const file = event.target?.files?.[0]
+
+          if (file) {
+            upload.mutate({
+              bucketId,
+              file,
+            })
+          }
+        }}
+      />
+    </form>
+  )
+}
 ```
 
 ---
 
 ## useFileDownload
 
-```typescript
+```tsx
 import { useFileDownload } from 'react-appwrite/storage'
 
-// In your component.
-const downloadFile = useFileDownload()
+function DownloadButton() {
+  const bucketId = 'photos'
+  const fileId = 'headshot.png'
+  const { data: download } = useFileDownload(bucketId, fileId)
 
-downloadFile.mutateAsync({
-  bucketId,
-  fileId,
-})
+  return (
+    <a
+      download
+      href={download?.href}
+    >
+      Download
+    </a>
+  )
+}
 ```
 
 ---
 
 ## useFileView
 
-```typescript
+```tsx
 import { useFileView } from 'react-appwrite/storage'
 
-// In your component.
-const viewFile = useFileView()
+function OpenImageButton() {
+  const bucketId = 'photos'
+  const fileId = 'headshot.png'
+  const { data: view } = useFileView(bucketId, fileId)
 
-viewFile.mutateAsync({
-  bucketId,
-  fileId,
-})
+  return (
+    <a
+      href={view?.href}
+    >
+      Open Image
+    </a>
+  )
+}
 ```
 
 ---
 
 ## useFilePreview
 
-```typescript
+```tsx
 import { useFilePreview } from 'react-appwrite/storage'
 
-// In your component.
- const { data: preview} = useFilePreview('test', 'test', {
-  dimensions: {
-    width: 100,
-    height: 100,
-  }
- })
+function FilePreview() {
+  const bucketId = 'photos'
+  const fileId = 'headshot.png'
+  const { data: preview } = useFilePreview(bucketId, fileId, {
+    dimensions: {
+      width: 100,
+      height: 100,
+    }
+  })
 
- <Image width={100} height={100} src={preview.href} alt="Preview Image" />
+  if (preview) {
+    return (
+      <Image
+        width={100}
+        height={100}
+        src={preview?.href}
+        alt="Preview Image"
+      />
+    )
+  }
+
+  return (
+    <span>
+      No preview available
+    </span>
+  )
+}
 ```
