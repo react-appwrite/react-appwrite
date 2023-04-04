@@ -9,7 +9,7 @@ export default {
 
   images: {
     deviceSizes: [640, 768, 1024, 1280, 1536],
-    domains: ['localhost'],
+    domains: ['localhost', 'cloud.appwrite.io'],
   },
 
   devIndicators: {
