@@ -1,5 +1,34 @@
 # Storage Hooks
 
+## useBucket
+
+```tsx
+import { useBucket } from 'react-appwrite/storage'
+import { Query } from 'appwrite'
+
+function UploadedImagesList() {
+  const bucketId = 'myBucket'
+  
+  const { data: uploadedImages } = useBucket(bucketId, [
+    Query.orderDesc('$updatedAt')
+  ])
+  
+  return (
+    <ol>
+      {
+        uploadedImages?.map(image => (
+          <li
+            key={image.$id}
+          >
+            {image.name}
+          </li>
+        ))
+      }
+    </ol>
+  )
+}
+```
+
 ## useFile
 
 ```typescript
@@ -60,4 +89,54 @@ uploadFile.mutateAsync({
   file,
   permissions,
 })
+```
+
+---
+
+## useFileDownload
+
+```typescript
+import { useFileDownload } from 'react-appwrite/storage'
+
+// In your component.
+const downloadFile = useFileDownload()
+
+downloadFile.mutateAsync({
+  bucketId,
+  fileId,
+})
+```
+
+---
+
+## useFileView
+
+```typescript
+import { useFileView } from 'react-appwrite/storage'
+
+// In your component.
+const viewFile = useFileView()
+
+viewFile.mutateAsync({
+  bucketId,
+  fileId,
+})
+```
+
+---
+
+## useFilePreview
+
+```typescript
+import { useFilePreview } from 'react-appwrite/storage'
+
+// In your component.
+ const { data: preview} = useFilePreview('test', 'test', {
+  dimensions: {
+    width: 100,
+    height: 100,
+  }
+ })
+
+ <Image width={100} height={100} src={preview.href} alt="Preview Image" />
 ```

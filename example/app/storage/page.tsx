@@ -1,23 +1,27 @@
 'use client'
+
 import { useEffect } from 'react'
-import { useFile, useFileDelete, useFileDownload, useFileUpload } from 'react-appwrite/storage'
+import { useFile, useBucket, useFileDelete, useFileDownload, useFileUpload, useFileView, useFilePreview } from 'react-appwrite/storage'
+import { FiTrash, FiDownload } from "react-icons/fi"
+import Image from 'next/image'
+import { ID, Models } from 'appwrite'
 
 export default function StoragePage() {
   const upload = useFileUpload()
-  const { data } = useFile('test', 'test')
-  const deleteFile = useFileDelete()
-  // const testPreview = useFilePreview('test', 'test')
+  const { data } = useFile('test', '6428a8b2f3e353df1be3')
   const download = useFileDownload()
+  const { data: uploadedFiles } = useBucket("test")
 
   useEffect(() => {
     download.mutate({ bucketId: 'test', fileId: 'test' })
   }, [])
 
-  console.log({ download })
-
   return (
-    <div>
-      <div className="flex gap-2">
+    <div className="flex items-center justify-center gap-4 flex-1">
+      <form className='bg-white text-black rounded-sm p-4 flex flex-col items-center justify-center gap-4' onSubmit={async (e) => {
+        e.preventDefault();
+      }}>
+        <span>Upload Image</span>
         <input
           type="file"
           onChange={event => {
@@ -26,50 +30,52 @@ export default function StoragePage() {
             if (file) {
               upload.mutate({
                 bucketId: 'test',
-                fileId: 'test',
                 file,
               })
             }
           }}
         />
-
-        <button
-          type="button"
-          className="error button"
-          onClick={() => {
-            const url = deleteFile.mutate({
-              bucketId: 'test',
-              fileId: 'test',
-            })
-          }}
-        >
-          Delete
-        </button>
-      </div>
-
-      <div>
+      </form>
+      <div className='flex flex-col gap-4 items-center justify-center'>
         {
-          upload.isLoading &&
-          <span>
-            Loading
-          </span>
+          uploadedFiles?.map((file) => (
+            <FileListItem file={file} key={file.$id} />
+          ))
         }
-
-        {
-          data &&
-          <p>
-            {data.name}
-          </p>
-        }
-
-        <a
-          download={data?.name}
-          className="success button"
-          href={download.data?.href}
-        >
-          Download
-        </a>
       </div>
+    </div>
+  )
+}
+
+function FileListItem({ file }: { file: Models.File }) {
+  const { data: preview } = useFilePreview('test', file.$id, {
+    dimensions: {
+      width: 50,
+      height: 50,
+    },
+  })
+
+  const { data: fileView } = useFileView('test', file.$id)
+  const deleteFile = useFileDelete()
+
+  console.log(preview)
+
+  return (
+    <div className='flex gap-2 items-center justify-center w-full'>
+      <div
+      key={file.$id}
+      className='bg-white rounded-sm text-black p-2 w-full flex gap-2 items-center justify-between'
+      >
+        {preview && <Image src={preview.href} alt={`${file.name} Preview`} height={50} width={50} />}
+        {file.name}
+      </div>
+      <a href={fileView?.href} download>
+        <FiDownload className='cursor-pointer' size={20}/>
+        <p className='sr-only'>Download</p>
+      </a>
+      <FiTrash className='cursor-pointer' size={20} onClick={async () => {
+        await deleteFile.mutateAsync({bucketId: "test", fileId: file.$id})
+      }}/>
     </div>
   )
 }
