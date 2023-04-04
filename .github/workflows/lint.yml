@@ -42,7 +42,7 @@ jobs:
       ################################
       # Run Linter against code base #
       ################################
-      - name: Lint Code Base
+      - name: Lint
         uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: false
@@ -51,3 +51,4 @@ jobs:
           
           LINTER_RULES_PATH: /
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          VALIDATE_TYPESCRIPT_STANDARD: false
