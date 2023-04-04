@@ -16,7 +16,7 @@ export class AppwriteNextServer {
     handler: AppwriteNextMiddlewareHandler<Preferences>
   ): AppwriteNextMiddlewareHandler<Preferences> {
     return async request => {
-      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`;
+      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`
       const token = request.cookies.get(cookieName)?.value
 
       if (!token) {
@@ -41,7 +41,7 @@ export class AppwriteNextServer {
 
   async getUser<Preferences extends Models.Preferences>(cookies: RequestCookies | ReadonlyRequestCookies) {
     try {
-      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`;
+      const cookieName = `a_session_${this.configuration.projectId.toLowerCase()}_legacy`
       const token = cookies.get(cookieName)?.value ?? ''
       const response = await fetch(`${this.configuration.url}/account`, {
         method: 'GET',
