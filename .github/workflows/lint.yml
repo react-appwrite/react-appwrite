@@ -14,6 +14,7 @@ on:
     branches-ignore: [main]
   pull_request:
     branches: [main]
+    types: [opened, reopened]
 
 ###############
 # Set the Job #
