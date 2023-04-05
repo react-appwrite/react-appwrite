@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo } from "react";
-import { useAppwrite } from "react-appwrite";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useMemo } from 'react';
+import { useAppwrite } from 'react-appwrite';
 
 /**
  * Access to list of team members by team ID.
@@ -12,7 +12,7 @@ import { useAppwrite } from "react-appwrite";
 export function useTeamMembers(teamId: string) {
   const { teams } = useAppwrite();
   const queryKey = useMemo(
-    () => ["appwrite", "teams", teamId, "members"],
+    () => ['appwrite', 'teams', teamId, 'members'],
     [teamId]
   );
   const queryResult = useQuery({

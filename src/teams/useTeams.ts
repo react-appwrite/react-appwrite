@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useMemo } from "react";
-import { useAppwrite } from "..";
-import { useAccount } from "react-appwrite/account";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useMemo } from 'react';
+import { useAppwrite } from '..';
+import { useAccount } from 'react-appwrite';
 
 /**
  * Access to all teams the local user is a member of.
@@ -13,7 +13,7 @@ export function useTeams() {
   const { teams } = useAppwrite();
   const { data: account } = useAccount();
   const queryClient = useQueryClient();
-  const queryKey = useMemo(() => ["appwrite", "teams"], []);
+  const queryKey = useMemo(() => ['appwrite', 'teams'], []);
   const queryResult = useQuery({
     enabled: !!account,
     queryKey,
@@ -25,13 +25,13 @@ export function useTeams() {
 
     onSuccess: (teams) => {
       for (const team of teams) {
-        queryClient.setQueryData(["appwrite", "teams", team.$id], team);
+        queryClient.setQueryData(['appwrite', 'teams', team.$id], team);
       }
     },
   });
 
   useEffect(() => {
-    const unsubscribe = teams.client.subscribe("teams", (res) => {
+    const unsubscribe = teams.client.subscribe('teams', (res) => {
       console.log({ res });
     });
     return unsubscribe;

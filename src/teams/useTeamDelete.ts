@@ -13,7 +13,6 @@ type Props = {
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsDelete)
  */
 export function useTeamDelete() {
-
   const queryClient = useQueryClient();
   const { teams } = useAppwrite()
   const mutation = useMutation<{}, unknown, Props, unknown>({
@@ -21,10 +20,11 @@ export function useTeamDelete() {
       return teams.delete(teamId)
     },
 
-    onSuccess: async ({},{teamId}) => {
-      const previousTeams = queryClient.getQueryData<Models.Team[]>(['appwrite', 'teams'])
-      previousTeams?.splice(previousTeams.findIndex((team) => team.$id === teamId), 1)
-      queryClient.setQueryData(['appwrite', 'teams'], previousTeams)
+    onSuccess: async (_, {teamId}) => {
+      queryClient.setQueryData<Models.Team[]>(['appwrite', 'teams'], previousTeams => {
+        previousTeams?.splice(previousTeams.findIndex((team) => team.$id === teamId), 1)  
+        return previousTeams
+      })
     }
   })
 

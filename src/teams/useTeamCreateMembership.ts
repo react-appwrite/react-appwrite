@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useMutation } from "@tanstack/react-query";
-import { useAppwrite } from "react-appwrite";
+import { useMutation } from '@tanstack/react-query';
+import { useAppwrite } from 'react-appwrite';
 
 type Props = {
   teamId: string;

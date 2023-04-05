@@ -15,7 +15,6 @@ type Props = {
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsCreate)
  */
 export function useTeamCreate() {
-
   const queryClient = useQueryClient();
   const { teams } = useAppwrite()
   const mutation = useMutation<Models.Team, unknown, Props, unknown>({
@@ -24,12 +23,12 @@ export function useTeamCreate() {
     },
 
     onSuccess: async (team) => {
-      const previousTeams = queryClient.getQueryData<Models.Team[]>(['appwrite', 'teams'])
-      if (previousTeams) {
-        queryClient.setQueryData(['appwrite', 'teams'], [...previousTeams, team])
-        return;
-      }
-      queryClient.setQueryData(['appwrite', 'teams'], [team])
+      queryClient.setQueryData<Models.Team[]>(['appwrite', 'teams'], (previousTeams) => {
+        if (previousTeams) {
+          return [...previousTeams, team];
+        }
+        return [team]
+      })
     }
   })
 
