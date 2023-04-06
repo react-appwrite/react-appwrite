@@ -8,17 +8,11 @@ import { ID, Models } from 'appwrite'
 
 export default function StoragePage() {
   const upload = useFileUpload()
-  const { data } = useFile('test', '6428a8b2f3e353df1be3')
-  const download = useFileDownload()
   const { data: uploadedFiles } = useBucket("test")
 
-  useEffect(() => {
-    download.mutate({ bucketId: 'test', fileId: 'test' })
-  }, [])
-
   return (
-    <div className="flex items-center justify-center gap-4 flex-1">
-      <form className='bg-white text-black rounded-sm p-4 flex flex-col items-center justify-center gap-4' onSubmit={async (e) => {
+    <div className="flex items-center justify-center flex-1 gap-4">
+      <form className='flex flex-col items-center justify-center gap-4 p-4 text-black bg-white rounded-sm' onSubmit={async (e) => {
         e.preventDefault();
       }}>
         <span>Upload Image</span>
@@ -36,7 +30,7 @@ export default function StoragePage() {
           }}
         />
       </form>
-      <div className='flex flex-col gap-4 items-center justify-center'>
+      <div className='flex flex-col items-center justify-center gap-4'>
         {
           uploadedFiles?.map((file) => (
             <FileListItem file={file} key={file.$id} />
@@ -55,27 +49,27 @@ function FileListItem({ file }: { file: Models.File }) {
     },
   })
 
-  const { data: fileView } = useFileView('test', file.$id)
+  const { data: fileDownload } = useFileDownload('test', file.$id)
   const deleteFile = useFileDelete()
 
   console.log(preview)
 
   return (
-    <div className='flex gap-2 items-center justify-center w-full'>
+    <div className='flex items-center justify-center w-full gap-2'>
       <div
-      key={file.$id}
-      className='bg-white rounded-sm text-black p-2 w-full flex gap-2 items-center justify-between'
+        key={file.$id}
+        className='flex items-center justify-between w-full gap-2 p-2 text-black bg-white rounded-sm'
       >
         {preview && <Image src={preview.href} alt={`${file.name} Preview`} height={50} width={50} />}
         {file.name}
       </div>
-      <a href={fileView?.href} download>
-        <FiDownload className='cursor-pointer' size={20}/>
+      <a href={fileDownload?.href} download>
+        <FiDownload className='cursor-pointer' size={20} />
         <p className='sr-only'>Download</p>
       </a>
       <FiTrash className='cursor-pointer' size={20} onClick={async () => {
-        await deleteFile.mutateAsync({bucketId: "test", fileId: file.$id})
-      }}/>
+        await deleteFile.mutateAsync({ bucketId: "test", fileId: file.$id })
+      }} />
     </div>
   )
 }

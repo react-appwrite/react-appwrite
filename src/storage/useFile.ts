@@ -19,7 +19,7 @@ export function useFile(
 ) {
   const { storage } = useAppwrite()
   const queryClient = useQueryClient()
-  const queryKey = useMemo(() => ['appwrite', 'storage', bucketId, fileId], [bucketId, fileId])
+  const queryKey = useMemo(() => ['appwrite', 'storage', 'files', bucketId, fileId], [bucketId, fileId])
   const queryResult = useQuery({
     queryKey,
     queryFn: async ({ queryKey: [, , bucketId, fileId] }) => {

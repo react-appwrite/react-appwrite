@@ -22,7 +22,7 @@ export function useFileUpdate() {
     },
 
     onSuccess: async (file, { bucketId, fileId }) => {
-      queryClient.setQueryData(['appwrite', 'storage', bucketId, fileId], file)
+      queryClient.setQueryData(['appwrite', 'storage', 'files', bucketId, fileId], file)
     },
   })
 
