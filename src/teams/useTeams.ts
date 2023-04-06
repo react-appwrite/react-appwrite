@@ -34,6 +34,7 @@ export function useTeams() {
     const unsubscribe = teams.client.subscribe('teams', (res) => {
       console.log({ res })
     })
+
     return unsubscribe
   }, [])
 

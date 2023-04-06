@@ -27,6 +27,7 @@ export function useTeamCreate() {
         if (previousTeams) {
           return [...previousTeams, team]
         }
+
         return [team]
       })
     }
