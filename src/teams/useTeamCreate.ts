@@ -7,7 +7,7 @@ import { useAppwrite } from 'react-appwrite'
 type Props = {
   teamId?: string,
   name: string,
-  roles?: string[]
+  roles?: string[],
 }
 
 /**
@@ -15,7 +15,7 @@ type Props = {
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsCreate)
  */
 export function useTeamCreate() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
   const { teams } = useAppwrite()
   const mutation = useMutation<Models.Team, unknown, Props, unknown>({
     mutationFn: async ({ teamId, name, roles }) => {
@@ -25,7 +25,7 @@ export function useTeamCreate() {
     onSuccess: async (team) => {
       queryClient.setQueryData<Models.Team[]>(['appwrite', 'teams'], (previousTeams) => {
         if (previousTeams) {
-          return [...previousTeams, team];
+          return [...previousTeams, team]
         }
         return [team]
       })
