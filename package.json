@@ -18,7 +18,7 @@
     "build": "rimraf dist && tsc",
     "lint": "npm run build && eslint --ext .ts,.tsx ./",
     "prepare": "npm run build && husky install",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --rootDir tests --testRegex .*",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config --rootDir tests --testRegex .*",
     "prepublishOnly": "npm run lint"
   },
   "type": "module",
@@ -65,6 +65,7 @@
     "appwrite": "^10.2.0",
     "babel-jest": "^29.5.0",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "eslint": "^8.37.0",
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.0",
