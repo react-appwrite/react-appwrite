@@ -10,39 +10,98 @@ const parseQueryString = (result: {
 
 describe('avatars', () => {
   describe('useAvatar', () => {
-    test('initials contain name', async () => {
-      const { result } = renderHook(() => useAvatar({
-        type: 'initials',
-        name: 'Test Suite',
-      }), {
-        wrapper: createWrapper(),
+    describe('initials', () => {
+      test('supports names', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'initials',
+          name: 'Test Suite',
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.name).toBe('Test Suite')
       })
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true))
+      test('supports dimensions', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'initials',
+          name: 'Test Suite',
+          dimensions: {
+            width: 50,
+            height: 100,
+          },
+        }), {
+          wrapper: createWrapper(),
+        })
 
-      const queryString = parseQueryString(result)
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-      expect(queryString.name).toBe('Test Suite')
+        const queryString = parseQueryString(result)
+
+        expect(queryString.width).toBe('50')
+        expect(queryString.height).toBe('100')
+      })
+
+      test('supports backgrounds', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'initials',
+          name: 'Test Suite',
+          background: '000000',
+          dimensions: {
+            width: 50,
+            height: 100,
+          },
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.background).toBe('000000')
+      })
     })
 
-    test('initials contain dimensions', async () => {
-      const { result } = renderHook(() => useAvatar({
-        type: 'initials',
-        name: 'Test Suite',
-        dimensions: {
-          width: 50,
-          height: 100,
-        },
-      }), {
-        wrapper: createWrapper(),
+    describe('image', () => {
+      test('supports urls', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'image',
+          url: 'https://example.com'
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.url).toBe('https://example.com')
       })
 
-      await waitFor(() => expect(result.current.isSuccess).toBe(true))
+      test('supports dimensions', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'image',
+          url: 'https://example.com',
+          dimensions: {
+            width: 50,
+            height: 100,
+          }
+        }), {
+          wrapper: createWrapper(),
+        })
 
-      const queryString = parseQueryString(result)
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-      expect(queryString.width).toBe('50')
-      expect(queryString.height).toBe('100')
+        const queryString = parseQueryString(result)
+
+        expect(queryString.width).toBe('50')
+        expect(queryString.height).toBe('100')
+      })
     })
   })
 })
