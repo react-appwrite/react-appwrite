@@ -46,7 +46,9 @@
       "never"
     ],
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "react/display-name": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   "settings": {
     "react": {
