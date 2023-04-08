@@ -18,7 +18,7 @@
     "build": "rimraf dist && tsc",
     "lint": "npm run build && eslint --ext .ts,.tsx ./",
     "prepare": "npm run build && husky install",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config --rootDir tests --testRegex .*",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules DOTENV_CONFIG_PATH=.env.test jest --setupFiles=dotenv/config --rootDir tests --testRegex \"(account|avatars|databases|functions|locale|next|storage|teams)\\.tsx?\"",
     "prepublishOnly": "npm run lint"
   },
   "type": "module",
