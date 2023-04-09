@@ -105,7 +105,7 @@ describe('avatars', () => {
     })
 
     describe('browser', () => {
-      test('supports code', async () => {
+      test('supports codes', async () => {
         const { result } = renderHook(() => useAvatar({
           type: 'browser',
           code: 'ch',
@@ -138,7 +138,7 @@ describe('avatars', () => {
         expect(queryString.height).toBe('100')
       })
 
-      test('supports quality', async () => {
+      test('supports qualities', async () => {
         const { result } = renderHook(() => useAvatar({
           type: 'browser',
           code: 'ch',
@@ -160,7 +160,7 @@ describe('avatars', () => {
     })
 
     describe('favicon', () => {
-      test('supports url', async () => {
+      test('supports urls', async () => {
         const { result } = renderHook(() => useAvatar({
           type: 'favicon',
           url: 'https://example.com',
@@ -192,7 +192,7 @@ describe('avatars', () => {
         expect(queryString.text).toBe('https://example.com')
       })
 
-      test('supports size', async () => {
+      test('supports sizes', async () => {
         const { result } = renderHook(() => useAvatar({
           type: 'qr',
           text: 'https://example.com',
@@ -208,7 +208,7 @@ describe('avatars', () => {
         expect(queryString.size).toBe('20')
       })
 
-      test('supports margin', async () => {
+      test('supports margins', async () => {
         const { result } = renderHook(() => useAvatar({
           type: 'qr',
           text: 'https://example.com',
@@ -222,6 +222,57 @@ describe('avatars', () => {
         const queryString = parseQueryString(result)
 
         expect(queryString.margin).toBe('10')
+      })
+    })
+
+    describe('card', () => {
+      test('supports codes', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'card',
+          code: 'visa',
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        expect(result.current.data!.href.includes('visa?project=')).toBe(true)
+      })
+
+      test('supports dimensions', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'card',
+          code: 'visa',
+          dimensions: {
+            width: 30,
+            height: 40,
+          }
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.width).toBe('30')
+        expect(queryString.height).toBe('40')
+      })
+
+      test('supports qualities', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'card',
+          code: 'visa',
+          quality: 50,
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.quality).toBe('50')
       })
     })
   })
