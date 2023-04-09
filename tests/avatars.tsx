@@ -175,5 +175,54 @@ describe('avatars', () => {
         expect(queryString.url).toBe('https://example.com')
       })
     })
+
+    describe('qr', () => {
+      test('supports text', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'qr',
+          text: 'https://example.com',
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.text).toBe('https://example.com')
+      })
+
+      test('supports size', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'qr',
+          text: 'https://example.com',
+          size: 20,
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.size).toBe('20')
+      })
+
+      test('supports margin', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'qr',
+          text: 'https://example.com',
+          margin: 10,
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.margin).toBe('10')
+      })
+    })
   })
 })
