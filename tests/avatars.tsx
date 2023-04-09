@@ -103,5 +103,77 @@ describe('avatars', () => {
         expect(queryString.height).toBe('100')
       })
     })
+
+    describe('browser', () => {
+      test('supports code', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'browser',
+          code: 'ch',
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        expect(result.current.data!.href.includes('browsers/ch')).toBe(true)
+      })
+
+      test('supports dimensions', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'browser',
+          code: 'ch',
+          dimensions: {
+            width: 50,
+            height: 100,
+          }
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.width).toBe('50')
+        expect(queryString.height).toBe('100')
+      })
+
+      test('supports quality', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'browser',
+          code: 'ch',
+          quality: 30,
+          dimensions: {
+            width: 50,
+            height: 100,
+          }
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.quality).toBe('30')
+      })
+    })
+
+    describe('favicon', () => {
+      test('supports url', async () => {
+        const { result } = renderHook(() => useAvatar({
+          type: 'favicon',
+          url: 'https://example.com',
+        }), {
+          wrapper: createWrapper(),
+        })
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+        const queryString = parseQueryString(result)
+
+        expect(queryString.url).toBe('https://example.com')
+      })
+    })
   })
 })
