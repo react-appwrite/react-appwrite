@@ -1,12 +1,12 @@
 {
   "name": "react-appwrite",
-  "description": "React hooks for Appwrite.",
+  "description": "Gorgeous library for integrating React with Appwrite.",
   "author": "sanny-io",
-  "version": "0.0.5",
+  "version": "0.4.0",
   "license": "MIT",
-  "repository": "github:sanny-io/react-appwrite",
-  "homepage": "https://github.com/sanny-io/react-appwrite",
-  "bugs": "https://github.com/sanny-io/react-appwrite/issues",
+  "repository": "github:react-appwrite/react-appwrite",
+  "homepage": "https://github.com/react-appwrite/react-appwrite",
+  "bugs": "https://github.com/react-appwrite/react-appwrite/issues",
   "keywords": [
     "react",
     "appwrite",

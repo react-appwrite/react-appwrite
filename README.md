@@ -20,10 +20,10 @@
   <p align="center">
     <a href="https://www.npmjs.com/package/react-appwrite" alt="Latest npm version">
         <img alt="Latest npm version" src="https://img.shields.io/npm/v/react-appwrite?color=blue"></a>
-    <a href="https://github.com/sanny-io/react-appwrite/blob/main/LICENSE" alt="MIT license">
-        <img alt="MIT license" src="https://img.shields.io/github/license/sanny-io/react-appwrite?color=success" /></a>
-    <a href="https://github.com/sanny-io/react-appwrite/issues" alt="GitHub issues">
-        <img alt="GitHub issues" src="https://img.shields.io/github/issues/sanny-io/react-appwrite" />
+    <a href="https://github.com/react-appwrite/react-appwrite/blob/main/LICENSE" alt="MIT license">
+        <img alt="MIT license" src="https://img.shields.io/github/license/react-appwrite/react-appwrite?color=success" /></a>
+    <a href="https://github.com/react-appwrite/react-appwrite/issues" alt="GitHub issues">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/react-appwrite/react-appwrite" />
         </a>
 </p>
 </div>
@@ -78,7 +78,8 @@ npm i react-appwrite appwrite
 import { Client } from 'appwrite'
 import { AppwriteProvider } from 'react-appwrite'
 
-const appwrite = new Client().setEndpoint('https://my-appwrite-url.com')
+const appwrite = new Client()
+  .setEndpoint('https://my-appwrite-url.com')
   .setProject('myAppwriteProjectId')
 
 function App() {
@@ -104,14 +105,14 @@ const { data, isLoading } = useHook(...)
 ### Contributing
 
 > **Note**
-> We're looking for maintainers! [Leave a comment](https://github.com/sanny-io/react-appwrite/discussions/1) if you'd like to help out.
+> We're looking for maintainers! [Leave a comment](https://github.com/react-appwrite/react-appwrite/discussions/1) if you'd like to help out.
 
 Follow these steps to get started with local development.
 
 1. Clone the repository.
 
 ```
-git clone https://github.com/sanny-io/react-appwrite.git
+git clone https://github.com/react-appwrite/react-appwrite.git
 cd react-appwrite
 ```
 
