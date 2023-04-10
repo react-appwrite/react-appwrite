@@ -1,6 +1,7 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
+import { Models } from 'appwrite'
 import { useAppwrite } from 'react-appwrite'
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
  */
 export function useTeamCreateMembership() {
   const { teams } = useAppwrite()
-  const mutation = useMutation<{}, unknown, Props, unknown>({
+  const mutation = useMutation<Models.Membership, unknown, Props, unknown>({
     mutationFn: async ({ teamId, email, roles, url, name }) => {
       return teams.createMembership(teamId, email, roles, url, name)
     },

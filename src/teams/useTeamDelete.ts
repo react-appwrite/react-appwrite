@@ -15,7 +15,7 @@ type Props = {
 export function useTeamDelete() {
   const queryClient = useQueryClient()
   const { teams } = useAppwrite()
-  const mutation = useMutation<{}, unknown, Props, unknown>({
+  const mutation = useMutation<unknown, unknown, Props, unknown>({
     mutationFn: async ({ teamId }) => {
       return teams.delete(teamId)
     },
