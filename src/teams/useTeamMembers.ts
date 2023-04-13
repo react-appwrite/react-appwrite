@@ -11,7 +11,10 @@ import { useAppwrite } from 'react-appwrite'
  */
 export function useTeamMembers(teamId: string) {
   const { teams } = useAppwrite()
-  const queryKey = useMemo(() => ['appwrite', 'teams', teamId, 'members'], [teamId])
+  const queryKey = useMemo(
+    () => ['appwrite', 'teams', teamId, 'members'],
+    [teamId]
+  )
   const queryResult = useQuery({
     queryKey,
     queryFn: async ({ queryKey: [, , teamId] }) => {
@@ -22,9 +25,12 @@ export function useTeamMembers(teamId: string) {
   })
 
   useEffect(() => {
-    const unsubscribe = teams.client.subscribe('teams.*', response => {
-      console.log({ response })
-    })
+    const unsubscribe = teams.client.subscribe(
+      `teams.${teamId}`,
+      (response) => {
+        console.log({ response })
+      }
+    )
 
     return unsubscribe
   }, [])

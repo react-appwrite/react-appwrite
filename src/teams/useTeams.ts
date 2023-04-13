@@ -1,8 +1,8 @@
 'use client'
 
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useMemo } from 'react'
-import { useAppwrite } from '..'
+import { useEffect, useMemo } from 'react'
+import { useAppwrite } from 'react-appwrite'
 import { useAccount } from 'react-appwrite/account'
 
 /**
@@ -23,12 +23,20 @@ export function useTeams() {
       return response.teams
     },
 
-    onSuccess: teams => {
+    onSuccess: (teams) => {
       for (const team of teams) {
         queryClient.setQueryData(['appwrite', 'teams', team.$id], team)
       }
     },
   })
+
+  useEffect(() => {
+    const unsubscribe = teams.client.subscribe('teams', (res) => {
+      console.log({ res })
+    })
+
+    return unsubscribe
+  }, [])
 
   return queryResult
 }

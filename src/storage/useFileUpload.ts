@@ -1,11 +1,12 @@
 'use client'
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { ID } from 'appwrite'
 import { useAppwrite } from 'react-appwrite'
 
 type Props = {
   bucketId: string,
-  fileId: string,
+  fileId?: string,
   file: File,
   permissions?: string[],
 }
@@ -19,11 +20,11 @@ export function useFileUpload() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: async ({ bucketId, fileId, file, permissions }: Props) => {
-      return await storage.createFile(bucketId, fileId, file, permissions)
+      return await storage.createFile(bucketId, fileId ?? ID.unique(), file, permissions)
     },
 
     onSuccess: async (file, { bucketId, fileId }) => {
-      queryClient.setQueryData(['appwrite', 'storage', bucketId, fileId], file)
+      queryClient.setQueryData(['appwrite', 'storage', 'files', bucketId, fileId], file)
     },
   })
 
