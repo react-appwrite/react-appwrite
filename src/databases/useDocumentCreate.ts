@@ -6,7 +6,7 @@ type Props<TDocument> = {
   databaseId: string,
   collectionId: string,
   documentId?: string,
-  data: TDocument,
+  data: Models.Document & TDocument,
   permissions?: string[],
 }
 
