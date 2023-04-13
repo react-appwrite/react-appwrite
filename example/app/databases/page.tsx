@@ -10,15 +10,17 @@ type Article = DatabaseDocument<{
 }>
 
 function DatabasePage() {
-  const { data: article } = useDocument<Article>('test', 'articles', 'test')
+  const { data: article } = useDocument<Article>('test', 'articles', '643866c6f386c9c982c1')
   const { data: articles } = useCollection<Article>('test', 'articles')
   const { data: publishedArticles } = useCollection<Article>('test', 'articles', [
     Query.equal<Article>('published', true)
   ])
 
   const { data: unpublishedArticles } = useCollection<Article>('test', 'articles', [
-    Query.notEqual<Article>('published', true),
+    Query.notEqual<Article>('published', false),
   ])
+
+  console.log(publishedArticles)
 
   useEffect(() => {
     if (article) {
@@ -31,7 +33,7 @@ function DatabasePage() {
   }, [articles])
 
   return (
-    <div>
+    <div >
       <h1>
         {article?.title}
       </h1>
