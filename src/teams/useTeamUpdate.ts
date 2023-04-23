@@ -13,12 +13,12 @@ type Props = {
  * Update team
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsUpdate)
  */
-export function useTeamUpdate() {
+export function useTeamUpdate<Preferences extends Models.Preferences>() {
   const queryClient = useQueryClient()
   const { teams } = useAppwrite()
-  const mutation = useMutation<Models.Team, unknown, Props, unknown>({
+  const mutation = useMutation<Models.Team<Preferences>, unknown, Props, unknown>({
     mutationFn: async ({ teamId, name }) => {
-      return teams.update(teamId, name)
+      return teams.updateName(teamId, name)
     },
 
     onSuccess: async (team) => {

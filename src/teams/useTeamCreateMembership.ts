@@ -10,6 +10,8 @@ type Props = {
   roles: string[],
   url: string,
   name?: string,
+  userId?: string,
+  phone?: string,
 }
 
 /**
@@ -19,8 +21,8 @@ type Props = {
 export function useTeamCreateMembership() {
   const { teams } = useAppwrite()
   const mutation = useMutation<Models.Membership, unknown, Props, unknown>({
-    mutationFn: async ({ teamId, email, roles, url, name }) => {
-      return teams.createMembership(teamId, email, roles, url, name)
+    mutationFn: async ({ teamId, email, roles, url, name, userId, phone }) => {
+      return teams.createMembership(teamId, roles, url, email, userId, phone, name)
     },
   })
 
