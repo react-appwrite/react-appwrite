@@ -92,6 +92,49 @@ export function offset(offset: number) {
 }
 
 /**
+ * Returns documents where attribute value is null.
+ */
+export function isNull<Model>(attribute: Extract<keyof Model, string>) {
+  return AppwriteQuery.isNull(attribute)
+}
+
+/**
+ * Returns documents where attribute value is null.
+ */
+export function isNotNull<Model>(attribute: Extract<keyof Model, string>) {
+  return AppwriteQuery.isNotNull(attribute)
+}
+
+/**
+ * Select which attributes should be returned from a document.
+ */
+export function select<Model>(attributes: Extract<keyof Model, string>[]) {
+  return AppwriteQuery.select(attributes)
+}
+
+/**
+ * Returns documents if a string attributes starts with a substring.
+ */
+export function startsWith<Model>(attribute: Extract<keyof Model, string>, value: string) {
+  return AppwriteQuery.startsWith(attribute, value)
+}
+
+/**
+ * Returns documents if a string attributes ends with a substring.
+ */
+export function endsWith<Model>(attribute: Extract<keyof Model, string>, value: string) {
+  return AppwriteQuery.endsWith(attribute, value)
+}
+
+/**
+ * Returns document if attribute value falls between the two values.
+ * The boundary values are inclusive and can be strings or numbers.
+ */
+export function between<Model>(attribute: Extract<keyof Model, string>, start: string | number, end: string | number) {
+  return AppwriteQuery.between(attribute, start, end)
+}
+
+/**
  * @link [Appwrite Documentation](https://appwrite.io/docs/databases#querying-documents)
  */
 export const Query = {
@@ -108,4 +151,10 @@ export const Query = {
   cursorBefore,
   limit,
   offset,
+  isNull,
+  isNotNull,
+  select,
+  startsWith,
+  endsWith,
+  between,
 }
