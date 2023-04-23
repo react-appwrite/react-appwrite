@@ -11,7 +11,7 @@ export type AppwriteNextHandlerResult = Response | NextResponse | Promise<NextRe
 
 export type AppwriteNextMiddlewareHandler<Preferences extends Models.Preferences> = (
   request: NextRequest & {
-    user?: Models.Account<Preferences>,
+    user?: Models.User<Preferences>,
   }
 ) => Response | NextResponse | Promise<NextResponse> | Promise<Response>
 

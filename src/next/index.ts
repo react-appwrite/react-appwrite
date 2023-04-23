@@ -60,7 +60,7 @@ export class AppwriteNextServer {
         return null
       }
 
-      return json as Models.Account<Preferences>
+      return json as Models.User<Preferences>
     }
 
     catch (error) {

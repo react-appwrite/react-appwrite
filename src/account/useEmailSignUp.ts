@@ -17,7 +17,7 @@ type TRequest = {
  */
 function useEmailSignUp<Preferences extends Models.Preferences>() {
   const { account } = useAppwrite()
-  const mutation = useMutation<Models.Account<Preferences>, unknown, TRequest, unknown>({
+  const mutation = useMutation<Models.User<Preferences>, unknown, TRequest, unknown>({
     mutationFn: async request => {
       return await account.create(request.userId ?? ID.unique(), request.email, request.password, request.name)
     },
