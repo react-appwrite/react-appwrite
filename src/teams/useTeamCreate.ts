@@ -14,16 +14,16 @@ type Props = {
  * Create a new Team
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsCreate)
  */
-export function useTeamCreate() {
+export function useTeamCreate<Preferences extends Models.Preferences>() {
   const queryClient = useQueryClient()
   const { teams } = useAppwrite()
-  const mutation = useMutation<Models.Team, unknown, Props, unknown>({
+  const mutation = useMutation<Models.Team<Preferences>, unknown, Props, unknown>({
     mutationFn: async ({ teamId, name, roles }) => {
       return teams.create(teamId ?? ID.unique(), name, roles)
     },
 
     onSuccess: async (team) => {
-      queryClient.setQueryData<Models.Team[]>(['appwrite', 'teams'], (previousTeams) => {
+      queryClient.setQueryData<Models.Team<Preferences>[]>(['appwrite', 'teams'], (previousTeams) => {
         if (previousTeams) {
           return [...previousTeams, team]
         }

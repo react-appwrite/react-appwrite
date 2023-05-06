@@ -4,7 +4,7 @@ import { Models } from 'appwrite'
 import { useAccount } from 'react-appwrite/account'
 import { useAvatar } from 'react-appwrite/avatars'
 
-type Props<Preferences extends Models.Preferences> = Models.Account<Preferences>
+type Props<Preferences extends Models.Preferences> = Models.User<Preferences>
 
 function User<Preferences extends Models.Preferences>(props: Props<Preferences>) {
   const { data: account } = useAccount(props)
