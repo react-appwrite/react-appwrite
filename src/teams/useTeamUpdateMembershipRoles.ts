@@ -14,7 +14,7 @@ type Props = {
  * Modify the roles of a team member.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsUpdateMembershipRoles)
  */
-export function useTeamUpdate() {
+export function useTeamUpdateMembershipRoles() {
   const { teams } = useAppwrite()
   const mutation = useMutation<Models.Membership, unknown, Props, unknown>({
     mutationFn: async ({ teamId, membershipId, roles }) => {
