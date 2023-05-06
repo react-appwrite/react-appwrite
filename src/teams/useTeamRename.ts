@@ -10,10 +10,10 @@ type Props = {
 }
 
 /**
- * Update team
+ * Rename a team.
  * @link [Appwrite Documentation](https://appwrite.io/docs/client/teams?sdk=web-default#teamsUpdate)
  */
-export function useTeamUpdate<Preferences extends Models.Preferences>() {
+export function useTeamRename<Preferences extends Models.Preferences>() {
   const queryClient = useQueryClient()
   const { teams } = useAppwrite()
   const mutation = useMutation<Models.Team<Preferences>, unknown, Props, unknown>({
