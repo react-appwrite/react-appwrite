@@ -2,7 +2,7 @@
   "name": "react-appwrite",
   "description": "Gorgeous library for integrating React with Appwrite.",
   "author": "sanny-io",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "MIT",
   "repository": "github:react-appwrite/react-appwrite",
   "homepage": "https://github.com/react-appwrite/react-appwrite",
