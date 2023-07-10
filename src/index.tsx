@@ -27,7 +27,7 @@ export type AppwriteContextType = {
 type Props = {
   client: Client,
   children: ReactNode,
-  devTools: boolean | DevtoolsOptions,
+  devTools?: boolean | DevtoolsOptions,
   queryClient?: QueryClient,
 }
 
