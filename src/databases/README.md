@@ -27,7 +27,7 @@ function PublishedArticlesList() {
   return (
     <ol>
       {
-        publishedArticles?.map(article => (
+        publishedArticles?.documents?.map(article => (
           <li
             key={article.$id}
           >

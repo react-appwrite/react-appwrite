@@ -40,7 +40,7 @@ function DatabasePage() {
 
   return (
     <div className="flex items-center justify-center flex-1 gap-4">
-      <div className='flex flex-col md:flex-row gap-4 '>
+      <div className='flex flex-col gap-4 md:flex-row '>
         <form className='flex flex-col gap-4 p-4 text-black bg-white rounded-sm' onSubmit={async (e) => {
           e.preventDefault();
           await createDocument.mutateAsync({
@@ -74,7 +74,7 @@ function DatabasePage() {
               setContent(e.target.value);
             }}
           />
-          <label className='flex flex-row gap-2 items-center'>
+          <label className='flex flex-row items-center gap-2'>
             <input
               type="checkbox"
               checked={published}
@@ -85,8 +85,8 @@ function DatabasePage() {
             Published
           </label>
           <button
-            onClick={() => {}}
-            className="p-2 bg-blue-500 rounded-md w-full"
+            onClick={() => { }}
+            className="w-full p-2 bg-blue-500 rounded-md"
           >
             Submit
           </button>
@@ -94,7 +94,7 @@ function DatabasePage() {
         <div className='flex flex-col items-center justify-start gap-4'>
           <h2 className='font-bold'>Published Articles</h2>
           {
-            publishedArticles?.map((article: Article) => (
+            publishedArticles?.documents?.map((article: Article) => (
               <ArticleListItem
                 key={article.$id}
                 {...article}
@@ -105,7 +105,7 @@ function DatabasePage() {
         <div className='flex flex-col items-center justify-start gap-4'>
           <h2 className='font-bold'>Unpublished Articles</h2>
           {
-            unpublishedArticles?.map((article: Article) => (
+            unpublishedArticles?.documents?.map((article: Article) => (
               <ArticleListItem
                 key={article.$id}
                 {...article}
@@ -124,7 +124,7 @@ function ArticleListItem(article: Article) {
 
   return (
     <div className='flex items-center justify-center w-full gap-2'>
-      <div key={article.$id} className='flex items-center justify-between w-full gap-2 py-1 px-2 text-black bg-white rounded-sm'>
+      <div key={article.$id} className='flex items-center justify-between w-full gap-2 px-2 py-1 text-black bg-white rounded-sm'>
         <span>
           {article.title}
         </span>
@@ -145,9 +145,9 @@ function ArticleListItem(article: Article) {
           }}
         />
       </div>
-      <FiTrash 
-        className='cursor-pointer' 
-        size={20} 
+      <FiTrash
+        className='cursor-pointer'
+        size={20}
         onClick={() => {
           del.mutateAsync({
             databaseId: 'test',
