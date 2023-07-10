@@ -2,7 +2,6 @@
 
 import { useQuery, useQueryClient, type UseQueryOptions } from '@tanstack/react-query'
 import { Models } from 'appwrite'
-import produce, { castDraft, current } from 'immer'
 import { useEffect, useMemo } from 'react'
 import { useAppwrite } from 'react-appwrite'
 import type { DatabaseDocumentOperation, DatabaseDocument, DatabaseCollection } from 'react-appwrite/databases/types'
@@ -19,8 +18,8 @@ export function useCollection<TDocument>(
   databaseId: string,
   collectionId: string,
   queries: string[] = [],
-  options?: UseQueryOptions<(TDocument & Models.Document)[], unknown, (TDocument & Models.Document)[], (string | {
-    queries: string[];
+  options?: UseQueryOptions<Models.DocumentList<DatabaseDocument<TDocument>>, unknown, Models.DocumentList<DatabaseDocument<TDocument>>, (string | {
+    queries: string[],
   })[]>
 ) {
   const { databases } = useAppwrite()
@@ -29,13 +28,11 @@ export function useCollection<TDocument>(
   const queryResult = useQuery({
     queryKey,
     queryFn: async () => {
-      const response = await databases.listDocuments<DatabaseDocument<TDocument>>(databaseId, collectionId, queries)
-
-      return response.documents
+      return await databases.listDocuments<DatabaseDocument<TDocument>>(databaseId, collectionId, queries)
     },
 
-    onSuccess: documents => {
-      for (const document of documents) {
+    onSuccess: collection => {
+      for (const document of collection.documents) {
         queryClient.setQueryData(['appwrite', 'databases', databaseId, collectionId, 'documents', document.$id], document)
       }
     },
@@ -51,6 +48,7 @@ export function useCollection<TDocument>(
       switch (operation as DatabaseDocumentOperation) {
         case 'create':
         case 'update':
+        case 'delete':
           queryClient.setQueryData(['appwrite', 'databases', databaseId, collectionId, 'documents', document.$id], document)
 
           // This is not optimal, but is needed until this is implemented.
@@ -61,16 +59,16 @@ export function useCollection<TDocument>(
           })
 
           break
-        case 'delete':
-          queryClient.setQueryData<DatabaseCollection<TDocument>>(queryKey, collection => {
-            if (collection) {
-              return collection.filter(storedDocument => storedDocument.$id !== document.$id)
-            }
+        // case 'delete':
+        //   queryClient.setQueryData<Models.DocumentList<DatabaseDocument<TDocument>>>(queryKey, collection => {
+        //     if (collection?.documents) {
+        //       return collection.documents.filter(storedDocument => storedDocument.$id !== document.$id)
+        //     }
 
-            return collection
-          })
+        //     return collection
+        //   })
 
-          break
+        //   break
       }
     })
 
