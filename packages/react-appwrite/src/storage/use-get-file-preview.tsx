@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
-import { ImageGravity, ImageFormat } from 'appwrite'
+import type { ImageGravity, ImageFormat } from 'appwrite'
 
 export type Props = {
   bucketId: string,
@@ -19,6 +19,7 @@ export type Props = {
   token?: string,
 }
 
+// oxlint-disable-next-line max-lines-per-function
 export function useGetFilePreview({
   bucketId,
   fileId,
