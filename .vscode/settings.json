@@ -1,4 +1,19 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "files.eol": "\n"
+  "npm.packageManager": "bun",
+  "npm.scriptRunner": "bun",
+  "tailwindCSS.classFunctions": ["tw", "cn", "clsx", "tw\\.[a-z-]+"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "typescript.experimental.useTsgo": true,
+  "[css][tailwindcss]": {
+    "editor.defaultFormatter": "bradlc.vscode-tailwindcss"
+  },
+  "oxc.fmt.experimental": true,
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "always",
+    }
+  },
 }

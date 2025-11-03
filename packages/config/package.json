@@ -1,0 +1,9 @@
+{
+  "name": "@react-appwrite/config",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./ts": "./ts.json"
+  },
+  "packageManager": "bun@1.3.1"
+}

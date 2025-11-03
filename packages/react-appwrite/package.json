@@ -1,0 +1,23 @@
+{
+  "name": "react-appwrite",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsdown",
+    "watch": "tsdown --watch",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix --fix-suggestions",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.90.6",
+    "appwrite": "21.3.0"
+  },
+  "devDependencies": {
+    "@react-appwrite/config": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  },
+  "packageManager": "bun@1.3.1"
+}

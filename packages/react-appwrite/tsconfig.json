@@ -1,0 +1,12 @@
+{
+  "extends": "@react-appwrite/config/ts",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "paths": {
+      "*": ["./*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["tsdown.config.ts"]
+}

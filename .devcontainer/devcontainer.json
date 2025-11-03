@@ -1,0 +1,23 @@
+{
+  "name": "react-appwrite",
+  "dockerComposeFile": ["./docker-compose.yaml"],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "service": "workspace",
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "npm i -g bun@1.3.1 && bun i && ln -f ./packages/env/.env ./apps/next/.env && bun run build:packages",
+  "remoteUser": "node",
+  "forwardPorts": [3000],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker",
+        "TypeScriptTeam.native-preview",
+        "tamasfe.even-better-toml",
+        "oven.bun-vscode",
+        "oxc.oxc-vscode"
+      ]
+    }
+  }
+}

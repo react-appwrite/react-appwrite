@@ -1,0 +1,17 @@
+name: react-appwrite
+
+networks:
+  workspace:
+    external: false
+
+services:
+  workspace:
+    container_name: react-appwrite-workspace
+    image: mcr.microsoft.com/devcontainers/javascript-node:24
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    ports:
+      - 3000:3000
+    networks:
+      - workspace
