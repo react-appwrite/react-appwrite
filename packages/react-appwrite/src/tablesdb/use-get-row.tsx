@@ -10,7 +10,9 @@ export type Props = {
   transactionId?: string,
 }
 
-export function useGetRow<Row extends Models.Row = Models.DefaultRow>({ databaseId, tableId, rowId, queries, transactionId }: Props) {
+export function useGetRow<
+  Row extends Models.Row = Models.DefaultRow
+>({ databaseId, tableId, rowId, queries, transactionId }: Props) {
   const { tablesDB } = useAppwrite()
 
   return useQuery({
