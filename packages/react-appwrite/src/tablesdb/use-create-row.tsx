@@ -1,0 +1,32 @@
+// oxlint-disable no-explicit-any
+import { useAppwrite } from '../index'
+import { type Models, ID } from 'appwrite'
+import { useMutation } from '@tanstack/react-query'
+
+export type Props<Row extends Models.Row = Models.DefaultRow> = {
+  databaseId: string,
+  tableId: string,
+  rowId?: string,
+  data: Row extends Models.DefaultRow
+    ? Partial<Models.Row> & Record<string, any>
+    : Partial<Models.Row> & Omit<Row, keyof Models.Row>,
+  permissions?: string[],
+  transactionId?: string,
+}
+
+export function useCreateRow<Row extends Models.Row = Models.DefaultRow>() {
+  const { tablesDB } = useAppwrite()
+
+  return useMutation({
+    mutationFn: ({ databaseId, tableId, rowId, data, permissions, transactionId }: Props<Row>) => {
+      return tablesDB.createRow<Row>({
+        databaseId,
+        tableId,
+        rowId: rowId ?? ID.unique(),
+        data,
+        permissions,
+        transactionId,
+      })
+    },
+  })
+}

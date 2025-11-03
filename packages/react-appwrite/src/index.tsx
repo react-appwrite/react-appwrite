@@ -1,4 +1,4 @@
-import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars } from 'appwrite'
+import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars, TablesDB } from 'appwrite'
 import { useState, createContext, useContext, type ReactNode } from 'react'
 
 export type AppwriteContext = {
@@ -11,6 +11,7 @@ export type AppwriteContext = {
   locale: Locale,
   messaging: Messaging,
   storage: Storage,
+  tablesDB: TablesDB,
   teams: Teams,
 }
 
@@ -33,6 +34,7 @@ export function AppwriteProvider({ client, children }: Props) {
     locale: new Locale(client),
     messaging: new Messaging(client),
     storage: new Storage(client),
+    tablesDB: new TablesDB(client),
     teams: new Teams(client),
   }))
 
