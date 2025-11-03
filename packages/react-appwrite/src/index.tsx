@@ -1,4 +1,4 @@
-import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars, TablesDB } from 'appwrite'
+import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars, TablesDB, Realtime } from 'appwrite'
 import { useState, createContext, useContext, type ReactNode } from 'react'
 
 export type AppwriteContext = {
@@ -10,6 +10,7 @@ export type AppwriteContext = {
   functions: Functions,
   locale: Locale,
   messaging: Messaging,
+  realtime: Realtime,
   storage: Storage,
   tablesDB: TablesDB,
   teams: Teams,
@@ -33,6 +34,7 @@ export function AppwriteProvider({ client, children }: Props) {
     functions: new Functions(client),
     locale: new Locale(client),
     messaging: new Messaging(client),
+    realtime: new Realtime(client),
     storage: new Storage(client),
     tablesDB: new TablesDB(client),
     teams: new Teams(client),
@@ -48,5 +50,11 @@ export function AppwriteProvider({ client, children }: Props) {
 }
 
 export function useAppwrite() {
-  return useContext(AppwriteContext)
+  const context = useContext(AppwriteContext)
+
+  if (!context) {
+    throw new Error('`useAppwrite` must be wrapped in an `AppwriteProvider`')
+  }
+
+  return context
 }
