@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "tsdown",
+    "build": "bun --bun tsdown",
     "watch": "tsdown --watch",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix --fix-suggestions",
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@tanstack/react-query": "5.90.6",
-    "appwrite": "21.3.0"
+    "appwrite": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
     "@react-appwrite/config": "workspace:*",
@@ -28,11 +29,76 @@
       "@react-appwrite/source": "./src/index.tsx",
       "default": "./dist/index.js"
     },
+    "./teams/use-create-membership": {
+      "@react-appwrite/source": "./src/teams/use-create-membership.tsx",
+      "default": "./dist/teams/use-create-membership.js"
+    },
+    "./teams/use-create-team": {
+      "@react-appwrite/source": "./src/teams/use-create-team.tsx",
+      "default": "./dist/teams/use-create-team.js"
+    },
+    "./teams/use-delete-membership": {
+      "@react-appwrite/source": "./src/teams/use-delete-membership.tsx",
+      "default": "./dist/teams/use-delete-membership.js"
+    },
+    "./teams/use-delete-team": {
+      "@react-appwrite/source": "./src/teams/use-delete-team.tsx",
+      "default": "./dist/teams/use-delete-team.js"
+    },
+    "./teams/use-get-membership": {
+      "@react-appwrite/source": "./src/teams/use-get-membership.tsx",
+      "default": "./dist/teams/use-get-membership.js"
+    },
+    "./teams/use-get-team": {
+      "@react-appwrite/source": "./src/teams/use-get-team.tsx",
+      "default": "./dist/teams/use-get-team.js"
+    },
+    "./teams/use-get-team-prefs": {
+      "@react-appwrite/source": "./src/teams/use-get-team-prefs.tsx",
+      "default": "./dist/teams/use-get-team-prefs.js"
+    },
+    "./teams/use-list-memberships": {
+      "@react-appwrite/source": "./src/teams/use-list-memberships.tsx",
+      "default": "./dist/teams/use-list-memberships.js"
+    },
+    "./teams/use-list-teams": {
+      "@react-appwrite/source": "./src/teams/use-list-teams.tsx",
+      "default": "./dist/teams/use-list-teams.js"
+    },
+    "./teams/use-update-membership": {
+      "@react-appwrite/source": "./src/teams/use-update-membership.tsx",
+      "default": "./dist/teams/use-update-membership.js"
+    },
+    "./teams/use-update-membership-status": {
+      "@react-appwrite/source": "./src/teams/use-update-membership-status.tsx",
+      "default": "./dist/teams/use-update-membership-status.js"
+    },
+    "./teams/use-update-team-name": {
+      "@react-appwrite/source": "./src/teams/use-update-team-name.tsx",
+      "default": "./dist/teams/use-update-team-name.js"
+    },
+    "./teams/use-update-team-prefs": {
+      "@react-appwrite/source": "./src/teams/use-update-team-prefs.tsx",
+      "default": "./dist/teams/use-update-team-prefs.js"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "exports": {
       ".": "./dist/index.js",
+      "./teams/use-create-membership": "./dist/teams/use-create-membership.js",
+      "./teams/use-create-team": "./dist/teams/use-create-team.js",
+      "./teams/use-delete-membership": "./dist/teams/use-delete-membership.js",
+      "./teams/use-delete-team": "./dist/teams/use-delete-team.js",
+      "./teams/use-get-membership": "./dist/teams/use-get-membership.js",
+      "./teams/use-get-team": "./dist/teams/use-get-team.js",
+      "./teams/use-get-team-prefs": "./dist/teams/use-get-team-prefs.js",
+      "./teams/use-list-memberships": "./dist/teams/use-list-memberships.js",
+      "./teams/use-list-teams": "./dist/teams/use-list-teams.js",
+      "./teams/use-update-membership": "./dist/teams/use-update-membership.js",
+      "./teams/use-update-membership-status": "./dist/teams/use-update-membership-status.js",
+      "./teams/use-update-team-name": "./dist/teams/use-update-team-name.js",
+      "./teams/use-update-team-prefs": "./dist/teams/use-update-team-prefs.js",
       "./package.json": "./package.json"
     }
   }

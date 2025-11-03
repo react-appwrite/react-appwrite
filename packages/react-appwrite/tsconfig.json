@@ -1,6 +1,7 @@
 {
   "extends": "@react-appwrite/config/ts",
   "compilerOptions": {
+    "moduleResolution": "node",
     "rootDir": "./src",
     "paths": {
       "*": ["./*"],
