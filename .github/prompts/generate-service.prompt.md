@@ -9,7 +9,7 @@ Your goal is to generate React hooks for each feature in the Appwrite service th
 Requirements for the generated React hooks:
 * Write them in TypeScript
 * Use TanStack Query
-* Generate only 1 hook per file, with a separate props declaration above the hook function
+* Generate only 1 hook per file, with a separate props declaration above the hook function. If the feature does not accept any parameters, do not generate a props declaration.
 * The props for query hooks should only accept 1 destructured object parameter, where all destructured members will be passed to the underlying feature call in 1 new object
 * Mutation hooks should not accept the props directly. Instead, props will be passed in their `mutationFn` that should only accept 1 destructured object parameter, where all destructured members will be passed to the underlying feature call in 1 new object
 * Mutation hooks that involve creating a resource may mark the ID parameter of that resource as optional in the props declaration, and pass `ID.unique()` to the underlying feature call using the null coalescing operator
@@ -20,7 +20,7 @@ Query hooks should have their `queryKey` constructed with an array of 4 elements
 * 'appwrite'
 * The lower camel case name of the service
 * The lower camel case name of the feature
-* An object with the destructured members of the props passed in
+* An object with the destructured members of the props passed in. If the feature does not accept any arguments, this object should be omitted from the `queryKey`
 
 Here is an example of a query:
 
