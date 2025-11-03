@@ -7,6 +7,7 @@ export type AppwriteContext = {
   account: Account,
   avatars: Avatars,
   databases: Databases,
+  functions: Functions,
   locale: Locale,
   messaging: Messaging,
   storage: Storage,
