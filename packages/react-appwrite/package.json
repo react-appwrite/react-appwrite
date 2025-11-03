@@ -29,6 +29,374 @@
       "@react-appwrite/source": "./src/index.tsx",
       "default": "./dist/index.js"
     },
+    "./account/use-create-account": {
+      "@react-appwrite/source": "./src/account/use-create-account.tsx",
+      "default": "./dist/account/use-create-account.js"
+    },
+    "./account/use-create-anonymous-session": {
+      "@react-appwrite/source": "./src/account/use-create-anonymous-session.tsx",
+      "default": "./dist/account/use-create-anonymous-session.js"
+    },
+    "./account/use-create-email-password-session": {
+      "@react-appwrite/source": "./src/account/use-create-email-password-session.tsx",
+      "default": "./dist/account/use-create-email-password-session.js"
+    },
+    "./account/use-create-email-token": {
+      "@react-appwrite/source": "./src/account/use-create-email-token.tsx",
+      "default": "./dist/account/use-create-email-token.js"
+    },
+    "./account/use-create-email-verification": {
+      "@react-appwrite/source": "./src/account/use-create-email-verification.tsx",
+      "default": "./dist/account/use-create-email-verification.js"
+    },
+    "./account/use-create-jwt": {
+      "@react-appwrite/source": "./src/account/use-create-jwt.tsx",
+      "default": "./dist/account/use-create-jwt.js"
+    },
+    "./account/use-create-magic-url-token": {
+      "@react-appwrite/source": "./src/account/use-create-magic-url-token.tsx",
+      "default": "./dist/account/use-create-magic-url-token.js"
+    },
+    "./account/use-create-mfa-authenticator": {
+      "@react-appwrite/source": "./src/account/use-create-mfa-authenticator.tsx",
+      "default": "./dist/account/use-create-mfa-authenticator.js"
+    },
+    "./account/use-create-mfa-challenge": {
+      "@react-appwrite/source": "./src/account/use-create-mfa-challenge.tsx",
+      "default": "./dist/account/use-create-mfa-challenge.js"
+    },
+    "./account/use-create-mfa-recovery-codes": {
+      "@react-appwrite/source": "./src/account/use-create-mfa-recovery-codes.tsx",
+      "default": "./dist/account/use-create-mfa-recovery-codes.js"
+    },
+    "./account/use-create-oauth2-session": {
+      "@react-appwrite/source": "./src/account/use-create-oauth2-session.tsx",
+      "default": "./dist/account/use-create-oauth2-session.js"
+    },
+    "./account/use-create-oauth2-token": {
+      "@react-appwrite/source": "./src/account/use-create-oauth2-token.tsx",
+      "default": "./dist/account/use-create-oauth2-token.js"
+    },
+    "./account/use-create-phone-token": {
+      "@react-appwrite/source": "./src/account/use-create-phone-token.tsx",
+      "default": "./dist/account/use-create-phone-token.js"
+    },
+    "./account/use-create-phone-verification": {
+      "@react-appwrite/source": "./src/account/use-create-phone-verification.tsx",
+      "default": "./dist/account/use-create-phone-verification.js"
+    },
+    "./account/use-create-push-target": {
+      "@react-appwrite/source": "./src/account/use-create-push-target.tsx",
+      "default": "./dist/account/use-create-push-target.js"
+    },
+    "./account/use-create-recovery": {
+      "@react-appwrite/source": "./src/account/use-create-recovery.tsx",
+      "default": "./dist/account/use-create-recovery.js"
+    },
+    "./account/use-create-session": {
+      "@react-appwrite/source": "./src/account/use-create-session.tsx",
+      "default": "./dist/account/use-create-session.js"
+    },
+    "./account/use-create-verification": {
+      "@react-appwrite/source": "./src/account/use-create-verification.tsx",
+      "default": "./dist/account/use-create-verification.js"
+    },
+    "./account/use-delete-identity": {
+      "@react-appwrite/source": "./src/account/use-delete-identity.tsx",
+      "default": "./dist/account/use-delete-identity.js"
+    },
+    "./account/use-delete-mfa-authenticator": {
+      "@react-appwrite/source": "./src/account/use-delete-mfa-authenticator.tsx",
+      "default": "./dist/account/use-delete-mfa-authenticator.js"
+    },
+    "./account/use-delete-push-target": {
+      "@react-appwrite/source": "./src/account/use-delete-push-target.tsx",
+      "default": "./dist/account/use-delete-push-target.js"
+    },
+    "./account/use-delete-session": {
+      "@react-appwrite/source": "./src/account/use-delete-session.tsx",
+      "default": "./dist/account/use-delete-session.js"
+    },
+    "./account/use-delete-sessions": {
+      "@react-appwrite/source": "./src/account/use-delete-sessions.tsx",
+      "default": "./dist/account/use-delete-sessions.js"
+    },
+    "./account/use-get-account": {
+      "@react-appwrite/source": "./src/account/use-get-account.tsx",
+      "default": "./dist/account/use-get-account.js"
+    },
+    "./account/use-get-mfa-recovery-codes": {
+      "@react-appwrite/source": "./src/account/use-get-mfa-recovery-codes.tsx",
+      "default": "./dist/account/use-get-mfa-recovery-codes.js"
+    },
+    "./account/use-get-prefs": {
+      "@react-appwrite/source": "./src/account/use-get-prefs.tsx",
+      "default": "./dist/account/use-get-prefs.js"
+    },
+    "./account/use-get-session": {
+      "@react-appwrite/source": "./src/account/use-get-session.tsx",
+      "default": "./dist/account/use-get-session.js"
+    },
+    "./account/use-list-identities": {
+      "@react-appwrite/source": "./src/account/use-list-identities.tsx",
+      "default": "./dist/account/use-list-identities.js"
+    },
+    "./account/use-list-logs": {
+      "@react-appwrite/source": "./src/account/use-list-logs.tsx",
+      "default": "./dist/account/use-list-logs.js"
+    },
+    "./account/use-list-mfa-factors": {
+      "@react-appwrite/source": "./src/account/use-list-mfa-factors.tsx",
+      "default": "./dist/account/use-list-mfa-factors.js"
+    },
+    "./account/use-list-sessions": {
+      "@react-appwrite/source": "./src/account/use-list-sessions.tsx",
+      "default": "./dist/account/use-list-sessions.js"
+    },
+    "./account/use-update-email": {
+      "@react-appwrite/source": "./src/account/use-update-email.tsx",
+      "default": "./dist/account/use-update-email.js"
+    },
+    "./account/use-update-email-verification": {
+      "@react-appwrite/source": "./src/account/use-update-email-verification.tsx",
+      "default": "./dist/account/use-update-email-verification.js"
+    },
+    "./account/use-update-magic-url-session": {
+      "@react-appwrite/source": "./src/account/use-update-magic-url-session.tsx",
+      "default": "./dist/account/use-update-magic-url-session.js"
+    },
+    "./account/use-update-mfa": {
+      "@react-appwrite/source": "./src/account/use-update-mfa.tsx",
+      "default": "./dist/account/use-update-mfa.js"
+    },
+    "./account/use-update-mfa-authenticator": {
+      "@react-appwrite/source": "./src/account/use-update-mfa-authenticator.tsx",
+      "default": "./dist/account/use-update-mfa-authenticator.js"
+    },
+    "./account/use-update-mfa-challenge": {
+      "@react-appwrite/source": "./src/account/use-update-mfa-challenge.tsx",
+      "default": "./dist/account/use-update-mfa-challenge.js"
+    },
+    "./account/use-update-mfa-recovery-codes": {
+      "@react-appwrite/source": "./src/account/use-update-mfa-recovery-codes.tsx",
+      "default": "./dist/account/use-update-mfa-recovery-codes.js"
+    },
+    "./account/use-update-name": {
+      "@react-appwrite/source": "./src/account/use-update-name.tsx",
+      "default": "./dist/account/use-update-name.js"
+    },
+    "./account/use-update-password": {
+      "@react-appwrite/source": "./src/account/use-update-password.tsx",
+      "default": "./dist/account/use-update-password.js"
+    },
+    "./account/use-update-phone": {
+      "@react-appwrite/source": "./src/account/use-update-phone.tsx",
+      "default": "./dist/account/use-update-phone.js"
+    },
+    "./account/use-update-phone-session": {
+      "@react-appwrite/source": "./src/account/use-update-phone-session.tsx",
+      "default": "./dist/account/use-update-phone-session.js"
+    },
+    "./account/use-update-phone-verification": {
+      "@react-appwrite/source": "./src/account/use-update-phone-verification.tsx",
+      "default": "./dist/account/use-update-phone-verification.js"
+    },
+    "./account/use-update-prefs": {
+      "@react-appwrite/source": "./src/account/use-update-prefs.tsx",
+      "default": "./dist/account/use-update-prefs.js"
+    },
+    "./account/use-update-push-target": {
+      "@react-appwrite/source": "./src/account/use-update-push-target.tsx",
+      "default": "./dist/account/use-update-push-target.js"
+    },
+    "./account/use-update-recovery": {
+      "@react-appwrite/source": "./src/account/use-update-recovery.tsx",
+      "default": "./dist/account/use-update-recovery.js"
+    },
+    "./account/use-update-session": {
+      "@react-appwrite/source": "./src/account/use-update-session.tsx",
+      "default": "./dist/account/use-update-session.js"
+    },
+    "./account/use-update-status": {
+      "@react-appwrite/source": "./src/account/use-update-status.tsx",
+      "default": "./dist/account/use-update-status.js"
+    },
+    "./account/use-update-verification": {
+      "@react-appwrite/source": "./src/account/use-update-verification.tsx",
+      "default": "./dist/account/use-update-verification.js"
+    },
+    "./avatars/use-get-browser": {
+      "@react-appwrite/source": "./src/avatars/use-get-browser.tsx",
+      "default": "./dist/avatars/use-get-browser.js"
+    },
+    "./avatars/use-get-credit-card": {
+      "@react-appwrite/source": "./src/avatars/use-get-credit-card.tsx",
+      "default": "./dist/avatars/use-get-credit-card.js"
+    },
+    "./avatars/use-get-favicon": {
+      "@react-appwrite/source": "./src/avatars/use-get-favicon.tsx",
+      "default": "./dist/avatars/use-get-favicon.js"
+    },
+    "./avatars/use-get-flag": {
+      "@react-appwrite/source": "./src/avatars/use-get-flag.tsx",
+      "default": "./dist/avatars/use-get-flag.js"
+    },
+    "./avatars/use-get-image": {
+      "@react-appwrite/source": "./src/avatars/use-get-image.tsx",
+      "default": "./dist/avatars/use-get-image.js"
+    },
+    "./avatars/use-get-initials": {
+      "@react-appwrite/source": "./src/avatars/use-get-initials.tsx",
+      "default": "./dist/avatars/use-get-initials.js"
+    },
+    "./avatars/use-get-qr": {
+      "@react-appwrite/source": "./src/avatars/use-get-qr.tsx",
+      "default": "./dist/avatars/use-get-qr.js"
+    },
+    "./functions/use-create-execution": {
+      "@react-appwrite/source": "./src/functions/use-create-execution.tsx",
+      "default": "./dist/functions/use-create-execution.js"
+    },
+    "./functions/use-function": {
+      "@react-appwrite/source": "./src/functions/use-function.tsx",
+      "default": "./dist/functions/use-function.js"
+    },
+    "./functions/use-get-execution": {
+      "@react-appwrite/source": "./src/functions/use-get-execution.tsx",
+      "default": "./dist/functions/use-get-execution.js"
+    },
+    "./functions/use-list-executions": {
+      "@react-appwrite/source": "./src/functions/use-list-executions.tsx",
+      "default": "./dist/functions/use-list-executions.js"
+    },
+    "./locale/use-get-locale": {
+      "@react-appwrite/source": "./src/locale/use-get-locale.tsx",
+      "default": "./dist/locale/use-get-locale.js"
+    },
+    "./locale/use-list-codes": {
+      "@react-appwrite/source": "./src/locale/use-list-codes.tsx",
+      "default": "./dist/locale/use-list-codes.js"
+    },
+    "./locale/use-list-continents": {
+      "@react-appwrite/source": "./src/locale/use-list-continents.tsx",
+      "default": "./dist/locale/use-list-continents.js"
+    },
+    "./locale/use-list-countries": {
+      "@react-appwrite/source": "./src/locale/use-list-countries.tsx",
+      "default": "./dist/locale/use-list-countries.js"
+    },
+    "./locale/use-list-countries-eu": {
+      "@react-appwrite/source": "./src/locale/use-list-countries-eu.tsx",
+      "default": "./dist/locale/use-list-countries-eu.js"
+    },
+    "./locale/use-list-countries-phones": {
+      "@react-appwrite/source": "./src/locale/use-list-countries-phones.tsx",
+      "default": "./dist/locale/use-list-countries-phones.js"
+    },
+    "./locale/use-list-currencies": {
+      "@react-appwrite/source": "./src/locale/use-list-currencies.tsx",
+      "default": "./dist/locale/use-list-currencies.js"
+    },
+    "./locale/use-list-languages": {
+      "@react-appwrite/source": "./src/locale/use-list-languages.tsx",
+      "default": "./dist/locale/use-list-languages.js"
+    },
+    "./messaging/use-create-subscriber": {
+      "@react-appwrite/source": "./src/messaging/use-create-subscriber.tsx",
+      "default": "./dist/messaging/use-create-subscriber.js"
+    },
+    "./messaging/use-delete-subscriber": {
+      "@react-appwrite/source": "./src/messaging/use-delete-subscriber.tsx",
+      "default": "./dist/messaging/use-delete-subscriber.js"
+    },
+    "./storage/use-create-file": {
+      "@react-appwrite/source": "./src/storage/use-create-file.tsx",
+      "default": "./dist/storage/use-create-file.js"
+    },
+    "./storage/use-delete-file": {
+      "@react-appwrite/source": "./src/storage/use-delete-file.tsx",
+      "default": "./dist/storage/use-delete-file.js"
+    },
+    "./storage/use-get-file": {
+      "@react-appwrite/source": "./src/storage/use-get-file.tsx",
+      "default": "./dist/storage/use-get-file.js"
+    },
+    "./storage/use-get-file-download": {
+      "@react-appwrite/source": "./src/storage/use-get-file-download.tsx",
+      "default": "./dist/storage/use-get-file-download.js"
+    },
+    "./storage/use-get-file-preview": {
+      "@react-appwrite/source": "./src/storage/use-get-file-preview.tsx",
+      "default": "./dist/storage/use-get-file-preview.js"
+    },
+    "./storage/use-get-file-view": {
+      "@react-appwrite/source": "./src/storage/use-get-file-view.tsx",
+      "default": "./dist/storage/use-get-file-view.js"
+    },
+    "./storage/use-list-files": {
+      "@react-appwrite/source": "./src/storage/use-list-files.tsx",
+      "default": "./dist/storage/use-list-files.js"
+    },
+    "./storage/use-update-file": {
+      "@react-appwrite/source": "./src/storage/use-update-file.tsx",
+      "default": "./dist/storage/use-update-file.js"
+    },
+    "./tablesdb/use-create-operations": {
+      "@react-appwrite/source": "./src/tablesdb/use-create-operations.tsx",
+      "default": "./dist/tablesdb/use-create-operations.js"
+    },
+    "./tablesdb/use-create-row": {
+      "@react-appwrite/source": "./src/tablesdb/use-create-row.tsx",
+      "default": "./dist/tablesdb/use-create-row.js"
+    },
+    "./tablesdb/use-create-transaction": {
+      "@react-appwrite/source": "./src/tablesdb/use-create-transaction.tsx",
+      "default": "./dist/tablesdb/use-create-transaction.js"
+    },
+    "./tablesdb/use-decrement-row-column": {
+      "@react-appwrite/source": "./src/tablesdb/use-decrement-row-column.tsx",
+      "default": "./dist/tablesdb/use-decrement-row-column.js"
+    },
+    "./tablesdb/use-delete-row": {
+      "@react-appwrite/source": "./src/tablesdb/use-delete-row.tsx",
+      "default": "./dist/tablesdb/use-delete-row.js"
+    },
+    "./tablesdb/use-delete-transaction": {
+      "@react-appwrite/source": "./src/tablesdb/use-delete-transaction.tsx",
+      "default": "./dist/tablesdb/use-delete-transaction.js"
+    },
+    "./tablesdb/use-get-row": {
+      "@react-appwrite/source": "./src/tablesdb/use-get-row.tsx",
+      "default": "./dist/tablesdb/use-get-row.js"
+    },
+    "./tablesdb/use-get-transaction": {
+      "@react-appwrite/source": "./src/tablesdb/use-get-transaction.tsx",
+      "default": "./dist/tablesdb/use-get-transaction.js"
+    },
+    "./tablesdb/use-increment-row-column": {
+      "@react-appwrite/source": "./src/tablesdb/use-increment-row-column.tsx",
+      "default": "./dist/tablesdb/use-increment-row-column.js"
+    },
+    "./tablesdb/use-list-rows": {
+      "@react-appwrite/source": "./src/tablesdb/use-list-rows.tsx",
+      "default": "./dist/tablesdb/use-list-rows.js"
+    },
+    "./tablesdb/use-list-transactions": {
+      "@react-appwrite/source": "./src/tablesdb/use-list-transactions.tsx",
+      "default": "./dist/tablesdb/use-list-transactions.js"
+    },
+    "./tablesdb/use-update-row": {
+      "@react-appwrite/source": "./src/tablesdb/use-update-row.tsx",
+      "default": "./dist/tablesdb/use-update-row.js"
+    },
+    "./tablesdb/use-update-transaction": {
+      "@react-appwrite/source": "./src/tablesdb/use-update-transaction.tsx",
+      "default": "./dist/tablesdb/use-update-transaction.js"
+    },
+    "./tablesdb/use-upsert-row": {
+      "@react-appwrite/source": "./src/tablesdb/use-upsert-row.tsx",
+      "default": "./dist/tablesdb/use-upsert-row.js"
+    },
     "./teams/use-create-membership": {
       "@react-appwrite/source": "./src/teams/use-create-membership.tsx",
       "default": "./dist/teams/use-create-membership.js"
@@ -86,6 +454,98 @@
   "publishConfig": {
     "exports": {
       ".": "./dist/index.js",
+      "./account/use-create-account": "./dist/account/use-create-account.js",
+      "./account/use-create-anonymous-session": "./dist/account/use-create-anonymous-session.js",
+      "./account/use-create-email-password-session": "./dist/account/use-create-email-password-session.js",
+      "./account/use-create-email-token": "./dist/account/use-create-email-token.js",
+      "./account/use-create-email-verification": "./dist/account/use-create-email-verification.js",
+      "./account/use-create-jwt": "./dist/account/use-create-jwt.js",
+      "./account/use-create-magic-url-token": "./dist/account/use-create-magic-url-token.js",
+      "./account/use-create-mfa-authenticator": "./dist/account/use-create-mfa-authenticator.js",
+      "./account/use-create-mfa-challenge": "./dist/account/use-create-mfa-challenge.js",
+      "./account/use-create-mfa-recovery-codes": "./dist/account/use-create-mfa-recovery-codes.js",
+      "./account/use-create-oauth2-session": "./dist/account/use-create-oauth2-session.js",
+      "./account/use-create-oauth2-token": "./dist/account/use-create-oauth2-token.js",
+      "./account/use-create-phone-token": "./dist/account/use-create-phone-token.js",
+      "./account/use-create-phone-verification": "./dist/account/use-create-phone-verification.js",
+      "./account/use-create-push-target": "./dist/account/use-create-push-target.js",
+      "./account/use-create-recovery": "./dist/account/use-create-recovery.js",
+      "./account/use-create-session": "./dist/account/use-create-session.js",
+      "./account/use-create-verification": "./dist/account/use-create-verification.js",
+      "./account/use-delete-identity": "./dist/account/use-delete-identity.js",
+      "./account/use-delete-mfa-authenticator": "./dist/account/use-delete-mfa-authenticator.js",
+      "./account/use-delete-push-target": "./dist/account/use-delete-push-target.js",
+      "./account/use-delete-session": "./dist/account/use-delete-session.js",
+      "./account/use-delete-sessions": "./dist/account/use-delete-sessions.js",
+      "./account/use-get-account": "./dist/account/use-get-account.js",
+      "./account/use-get-mfa-recovery-codes": "./dist/account/use-get-mfa-recovery-codes.js",
+      "./account/use-get-prefs": "./dist/account/use-get-prefs.js",
+      "./account/use-get-session": "./dist/account/use-get-session.js",
+      "./account/use-list-identities": "./dist/account/use-list-identities.js",
+      "./account/use-list-logs": "./dist/account/use-list-logs.js",
+      "./account/use-list-mfa-factors": "./dist/account/use-list-mfa-factors.js",
+      "./account/use-list-sessions": "./dist/account/use-list-sessions.js",
+      "./account/use-update-email": "./dist/account/use-update-email.js",
+      "./account/use-update-email-verification": "./dist/account/use-update-email-verification.js",
+      "./account/use-update-magic-url-session": "./dist/account/use-update-magic-url-session.js",
+      "./account/use-update-mfa": "./dist/account/use-update-mfa.js",
+      "./account/use-update-mfa-authenticator": "./dist/account/use-update-mfa-authenticator.js",
+      "./account/use-update-mfa-challenge": "./dist/account/use-update-mfa-challenge.js",
+      "./account/use-update-mfa-recovery-codes": "./dist/account/use-update-mfa-recovery-codes.js",
+      "./account/use-update-name": "./dist/account/use-update-name.js",
+      "./account/use-update-password": "./dist/account/use-update-password.js",
+      "./account/use-update-phone": "./dist/account/use-update-phone.js",
+      "./account/use-update-phone-session": "./dist/account/use-update-phone-session.js",
+      "./account/use-update-phone-verification": "./dist/account/use-update-phone-verification.js",
+      "./account/use-update-prefs": "./dist/account/use-update-prefs.js",
+      "./account/use-update-push-target": "./dist/account/use-update-push-target.js",
+      "./account/use-update-recovery": "./dist/account/use-update-recovery.js",
+      "./account/use-update-session": "./dist/account/use-update-session.js",
+      "./account/use-update-status": "./dist/account/use-update-status.js",
+      "./account/use-update-verification": "./dist/account/use-update-verification.js",
+      "./avatars/use-get-browser": "./dist/avatars/use-get-browser.js",
+      "./avatars/use-get-credit-card": "./dist/avatars/use-get-credit-card.js",
+      "./avatars/use-get-favicon": "./dist/avatars/use-get-favicon.js",
+      "./avatars/use-get-flag": "./dist/avatars/use-get-flag.js",
+      "./avatars/use-get-image": "./dist/avatars/use-get-image.js",
+      "./avatars/use-get-initials": "./dist/avatars/use-get-initials.js",
+      "./avatars/use-get-qr": "./dist/avatars/use-get-qr.js",
+      "./functions/use-create-execution": "./dist/functions/use-create-execution.js",
+      "./functions/use-function": "./dist/functions/use-function.js",
+      "./functions/use-get-execution": "./dist/functions/use-get-execution.js",
+      "./functions/use-list-executions": "./dist/functions/use-list-executions.js",
+      "./locale/use-get-locale": "./dist/locale/use-get-locale.js",
+      "./locale/use-list-codes": "./dist/locale/use-list-codes.js",
+      "./locale/use-list-continents": "./dist/locale/use-list-continents.js",
+      "./locale/use-list-countries": "./dist/locale/use-list-countries.js",
+      "./locale/use-list-countries-eu": "./dist/locale/use-list-countries-eu.js",
+      "./locale/use-list-countries-phones": "./dist/locale/use-list-countries-phones.js",
+      "./locale/use-list-currencies": "./dist/locale/use-list-currencies.js",
+      "./locale/use-list-languages": "./dist/locale/use-list-languages.js",
+      "./messaging/use-create-subscriber": "./dist/messaging/use-create-subscriber.js",
+      "./messaging/use-delete-subscriber": "./dist/messaging/use-delete-subscriber.js",
+      "./storage/use-create-file": "./dist/storage/use-create-file.js",
+      "./storage/use-delete-file": "./dist/storage/use-delete-file.js",
+      "./storage/use-get-file": "./dist/storage/use-get-file.js",
+      "./storage/use-get-file-download": "./dist/storage/use-get-file-download.js",
+      "./storage/use-get-file-preview": "./dist/storage/use-get-file-preview.js",
+      "./storage/use-get-file-view": "./dist/storage/use-get-file-view.js",
+      "./storage/use-list-files": "./dist/storage/use-list-files.js",
+      "./storage/use-update-file": "./dist/storage/use-update-file.js",
+      "./tablesdb/use-create-operations": "./dist/tablesdb/use-create-operations.js",
+      "./tablesdb/use-create-row": "./dist/tablesdb/use-create-row.js",
+      "./tablesdb/use-create-transaction": "./dist/tablesdb/use-create-transaction.js",
+      "./tablesdb/use-decrement-row-column": "./dist/tablesdb/use-decrement-row-column.js",
+      "./tablesdb/use-delete-row": "./dist/tablesdb/use-delete-row.js",
+      "./tablesdb/use-delete-transaction": "./dist/tablesdb/use-delete-transaction.js",
+      "./tablesdb/use-get-row": "./dist/tablesdb/use-get-row.js",
+      "./tablesdb/use-get-transaction": "./dist/tablesdb/use-get-transaction.js",
+      "./tablesdb/use-increment-row-column": "./dist/tablesdb/use-increment-row-column.js",
+      "./tablesdb/use-list-rows": "./dist/tablesdb/use-list-rows.js",
+      "./tablesdb/use-list-transactions": "./dist/tablesdb/use-list-transactions.js",
+      "./tablesdb/use-update-row": "./dist/tablesdb/use-update-row.js",
+      "./tablesdb/use-update-transaction": "./dist/tablesdb/use-update-transaction.js",
+      "./tablesdb/use-upsert-row": "./dist/tablesdb/use-upsert-row.js",
       "./teams/use-create-membership": "./dist/teams/use-create-membership.js",
       "./teams/use-create-team": "./dist/teams/use-create-team.js",
       "./teams/use-delete-membership": "./dist/teams/use-delete-membership.js",

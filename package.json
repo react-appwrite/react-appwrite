@@ -15,9 +15,9 @@
   "devDependencies": {
     "@types/bun": "catalog:",
     "@types/node": "catalog:",
-    "oxlint": "1.23.0",
-    "tsdown": "0.15.7",
-    "turbo": "2.5.8",
+    "oxlint": "1.25.0",
+    "tsdown": "0.15.12",
+    "turbo": "2.6.0",
     "typescript": "catalog:"
   },
   "workspaces": {
