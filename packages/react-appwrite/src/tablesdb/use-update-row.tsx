@@ -1,5 +1,5 @@
 // oxlint-disable no-explicit-any
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import type { Models, AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
@@ -14,7 +14,9 @@ export type Props<Row extends Models.Row = Models.DefaultRow> = {
   transactionId?: string,
 }
 
-export function useUpdateRow<Row extends Models.Row = Models.DefaultRow>() {
+export function useUpdateRow<Row extends Models.Row = Models.DefaultRow>(
+  options: AppwriteMutationOptions<Row, Props<Row>>
+) {
   const { tablesDB } = useAppwrite()
 
   return useMutation<Row, AppwriteException, Props<Row>>({
@@ -28,5 +30,7 @@ export function useUpdateRow<Row extends Models.Row = Models.DefaultRow>() {
         transactionId,
       })
     },
+
+    ...options,
   })
 }
