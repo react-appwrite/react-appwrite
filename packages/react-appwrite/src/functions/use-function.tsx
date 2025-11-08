@@ -40,8 +40,8 @@ export function useFunction<TRequest, TResponse>({ functionId }: Props) {
         subscription = await realtime.subscribe(`executions.${execution.$id}`, event => {
           switch (event.payload.status) {
             case 'completed':
-                resolve(JSON.parse(event.payload.response))
-                break
+              resolve(JSON.parse(event.payload.response))
+              break
             case 'failed':
               reject(event.payload.response)
               break

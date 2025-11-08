@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useMutation } from '@tanstack/react-query'
-import type { ExecutionMethod } from 'appwrite'
+import type { ExecutionMethod, Models, AppwriteException } from 'appwrite'
 
 export type Props = {
   functionId: string,
@@ -16,8 +16,8 @@ export type Props = {
 export function useCreateExecution() {
   const { functions } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ functionId, body, async, path, method, headers, scheduledAt, xpath }: Props) => {
+  return useMutation<Models.Execution, AppwriteException, Props>({
+    mutationFn: ({ functionId, body, async, path, method, headers, scheduledAt, xpath }) => {
       // @ts-expect-error
       return functions.createExecution({
         functionId,
