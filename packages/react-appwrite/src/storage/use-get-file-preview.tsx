@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
-import type { ImageGravity, ImageFormat } from 'appwrite'
+import type { ImageGravity, ImageFormat, AppwriteException } from 'appwrite'
 
 export type Props = {
   bucketId: string,
@@ -38,7 +38,7 @@ export function useGetFilePreview({
 }: Props) {
   const { storage } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return storage.getFilePreview({
         bucketId,

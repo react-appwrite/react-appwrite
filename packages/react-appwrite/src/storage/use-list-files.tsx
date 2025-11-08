@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { Models, AppwriteException } from 'appwrite'
 
 export type Props = {
   bucketId: string,
@@ -10,7 +11,7 @@ export type Props = {
 export function useListFiles({ bucketId, queries, search }: Props) {
   const { storage } = useAppwrite()
 
-  return useQuery({
+  return useQuery<Models.FileList, AppwriteException>({
     queryFn: () => {
       return storage.listFiles({
         bucketId,
