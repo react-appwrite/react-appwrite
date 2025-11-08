@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import { ID, type Models, type AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
@@ -9,7 +9,9 @@ export type Props = {
   permissions?: string[],
 }
 
-export function useCreateFile() {
+export function useCreateFile(
+  options: AppwriteMutationOptions<Models.File, Props>
+) {
   const { storage } = useAppwrite()
 
   return useMutation<Models.File, AppwriteException, Props>({
@@ -21,5 +23,7 @@ export function useCreateFile() {
         permissions,
       })
     },
+
+    ...options,
   })
 }

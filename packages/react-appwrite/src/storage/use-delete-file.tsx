@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import type { AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
@@ -7,7 +7,9 @@ export type Props = {
   fileId: string,
 }
 
-export function useDeleteFile() {
+export function useDeleteFile(
+  options: AppwriteMutationOptions<{}, Props>
+) {
   const { storage } = useAppwrite()
 
   return useMutation<{}, AppwriteException, Props>({
@@ -17,5 +19,7 @@ export function useDeleteFile() {
         fileId,
       })
     },
+
+    ...options,
   })
 }
