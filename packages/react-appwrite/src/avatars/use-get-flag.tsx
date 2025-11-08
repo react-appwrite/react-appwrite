@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
-import type { Flag } from 'appwrite'
+import type { Flag, AppwriteException } from 'appwrite'
 
 export type Props = {
   code: Flag,
@@ -12,7 +12,7 @@ export type Props = {
 export function useGetFlag({ code, width, height, quality }: Props) {
   const { avatars } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return avatars.getFlag({
         code,

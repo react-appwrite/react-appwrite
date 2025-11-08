@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { AppwriteException } from 'appwrite'
 
 export type Props = {
   text: string,
@@ -11,7 +12,7 @@ export type Props = {
 export function useGetQr({ text, size, margin, download }: Props) {
   const { avatars } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return avatars.getQR({
         text,

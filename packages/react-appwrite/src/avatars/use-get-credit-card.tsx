@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
-import type { CreditCard } from 'appwrite'
+import type { CreditCard, AppwriteException } from 'appwrite'
 
 export type Props = {
   code: CreditCard,
@@ -12,7 +12,7 @@ export type Props = {
 export function useGetCreditCard({ code, width, height, quality }: Props) {
   const { avatars } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return avatars.getCreditCard({
         code,

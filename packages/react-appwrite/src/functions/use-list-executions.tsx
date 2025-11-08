@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { Models, AppwriteException } from 'appwrite'
 
 export type Props = {
   functionId: string,
@@ -9,7 +10,7 @@ export type Props = {
 export function useListExecutions({ functionId, queries }: Props) {
   const { functions } = useAppwrite()
 
-  return useQuery({
+  return useQuery<Models.ExecutionList, AppwriteException>({
     queryFn: () => {
       return functions.listExecutions({
         functionId,

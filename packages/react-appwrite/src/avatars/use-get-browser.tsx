@@ -1,6 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
-import type { Browser } from 'appwrite'
+import type { Browser, AppwriteException } from 'appwrite'
 
 export type Props = {
   code: Browser,
@@ -12,7 +12,7 @@ export type Props = {
 export function useGetBrowser({ code, width, height, quality }: Props) {
   const { avatars } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return avatars.getBrowser({
         code,

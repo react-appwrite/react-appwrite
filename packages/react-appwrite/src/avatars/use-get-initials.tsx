@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { AppwriteException } from 'appwrite'
 
 export type Props = {
   name?: string,
@@ -11,7 +12,7 @@ export type Props = {
 export function useGetInitials({ name, width, height, background }: Props) {
   const { avatars } = useAppwrite()
 
-  return useQuery({
+  return useQuery<string, AppwriteException>({
     queryFn: () => {
       return avatars.getInitials({
         name,
