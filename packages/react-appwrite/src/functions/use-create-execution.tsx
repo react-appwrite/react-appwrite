@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import { useMutation } from '@tanstack/react-query'
 import type { ExecutionMethod, Models, AppwriteException } from 'appwrite'
 
@@ -13,7 +13,9 @@ export type Props = {
   xpath?: string,
 }
 
-export function useCreateExecution() {
+export function useCreateExecution(
+  options: AppwriteMutationOptions<Models.Execution, Props>
+) {
   const { functions } = useAppwrite()
 
   return useMutation<Models.Execution, AppwriteException, Props>({
@@ -30,5 +32,7 @@ export function useCreateExecution() {
         xpath,
       })
     },
+
+    ...options,
   })
 }
