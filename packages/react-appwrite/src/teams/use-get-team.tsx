@@ -1,5 +1,5 @@
 import { useAppwrite } from '../index'
-import type { Models } from 'appwrite'
+import type { Models, AppwriteException } from 'appwrite'
 import { useQuery } from '@tanstack/react-query'
 
 type Props = {
@@ -11,7 +11,7 @@ export function useGetTeam<
 >({ teamId }: Props) {
   const { teams } = useAppwrite()
 
-  return useQuery({
+  return useQuery<Models.Team<Preferences>, AppwriteException>({
     queryFn: () => {
       return teams.get<Preferences>({
         teamId,

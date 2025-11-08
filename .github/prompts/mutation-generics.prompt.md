@@ -1,7 +1,7 @@
 ---
 mode: agent
 model: GPT-5 (openai)
-description: Generate React hooks for Appwrite services
+description: Add generic type parameters for mutations
 tools: ['edit/createFile', 'edit/createDirectory', 'edit/editFiles', 'search', 'appwrite-docs/*', 'fetch']
 ---
 Your goal is to add the proper generic type parameters for all `useMutation` calls you encounter in the folder the user specifies. You should identify files as mutations if their file name contains "create", "update", or "delete". You should work on each hook one by one rather than gathering all hooks and starting the work afterwards.

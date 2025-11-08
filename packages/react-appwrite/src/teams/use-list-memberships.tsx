@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { Models, AppwriteException } from 'appwrite'
 
 type Props = {
   teamId: string,
@@ -10,7 +11,7 @@ type Props = {
 export function useListMemberships({ teamId, queries, search }: Props) {
   const { teams } = useAppwrite()
 
-  return useQuery({
+  return useQuery<Models.MembershipList, AppwriteException>({
     queryFn: () => {
       return teams.listMemberships({
         teamId,
