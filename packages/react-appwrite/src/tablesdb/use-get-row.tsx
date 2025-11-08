@@ -15,7 +15,7 @@ export function useGetRow<
 >({ databaseId, tableId, rowId, queries, transactionId }: Props) {
   const { tablesDB } = useAppwrite()
 
-  return useQuery<Row, AppwriteException, Props>({
+  return useQuery<Row, AppwriteException>({
     queryFn: () => {
       return tablesDB.getRow<Row>({
         databaseId,

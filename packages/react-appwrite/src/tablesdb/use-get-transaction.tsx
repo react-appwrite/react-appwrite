@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useQuery } from '@tanstack/react-query'
+import type { Models, AppwriteException } from 'appwrite'
 
 export type Props = {
   transactionId: string,
@@ -8,7 +9,7 @@ export type Props = {
 export function useGetTablesTransaction({ transactionId }: Props) {
   const { tablesDB } = useAppwrite()
 
-  return useQuery({
+  return useQuery<Models.Transaction, AppwriteException>({
     queryFn: () => {
       return tablesDB.getTransaction({
         transactionId,
