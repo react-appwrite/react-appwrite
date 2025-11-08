@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import { useMutation } from '@tanstack/react-query'
 import type { Models, AppwriteException } from 'appwrite'
 
@@ -8,7 +8,9 @@ export type Props = {
   targetId: string,
 }
 
-export function useCreateSubscriber() {
+export function useCreateSubscriber(
+  options: AppwriteMutationOptions<Models.Subscriber, Props>
+) {
   const { messaging } = useAppwrite()
 
   return useMutation<Models.Subscriber, AppwriteException, Props>({
@@ -19,5 +21,7 @@ export function useCreateSubscriber() {
         targetId,
       })
     },
+
+    ...options,
   })
 }
