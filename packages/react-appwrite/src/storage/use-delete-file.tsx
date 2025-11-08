@@ -1,4 +1,5 @@
 import { useAppwrite } from '../index'
+import type { AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 export type Props = {
@@ -9,8 +10,8 @@ export type Props = {
 export function useDeleteFile() {
   const { storage } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ bucketId, fileId }: Props) => {
+  return useMutation<{}, AppwriteException, Props>({
+    mutationFn: ({ bucketId, fileId }) => {
       return storage.deleteFile({
         bucketId,
         fileId,

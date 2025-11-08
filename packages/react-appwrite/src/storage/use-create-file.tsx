@@ -1,5 +1,5 @@
 import { useAppwrite } from '../index'
-import { ID } from 'appwrite'
+import { ID, type Models, type AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 export type Props = {
@@ -12,8 +12,8 @@ export type Props = {
 export function useCreateFile() {
   const { storage } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ bucketId, fileId, file, permissions }: Props) => {
+  return useMutation<Models.File, AppwriteException, Props>({
+    mutationFn: ({ bucketId, fileId, file, permissions }) => {
       return storage.createFile({
         bucketId,
         fileId: fileId ?? ID.unique(),
