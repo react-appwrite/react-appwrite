@@ -1,4 +1,5 @@
 import { useAppwrite } from '../index'
+import type { AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 type Props = {
@@ -8,8 +9,8 @@ type Props = {
 export function useDeleteTeam() {
   const { teams } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ teamId }: Props) => {
+  return useMutation<{}, AppwriteException, Props>({
+    mutationFn: ({ teamId }) => {
       return teams.delete({
         teamId,
       })

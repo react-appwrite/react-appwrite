@@ -1,4 +1,5 @@
 import { useAppwrite } from '../index'
+import type { Models, AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 type Props = {
@@ -14,8 +15,8 @@ type Props = {
 export function useCreateMembership() {
   const { teams } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ teamId, roles, email, userId, phone, url, name }: Props) => {
+  return useMutation<Models.Membership, AppwriteException, Props>({
+    mutationFn: ({ teamId, roles, email, userId, phone, url, name }) => {
       return teams.createMembership({
         teamId,
         roles,

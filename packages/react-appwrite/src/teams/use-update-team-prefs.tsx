@@ -1,5 +1,5 @@
 import { useAppwrite } from '../index'
-import type { Models } from 'appwrite'
+import type { Models, AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 type Props<Preferences extends Models.Preferences = Models.DefaultPreferences> = {
@@ -12,8 +12,8 @@ export function useUpdateTeamPrefs<
 >() {
   const { teams } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ teamId, prefs }: Props<Preferences>) => {
+  return useMutation<Preferences, AppwriteException, Props<Preferences>>({
+    mutationFn: ({ teamId, prefs }) => {
       return teams.updatePrefs<Preferences>({
         teamId,
         prefs,
