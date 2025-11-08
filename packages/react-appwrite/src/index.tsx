@@ -62,8 +62,4 @@ export function useAppwrite() {
 
 export type AppwriteQueryOptions<TData> = Omit<UseQueryOptions<TData, AppwriteException>, 'queryFn' | 'queryKey' | 'select'>
 
-export type AppwriteMutationOptions<TData> = Omit<UseMutationOptions<TData, AppwriteException>, 'mutationFn'>
-
-export type ReactAppwriteQueryOptions = {
-  realtime?: boolean,
-}
+export type AppwriteMutationOptions<TData, TVariables> = Omit<UseMutationOptions<TData, AppwriteException, TVariables>, 'mutationFn'>

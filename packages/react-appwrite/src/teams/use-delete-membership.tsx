@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import type { AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
@@ -7,7 +7,9 @@ type Props = {
   membershipId: string,
 }
 
-export function useDeleteMembership() {
+export function useDeleteMembership(
+  options: AppwriteMutationOptions<{}, Props>
+) {
   const { teams } = useAppwrite()
 
   return useMutation<{}, AppwriteException, Props>({
@@ -17,5 +19,7 @@ export function useDeleteMembership() {
         membershipId,
       })
     },
+
+    ...options,
   })
 }

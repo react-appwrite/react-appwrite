@@ -1,4 +1,4 @@
-import { useAppwrite } from '../index'
+import { type AppwriteMutationOptions, useAppwrite } from '../index'
 import type { Models, AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
@@ -9,7 +9,7 @@ type Props = {
 
 export function useUpdateTeamName<
   Preferences extends Models.Preferences = Models.DefaultPreferences
->() {
+>(options: AppwriteMutationOptions<Models.Team<Preferences>, Props>) {
   const { teams } = useAppwrite()
 
   return useMutation<Models.Team<Preferences>, AppwriteException, Props>({
@@ -19,5 +19,7 @@ export function useUpdateTeamName<
         name,
       })
     },
+
+    ...options,
   })
 }
