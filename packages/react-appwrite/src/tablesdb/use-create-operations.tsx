@@ -1,5 +1,6 @@
 import { useAppwrite } from '../index'
 import { useMutation } from '@tanstack/react-query'
+import type { Models, AppwriteException } from 'appwrite'
 
 export type Operation = {
   action: 'create' | 'update' | 'delete',
@@ -17,8 +18,8 @@ export type Props = {
 export function useCreateTablesOperations() {
   const { tablesDB } = useAppwrite()
 
-  return useMutation({
-    mutationFn: ({ transactionId, operations }: Props) => {
+  return useMutation<Models.Transaction, AppwriteException, Props>({
+    mutationFn: ({ transactionId, operations }) => {
       return tablesDB.createOperations({
         transactionId,
         operations,

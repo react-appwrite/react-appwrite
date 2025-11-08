@@ -64,6 +64,6 @@ export type AppwriteQueryOptions<TData> = Omit<UseQueryOptions<TData, AppwriteEx
 
 export type AppwriteMutationOptions<TData> = Omit<UseMutationOptions<TData, AppwriteException>, 'mutationFn'>
 
-export type AppwriteQueryRealtimeOptions = {
+export type ReactAppwriteQueryOptions = {
   realtime?: boolean,
 }

@@ -13,7 +13,7 @@ export function useDeleteRow() {
   const { tablesDB } = useAppwrite()
 
   return useMutation<{}, AppwriteException, Props>({
-    mutationFn: ({ databaseId, tableId, rowId, transactionId }: Props) => {
+    mutationFn: ({ databaseId, tableId, rowId, transactionId }) => {
       return tablesDB.deleteRow({
         databaseId,
         tableId,
