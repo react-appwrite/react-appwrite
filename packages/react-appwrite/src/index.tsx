@@ -1,5 +1,6 @@
-import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars, TablesDB, Realtime } from 'appwrite'
+import { type Client, Account, Storage, Teams, Databases, Functions, Messaging, Locale, Avatars, TablesDB, Realtime, type AppwriteException } from 'appwrite'
 import { useState, createContext, useContext, type ReactNode } from 'react'
+import type { UseQueryOptions, UseMutationOptions } from '@tanstack/react-query'
 
 export type AppwriteContext = {
   client: Client,
@@ -53,8 +54,16 @@ export function useAppwrite() {
   const context = useContext(AppwriteContext)
 
   if (!context) {
-    throw new Error('`useAppwrite` must be wrapped in an `AppwriteProvider`')
+    throw new Error('`useAppwrite()` must be used under `AppwriteProvider`')
   }
 
   return context
+}
+
+export type AppwriteQueryOptions<TData> = Omit<UseQueryOptions<TData, AppwriteException>, 'queryFn' | 'queryKey' | 'select'>
+
+export type AppwriteMutationOptions<TData> = Omit<UseMutationOptions<TData, AppwriteException>, 'mutationFn'>
+
+export type AppwriteQueryRealtimeOptions = {
+  realtime?: boolean,
 }

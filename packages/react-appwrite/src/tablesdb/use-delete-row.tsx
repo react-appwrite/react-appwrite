@@ -1,4 +1,5 @@
 import { useAppwrite } from '../index'
+import type { AppwriteException } from 'appwrite'
 import { useMutation } from '@tanstack/react-query'
 
 export type Props = {
@@ -11,7 +12,7 @@ export type Props = {
 export function useDeleteRow() {
   const { tablesDB } = useAppwrite()
 
-  return useMutation({
+  return useMutation<{}, AppwriteException, Props>({
     mutationFn: ({ databaseId, tableId, rowId, transactionId }: Props) => {
       return tablesDB.deleteRow({
         databaseId,
